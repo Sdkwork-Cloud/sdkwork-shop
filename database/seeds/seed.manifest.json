@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.database.seed",
+  "moduleId": "shop",
+  "defaultLocale": "zh-CN",
+  "profiles": {
+    "standard": {
+      "common": ["common/001_shop_bootstrap.sql"],
+      "locales": {}
+    }
+  }
+}

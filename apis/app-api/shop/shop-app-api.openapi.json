@@ -1,0 +1,87 @@
+{
+  "openapi": "3.1.2",
+  "info": {
+    "title": "SDKWork Shop App API",
+    "version": "1.0.0",
+    "description": "App/client contract for SDKWork commerce shop capability.",
+    "x-sdkwork-api-authority": "sdkwork-shop-app-api",
+    "x-sdkwork-sdk-family": "sdkwork-shop-app-sdk",
+    "x-sdkwork-owner": "sdkwork-shop"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:18090",
+      "description": "Local sdkwork-shop runtime"
+    }
+  ],
+  "paths": {
+    "/app/v3/api/shops/me": {
+      "get": {
+        "operationId": "shop.shops.me.retrieve",
+        "summary": "Retrieve current merchant shop profile",
+        "tags": ["shops"],
+        "x-sdkwork-api-surface": "app-api",
+        "x-sdkwork-request-context": "WebRequestContext",
+        "responses": {
+          "200": {
+            "description": "Shop profile",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "format": "uuid" },
+                    "name": { "type": "string" },
+                    "slug": { "type": "string" },
+                    "status": { "type": "string" }
+                  },
+                  "required": ["id", "name", "slug", "status"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app/v3/api/shops": {
+      "post": {
+        "operationId": "shop.shops.create",
+        "summary": "Create a shop application",
+        "tags": ["shops"],
+        "x-sdkwork-api-surface": "app-api",
+        "x-sdkwork-request-context": "WebRequestContext",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "slug": { "type": "string" }
+                },
+                "required": ["name", "slug"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Shop created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "format": "uuid" }
+                  },
+                  "required": ["id"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

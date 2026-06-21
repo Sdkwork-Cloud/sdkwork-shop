@@ -1,0 +1,17 @@
+[package]
+name = "sdkwork-commerce-shop-repository-sqlx"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+async-trait = { workspace = true }
+chrono = { workspace = true }
+sdkwork_commerce_shop_service.workspace = true
+sdkwork_database_sqlx.workspace = true
+sqlx = { workspace = true }
+uuid = { workspace = true }

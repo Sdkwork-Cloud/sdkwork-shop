@@ -1,0 +1,54 @@
+{
+  "openapi": "3.1.2",
+  "info": {
+    "title": "SDKWork Shop Backend API",
+    "version": "1.0.0",
+    "description": "Backend/admin contract for SDKWork commerce shop governance.",
+    "x-sdkwork-api-authority": "sdkwork-shop-backend-api",
+    "x-sdkwork-sdk-family": "sdkwork-shop-backend-sdk",
+    "x-sdkwork-owner": "sdkwork-shop"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:18090",
+      "description": "Local sdkwork-shop runtime"
+    }
+  ],
+  "paths": {
+    "/backend/v3/api/shops": {
+      "get": {
+        "operationId": "shop.shops.admin.list",
+        "summary": "List shops for operator review",
+        "tags": ["shops"],
+        "x-sdkwork-api-surface": "backend-api",
+        "x-sdkwork-request-context": "WebRequestContext",
+        "responses": {
+          "200": {
+            "description": "Shop list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string", "format": "uuid" },
+                          "name": { "type": "string" },
+                          "status": { "type": "string" }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["items"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

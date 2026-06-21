@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.route-manifest",
+  "apiAuthority": "sdkwork-shop-app-api",
+  "owner": "sdkwork-shop",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/me",
+      "operationId": "shop.shops.me.retrieve",
+      "apiSurface": "app-api",
+      "requestContext": "WebRequestContext"
+    },
+    {
+      "method": "POST",
+      "path": "/app/v3/api/shops",
+      "operationId": "shop.shops.create",
+      "apiSurface": "app-api",
+      "requestContext": "WebRequestContext"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops",
+      "operationId": "shop.shops.admin.list",
+      "apiSurface": "backend-api",
+      "requestContext": "WebRequestContext"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "applicationCode": "shop",
+  "repository": "sdkwork-shop",
+  "packaging": {
+    "enabled": false
+  },
+  "notes": "Enable GitHub packaging per GITHUB_WORKFLOW_SPEC.md when release train is ready."
+}
