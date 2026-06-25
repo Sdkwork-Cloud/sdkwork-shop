@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 use uuid::Uuid;
 
-use crate::domain::{CreateShopCommand, ShopProfile, ShopSummary};
+use super::domain::{CreateShopCommand, ShopProfile, ShopSummary};
 
 #[async_trait]
 pub trait ShopRepository: Send + Sync {

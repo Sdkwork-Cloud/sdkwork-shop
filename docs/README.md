@@ -1,6 +1,15 @@
-# docs
+# Shop Documentation
 
-See `../sdkwork-specs/SDKWORK_WORKSPACE_SPEC.md`.
+## Audience Routing
+
+| I am… | Read first | Then read |
+| --- | --- | --- |
+| Product or business | [product/prd/PRD.md](product/prd/PRD.md) | [product/requirements/](product/requirements/) |
+| Architect | [architecture/tech/TECH_ARCHITECTURE.md](architecture/tech/TECH_ARCHITECTURE.md) | [architecture/decisions/](architecture/decisions/) |
+| Developer | [guides/developer/README.md](guides/developer/README.md) | [engineering/plans/](engineering/plans/) |
+| Operator | [guides/operator/README.md](guides/operator/README.md) | [runbooks/](runbooks/) |
+| Integrator | [guides/integrator/README.md](guides/integrator/README.md) | repository `apis/` and `sdks/` |
+| Agent | [../AGENTS.md](../AGENTS.md) | [INDEX.yaml](INDEX.yaml) |
 
 ## Canon Documents
 
@@ -9,15 +18,14 @@ See `../sdkwork-specs/SDKWORK_WORKSPACE_SPEC.md`.
 | Product PRD | [product/prd/PRD.md](product/prd/PRD.md) |
 | Technical architecture | [architecture/tech/TECH_ARCHITECTURE.md](architecture/tech/TECH_ARCHITECTURE.md) |
 
-- [docs/product/prd/PRD.md](product/prd/PRD.md)
-- [docs/architecture/tech/TECH_ARCHITECTURE.md](architecture/tech/TECH_ARCHITECTURE.md)
+## Related Specs
 
-## Canon Documents
+- `../sdkwork-specs/DOCUMENTATION_SPEC.md`
+- `../sdkwork-specs/SDKWORK_WORKSPACE_SPEC.md`
 
-| Document | Path |
-| --- | --- |
-| Product PRD | [product/prd/PRD.md](product/prd/PRD.md) |
-| Technical architecture | [architecture/tech/TECH_ARCHITECTURE.md](architecture/tech/TECH_ARCHITECTURE.md) |
+## Verification
 
-- [docs/product/prd/PRD.md](product/prd/PRD.md)
-- [docs/architecture/tech/TECH_ARCHITECTURE.md](architecture/tech/TECH_ARCHITECTURE.md)
+```bash
+node ../sdkwork-specs/tools/check-repository-docs-standard.mjs --root .
+pnpm verify
+```

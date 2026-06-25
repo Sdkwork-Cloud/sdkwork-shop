@@ -1,5 +1,7 @@
 use axum::Router;
-use sdkwork_iam_web_adapter::IamDatabaseWebRequestContextResolver;
+use sdkwork_iam_web_adapter::{
+    wrap_router_with_iam_backend_web_framework, IamDatabaseWebRequestContextResolver,
+};
 use sdkwork_web_axum::{with_web_request_context, WebFrameworkLayer};
 use sdkwork_web_core::WebRequestContextProfile;
 
@@ -30,4 +32,12 @@ pub fn wrap_router_with_web_framework(
 pub async fn wrap_router_with_web_framework_from_env(router: Router) -> Router {
     let resolver = sdkwork_iam_web_adapter::iam_database_resolver_from_env().await;
     wrap_router_with_web_framework(resolver, router)
+}
+
+pub fn with_backend_request_identity(router: Router) -> Router {
+    wrap_router_with_iam_backend_web_framework(
+        router,
+        IamDatabaseWebRequestContextResolver::new(None),
+        backend_route_manifest(),
+    )
 }

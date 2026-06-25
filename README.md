@@ -1,19 +1,20 @@
 # sdkwork-shop
 
-SDKWork commerce **shop** capability application: merchant shop configuration, onboarding, and operator console.
+SDKWork commerce **shop** capability building-block repository (domain `commerce`).
 
 - Standards: `../sdkwork-specs/README.md`
-- Domain: `commerce` / capability: `shop`
+- Composition consumer: `../sdkwork-commerce` (T0 platform)
+- Domain service: `crates/sdkwork-commerce-shop-service/`
+- Repository SQL: `crates/sdkwork-commerce-shop-repository-sqlx/`
 - PC app: `apps/sdkwork-shop-pc/`
-- HTTP API: `crates/sdkwork-shop-api-server/`
-- Database: `database/` via `sdkwork-database`
+- HTTP API server: `crates/sdkwork-shop-api-server/`
 
 ## Quick start
 
 ```bash
-pnpm install
 pnpm verify
-pnpm --dir apps/sdkwork-shop-pc dev
+pnpm db:validate
+cargo test --workspace
 ```
 
 ## Documentation Canon
@@ -21,4 +22,3 @@ pnpm --dir apps/sdkwork-shop-pc dev
 - [docs/README.md](docs/README.md)
 - [docs/product/prd/PRD.md](docs/product/prd/PRD.md)
 - [docs/architecture/tech/TECH_ARCHITECTURE.md](docs/architecture/tech/TECH_ARCHITECTURE.md)
-

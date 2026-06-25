@@ -11,6 +11,9 @@ path = "src/lib.rs"
 [dependencies]
 async-trait = { workspace = true }
 chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sdkwork_commerce_contract_service.workspace = true
 sdkwork_commerce_shop_service.workspace = true
 sdkwork_database_sqlx.workspace = true
 sqlx = { workspace = true }

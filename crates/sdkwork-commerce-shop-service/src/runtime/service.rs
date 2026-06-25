@@ -1,7 +1,7 @@
 use uuid::Uuid;
 
-use crate::domain::{CreateShopCommand, ShopProfile, ShopSummary};
-use crate::ports::ShopRepository;
+use super::domain::{CreateShopCommand, ShopProfile, ShopSummary};
+use super::ports::ShopRepository;
 
 pub struct ShopService<R: ShopRepository> {
     repository: R,
@@ -42,7 +42,7 @@ mod tests {
     use chrono::Utc;
 
     use super::*;
-    use crate::domain::ShopProfile;
+    use crate::runtime::domain::ShopProfile;
 
     struct MemoryShopRepository {
         shops: Mutex<Vec<ShopProfile>>,

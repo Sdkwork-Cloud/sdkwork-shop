@@ -1506,6 +1506,7 @@ dependencies = [
  "pkcs1",
  "pkcs8",
  "rand_core 0.6.4",
+ "sha2",
  "signature",
  "spki",
  "subtle",
@@ -1572,13 +1573,47 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 
 [[package]]
+name = "sdkwork-commerce-contract-service"
+version = "0.1.0"
+
+[[package]]
+name = "sdkwork-commerce-merchandise-repository-sqlx"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "chrono",
+ "sdkwork-commerce-contract-service",
+ "sdkwork-commerce-merchandise-service",
+ "sdkwork-database-sqlx",
+ "serde",
+ "serde_json",
+ "sqlx",
+ "uuid",
+]
+
+[[package]]
+name = "sdkwork-commerce-merchandise-service"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "chrono",
+ "sdkwork-commerce-contract-service",
+ "serde",
+ "serde_json",
+ "uuid",
+]
+
+[[package]]
 name = "sdkwork-commerce-shop-repository-sqlx"
 version = "0.1.0"
 dependencies = [
  "async-trait",
  "chrono",
+ "sdkwork-commerce-contract-service",
  "sdkwork-commerce-shop-service",
  "sdkwork-database-sqlx",
+ "serde",
+ "serde_json",
  "sqlx",
  "uuid",
 ]
@@ -1589,6 +1624,7 @@ version = "0.1.0"
 dependencies = [
  "async-trait",
  "chrono",
+ "sdkwork-commerce-contract-service",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
@@ -1630,6 +1666,7 @@ dependencies = [
  "sdkwork-database-sqlx",
  "serde",
  "serde_json",
+ "sqlx",
  "thiserror 2.0.18",
  "tokio",
  "tracing",
@@ -1661,10 +1698,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "sdkwork-iam-bootstrap"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "sdkwork-iam-context-service",
+ "sdkwork-iam-module-registry",
+ "sqlx",
+]
+
+[[package]]
 name = "sdkwork-iam-context-service"
 version = "0.1.0"
 dependencies = [
  "sdkwork-utils-rust",
+]
+
+[[package]]
+name = "sdkwork-iam-module-registry"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "sdkwork-iam-context-service",
+ "serde",
+ "serde_json",
+ "sha2",
+ "sqlx",
 ]
 
 [[package]]
@@ -1682,13 +1741,57 @@ dependencies = [
  "rand_core 0.6.4",
  "reqwest",
  "sdkwork-database-sqlx",
+ "sdkwork-iam-bootstrap",
  "sdkwork-iam-context-service",
  "sdkwork-utils-rust",
  "sdkwork-web-axum",
  "sdkwork-web-core",
  "serde",
  "serde_json",
+ "sha1",
  "sha2",
+ "sqlx",
+ "urlencoding",
+ "uuid",
+]
+
+[[package]]
+name = "sdkwork-merchandise-database-host"
+version = "0.1.0"
+dependencies = [
+ "dotenvy",
+ "sdkwork-database-config",
+ "sdkwork-database-lifecycle",
+ "sdkwork-database-spi",
+ "sdkwork-database-sqlx",
+]
+
+[[package]]
+name = "sdkwork-merchandise-service-host"
+version = "0.1.0"
+dependencies = [
+ "sdkwork-commerce-merchandise-repository-sqlx",
+ "sdkwork-commerce-merchandise-service",
+ "sdkwork-database-spi",
+ "sdkwork-database-sqlx",
+ "sdkwork-merchandise-database-host",
+]
+
+[[package]]
+name = "sdkwork-router-merchandise-app-api"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "sdkwork-commerce-contract-service",
+ "sdkwork-commerce-merchandise-repository-sqlx",
+ "sdkwork-commerce-merchandise-service",
+ "sdkwork-iam-context-service",
+ "sdkwork-iam-web-adapter",
+ "sdkwork-merchandise-service-host",
+ "sdkwork-web-axum",
+ "sdkwork-web-core",
+ "serde",
+ "serde_json",
  "sqlx",
  "uuid",
 ]
@@ -1698,13 +1801,21 @@ name = "sdkwork-router-shop-app-api"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "sdkwork-commerce-contract-service",
+ "sdkwork-commerce-merchandise-repository-sqlx",
+ "sdkwork-commerce-merchandise-service",
+ "sdkwork-commerce-shop-repository-sqlx",
  "sdkwork-commerce-shop-service",
+ "sdkwork-database-sqlx",
+ "sdkwork-iam-context-service",
  "sdkwork-iam-web-adapter",
+ "sdkwork-router-merchandise-app-api",
  "sdkwork-shop-service-host",
  "sdkwork-web-axum",
  "sdkwork-web-core",
  "serde",
  "serde_json",
+ "sqlx",
  "uuid",
 ]
 
@@ -1713,11 +1824,17 @@ name = "sdkwork-router-shop-backend-api"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "sdkwork-commerce-contract-service",
+ "sdkwork-commerce-shop-repository-sqlx",
+ "sdkwork-database-sqlx",
+ "sdkwork-iam-context-service",
  "sdkwork-iam-web-adapter",
  "sdkwork-shop-service-host",
  "sdkwork-web-axum",
  "sdkwork-web-core",
+ "serde",
  "serde_json",
+ "sqlx",
  "uuid",
 ]
 
@@ -1803,10 +1920,14 @@ dependencies = [
  "async-trait",
  "axum",
  "getrandom 0.2.17",
+ "hmac",
  "http",
+ "rsa",
  "sdkwork-web-contract",
  "serde",
  "serde_json",
+ "sha2",
+ "tokio",
  "tracing",
 ]
 

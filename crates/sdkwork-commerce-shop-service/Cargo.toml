@@ -1,20 +1,21 @@
 [package]
 name = "sdkwork-commerce-shop-service"
-version.workspace = true
-edition.workspace = true
-license.workspace = true
-publish.workspace = true
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "SDKWork commerce shop domain rules for local/private Rust deployments."
 
 [lib]
 path = "src/lib.rs"
 
 [dependencies]
-serde = { workspace = true }
-serde_json = { workspace = true }
-uuid = { workspace = true }
-thiserror = { workspace = true }
 async-trait = { workspace = true }
 chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+uuid = { workspace = true }
+sdkwork_commerce_contract_service.workspace = true
 
 [dev-dependencies]
 tokio = { workspace = true }
