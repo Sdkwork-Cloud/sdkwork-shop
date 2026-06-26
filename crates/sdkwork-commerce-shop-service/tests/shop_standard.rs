@@ -17,14 +17,14 @@ fn shop_service_contract_declares_shop_runtime_surface() {
 
 #[test]
 fn shop_scope_queries_require_tenant_context() {
-    let scope = ShopScopeQuery::new("tenant-1", Some("org-1")).unwrap();
-    assert_eq!(scope.tenant_id, "tenant-1");
-    assert_eq!(scope.organization_id.as_deref(), Some("org-1"));
+    let scope = ShopScopeQuery::new("100001", Some("0")).unwrap();
+    assert_eq!(scope.tenant_id, "100001");
+    assert_eq!(scope.organization_id.as_deref(), Some("0"));
 
-    let detail = ShopDetailQuery::new("tenant-1", Some("org-1"), "shop-1").unwrap();
+    let detail = ShopDetailQuery::new("100001", Some("0"), "shop-1").unwrap();
     assert_eq!(detail.shop_id, "shop-1");
 
-    let list = ShopListQuery::new("tenant-1", None, 0, 500).unwrap();
+    let list = ShopListQuery::new("100001", None, 0, 500).unwrap();
     assert_eq!(list.page, 1);
     assert_eq!(list.page_size, 200);
 }
