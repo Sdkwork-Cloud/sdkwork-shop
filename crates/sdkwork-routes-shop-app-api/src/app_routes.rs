@@ -21,7 +21,7 @@ use sdkwork_iam_context_service::IamAppContext;
 use serde::{Deserialize, Serialize};
 use sqlx::{PgPool, SqlitePool};
 
-use sdkwork_router_merchandise_app_api::{map_spu, CommerceCatalogStore, CreateSpuBody, UpdateSpuBody};
+use sdkwork_routes_merchandise_app_api::{map_spu, CommerceCatalogStore, CreateSpuBody, UpdateSpuBody};
 use crate::subject::app_runtime_subject_from_extension;
 
 pub type CommerceShopFuture<'a, T> =

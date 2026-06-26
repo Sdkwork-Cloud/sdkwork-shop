@@ -33,7 +33,7 @@ Migration status: **complete**.
 | --- | --- | --- |
 | Domain commands/queries | `sdkwork-commerce-shop-service` | Business validation and ports |
 | SQL repositories | `sdkwork-commerce-shop-repository-sqlx` | Tenant-scoped persistence |
-| HTTP route builders | sdkwork-router-shop-app-api, sdkwork-router-shop-backend-api | `build_*_router` exports without IAM |
+| HTTP route builders | sdkwork-routes-shop-app-api, sdkwork-routes-shop-backend-api | `build_*_router` exports without IAM |
 | IAM / gateway composition | `sdkwork-commerce` | Thin wrappers only |
 | OpenAPI / SDK authority | `sdkwork-commerce/sdks/` | Composed commerce SDK families |
 
@@ -43,8 +43,8 @@ Standard 7-crate capability workspace:
 
 - `crates/sdkwork-commerce-shop-service/`
 - `crates/sdkwork-commerce-shop-repository-sqlx/`
-- `crates/sdkwork-router-shop-app-api/`
-- `crates/sdkwork-router-shop-backend-api/`
+- `crates/sdkwork-routes-shop-app-api/`
+- `crates/sdkwork-routes-shop-backend-api/`
 - `crates/sdkwork-shop-database-host/`
 - `crates/sdkwork-shop-service-host/`
 - `crates/sdkwork-shop-api-server/`

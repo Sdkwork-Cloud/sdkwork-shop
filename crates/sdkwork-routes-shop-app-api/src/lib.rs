@@ -15,3 +15,16 @@ pub use web_bootstrap::{
     shop_app_api_public_path_prefixes, wrap_router_with_web_framework,
     wrap_router_with_web_framework_from_env,
 };
+
+use axum::Router;
+use sdkwork_shop_service_host::ShopServiceHost;
+use sdkwork_web_core::HttpRouteManifest;
+use std::sync::Arc;
+
+pub fn gateway_route_manifest() -> HttpRouteManifest {
+    app_route_manifest()
+}
+
+pub async fn gateway_mount(host: Arc<ShopServiceHost>) -> Router {
+    build_shop_app_router_with_framework(host).await
+}

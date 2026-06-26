@@ -1,5 +1,5 @@
 [package]
-name = "sdkwork-router-shop-backend-api"
+name = "sdkwork-routes-shop-backend-api"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -20,5 +20,6 @@ sdkwork_shop_service_host.workspace = true
 sdkwork_database_sqlx.workspace = true
 sdkwork-web-core.workspace = true
 sdkwork-web-axum.workspace = true
+sdkwork-web-bootstrap.workspace = true
 sdkwork-iam-web-adapter.workspace = true
 uuid = { workspace = true }
