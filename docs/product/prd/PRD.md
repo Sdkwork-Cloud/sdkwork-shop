@@ -8,13 +8,13 @@ Specs: REQUIREMENTS_SPEC.md, DOCUMENTATION_SPEC.md
 
 ## Document Map
 
-- Platform split alignment (commerce T0): `../sdkwork-commerce/docs/architecture/tech/TECH-2026-06-24-commerce-capability-repo-split-alignment.md`
+- Commerce repository dissolution: `../sdkwork-specs/MIGRATION_SPEC.md` §8
 
 ## 1. Background And Problem
 
 Merchants need an authoritative shop profile, deposit account, and onboarding lifecycle isolated from the commerce platform composition layer.
 
-This repository is a **T1 commerce capability building block**. `sdkwork-commerce` remains the T0 composition layer (gateway, IAM wrappers, composed SDK). This repository owns domain logic, persistence, and HTTP route builders for the **shop** capability.
+This repository is a **T1 commerce capability building block**. The `sdkwork-commerce` monolith has been dissolved; this repository is self-contained with its own domain logic, persistence, HTTP route builders, API server, and IAM middleware for the **shop** capability.
 
 ## 2. Target Users
 
@@ -25,13 +25,13 @@ Merchant operators, commerce platform integrators, and SDK consumers building sh
 ### Goals
 
 - Own shop domain service, SQL repositories, and HTTP routers for app and backend surfaces.
-- Expose stable Rust crates consumed by `sdkwork-commerce` through sibling path dependencies.
+- Expose stable Rust crates consumed by sibling T1 repositories through workspace path dependencies.
 - Support merchant onboarding, shop metadata, and deposit account review flows with tenant-scoped data.
 
 ### Non-Goals
 
-- IAM login, session issuance, or gateway routing (owned by appbase / commerce T0).
-- Duplicating shop domain logic inside `sdkwork-commerce/crates/`.
+- IAM login, session issuance, or gateway routing (owned by appbase / T1 `*-standalone-gateway`).
+- Duplicating shop domain logic inside other T1 repositories.
 - End-user mall storefront (see `sdkwork-mall` sibling application).
 
 ## 4. Scope
@@ -51,13 +51,13 @@ Migration status: **complete**.
 ## 5. User Scenarios
 
 - A merchant operator creates a shop, submits deposit account details, and an admin approves the account.
-- Commerce T0 composes shop app routes with IAM identity middleware while route handlers execute in this repository.
-- An integrator consumes generated commerce SDK shop operations against the composed gateway surface.
+- The T1 `sdkwork-shop-standalone-gateway` applies IAM identity middleware to shop app routes while route handlers execute in this repository.
+- An integrator consumes generated per-T1 SDK shop operations against the standalone API server.
 
 ## 6. Success Metrics
 
-- Shop API operations remain available through composed commerce OpenAPI and SDK smoke tests.
-- `cargo test --workspace` passes with zero local shop service duplicates in commerce.
+- Shop API operations remain available through per-T1 OpenAPI and SDK smoke tests.
+- `cargo test --workspace` passes with zero local shop service duplicates.
 - Database migrations validate through `pnpm db:validate`.
 
 ## 7. Phases
@@ -67,7 +67,7 @@ Migration status: **complete**.
 
 ## 8. Linked Requirements
 
-- Commerce capability split alignment: `../sdkwork-commerce/docs/architecture/tech/TECH-2026-06-24-commerce-capability-repo-split-alignment.md`
+- Commerce repository dissolution: `../sdkwork-specs/MIGRATION_SPEC.md` §8
 - Component contract: `specs/component.spec.json` (when present)
 - Machine contracts: local `specs/`, future `apis/`, and generated `sdks/`
 

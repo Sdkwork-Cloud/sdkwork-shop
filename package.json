@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "pnpm --dir apps/sdkwork-shop-pc dev",
     "build": "pnpm --dir apps/sdkwork-shop-pc build",
-    "start": "cargo run -p sdkwork-shop-api-server --bin shop-server",
+    "start": "cargo run -p sdkwork-shop-standalone-gateway --bin shop-server",
     "test": "pnpm test:node && pnpm test:vitest && cargo test --workspace",
     "test:node": "node --test tests/static/*.test.mjs tests/contract/*.test.mjs",
     "test:vitest": "vitest run --config vitest.config.ts --configLoader native --pool vmThreads",

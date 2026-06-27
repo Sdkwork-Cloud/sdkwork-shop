@@ -1,12 +1,13 @@
 [package]
-name = "sdkwork-shop-api-server"
+name = "sdkwork-shop-standalone-gateway"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 publish.workspace = true
 
+
 [[bin]]
-name = "shop-server"
+name = "sdkwork-shop-standalone-gateway"
 path = "src/main.rs"
 
 [dependencies]
@@ -20,6 +21,4 @@ tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 sdkwork-web-bootstrap = { workspace = true }
 
-[[bin]]
-name = "sdkwork-shop-standalone-gateway"
-path = "src/main.rs"
+

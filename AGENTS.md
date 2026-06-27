@@ -20,7 +20,7 @@ Application manifests live under `apps/*/sdkwork.app.config.json`. This reposito
 
 - Canonical domain: `commerce`; capability: `shop` (`DOMAIN_SPEC.md`).
 - This repository is the **authoritative owner** of shop capability: service, repository SQL, backend admin routes, app shop routes, APIs, SDKs, and database lifecycle under `database/`.
-- App shop routes are owned in `sdkwork-routes-shop-app-api`; commerce T0 applies IAM wrappers only.
+- App shop routes are owned in `sdkwork-routes-shop-app-api`; the T1 `sdkwork-shop-standalone-gateway` applies IAM wrappers.
 - Composition consumer: `../sdkwork-clawrouter/vendor/sdkwork-commerce` (archived transitional platform snapshot)
 - Database table prefix: `commerce_` for shop-owned tables.
 - App API prefix: `/app/v3/api/shops`.

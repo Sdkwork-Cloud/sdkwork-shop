@@ -620,7 +620,7 @@ async fn transition_shop_status(
         &state.db,
         &ShopStatusTransition {
             tenant_id: &subject.tenant_id,
-            organization_id: subject.organization_id.as_deref().unwrap_or("default-org"),
+            organization_id: subject.organization_id.as_deref().unwrap_or("0"),
             shop_id: &shop_id,
             event_type,
             operation_status,
@@ -688,7 +688,7 @@ async fn create_shop_db(
         .get("organizationId")
         .and_then(|v| v.as_str())
         .or(organization_id)
-        .unwrap_or("default-org");
+        .unwrap_or("0");
     let shop_no = payload
         .get("shopNo")
         .and_then(|v| v.as_str())
