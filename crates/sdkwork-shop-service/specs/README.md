@@ -6,9 +6,9 @@ This directory is the local standards index for `sdkwork_commerce_shop_service`.
 
 | Field | Value |
 | --- | --- |
-| Name | `sdkwork-commerce-shop-service` |
+| Name | `sdkwork-shop-service` |
 | Type | `rust-crate` |
-| Root | `sdkwork-commerce/crates/sdkwork-commerce-shop-service` |
+| Root | `sdkwork-commerce (deleted)/crates/sdkwork-shop-service` |
 | Domain | `commerce` |
 | Capability | `commerce` |
 | Languages | `rust` |
@@ -16,4 +16,4 @@ This directory is the local standards index for `sdkwork_commerce_shop_service`.
 
 ## Verification
 
-- `cargo test --manifest-path crates/sdkwork-commerce-shop-service/Cargo.toml`
+- `cargo test --manifest-path crates/sdkwork-shop-service/Cargo.toml`

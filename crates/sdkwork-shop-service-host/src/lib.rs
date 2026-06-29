@@ -1,5 +1,5 @@
-use sdkwork_commerce_shop_repository_sqlx::SqlxShopRepository;
-use sdkwork_commerce_shop_service::ShopService;
+use sdkwork_shop_repository_sqlx::SqlxShopRepository;
+use sdkwork_shop_service::ShopService;
 use sdkwork_database_sqlx::DatabasePool;
 use sdkwork_shop_database_host::{bootstrap_shop_database_from_env, ShopDatabaseHost};
 

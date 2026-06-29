@@ -14,7 +14,7 @@ Specs: REQUIREMENTS_SPEC.md, DOCUMENTATION_SPEC.md
 
 Merchants need an authoritative shop profile, deposit account, and onboarding lifecycle isolated from the commerce platform composition layer.
 
-This repository is a **T1 commerce capability building block**. The `sdkwork-commerce` monolith has been dissolved; this repository is self-contained with its own domain logic, persistence, HTTP route builders, API server, and IAM middleware for the **shop** capability.
+This repository is a **T1 commerce capability building block**. The `sdkwork-commerce (deleted)` monolith has been dissolved; this repository is self-contained with its own domain logic, persistence, HTTP route builders, API server, and IAM middleware for the **shop** capability.
 
 ## 2. Target Users
 

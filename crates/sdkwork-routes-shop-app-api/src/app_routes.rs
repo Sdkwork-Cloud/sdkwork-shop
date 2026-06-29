@@ -7,16 +7,16 @@ use axum::http::StatusCode;
 use axum::response::{IntoResponse, Response};
 use axum::routing::{get, patch, post};
 use axum::{Json, Router};
-use sdkwork_commerce_merchandise_service::{
+use sdkwork_merchandise_service::{
     ArchiveSpuCommand, CreateProductSpuCommand, ProductSpuListQuery, PublishSpuCommand,
     UpdateProductSpuCommand,
 };
-use sdkwork_commerce_contract_service::CommerceServiceError;
-use sdkwork_commerce_shop_service::{
+use sdkwork_contract_service::CommerceServiceError;
+use sdkwork_shop_service::{
     ShopDetailQuery, ShopListQuery, ShopPage, ShopScopeQuery, ShopSummaryView,
 };
-use sdkwork_commerce_merchandise_repository_sqlx::{PostgresCommerceCatalogStore, SqliteCommerceCatalogStore};
-use sdkwork_commerce_shop_repository_sqlx::{PostgresCommerceShopStore, SqliteCommerceShopStore};
+use sdkwork_merchandise_repository_sqlx::{PostgresCommerceCatalogStore, SqliteCommerceCatalogStore};
+use sdkwork_shop_repository_sqlx::{PostgresCommerceShopStore, SqliteCommerceShopStore};
 use sdkwork_iam_context_service::IamAppContext;
 use serde::{Deserialize, Serialize};
 use sqlx::{PgPool, SqlitePool};

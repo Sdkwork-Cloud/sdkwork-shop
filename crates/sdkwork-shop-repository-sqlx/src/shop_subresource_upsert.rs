@@ -1,4 +1,4 @@
-use sdkwork_commerce_contract_service::CommerceServiceError;
+use sdkwork_contract_service::CommerceServiceError;
 use sqlx::{postgres::PgRow, sqlite::SqliteRow, Column, PgPool, Row, SqlitePool};
 
 #[derive(Clone)]

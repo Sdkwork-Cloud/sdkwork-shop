@@ -11,7 +11,7 @@ Specs: ARCHITECTURE_DECISION_SPEC.md, RUST_CODE_SPEC.md, API_SPEC.md, WEB_FRAMEW
 
 ## 1. Architecture Overview
 
-`sdkwork-shop` is a **T1 capability repository** in the commerce domain. It owns domain services, SQL repositories, HTTP route builders, and a standalone gateway with IAM middleware. The `sdkwork-commerce` monolith has been dissolved; each T1 capability repository is self-contained.
+`sdkwork-shop` is a **T1 capability repository** in the commerce domain. It owns domain services, SQL repositories, HTTP route builders, and a standalone gateway with IAM middleware. The `sdkwork-commerce (deleted)` monolith has been dissolved; each T1 capability repository is self-contained.
 
 ```text
 T1 shop crate  →  build_*_router()     (no IAM)
@@ -31,8 +31,8 @@ Migration status: **complete**.
 
 | Layer | Owner | Notes |
 | --- | --- | --- |
-| Domain commands/queries | `sdkwork-commerce-shop-service` | Business validation and ports |
-| SQL repositories | `sdkwork-commerce-shop-repository-sqlx` | Tenant-scoped persistence |
+| Domain commands/queries | `sdkwork-shop-service` | Business validation and ports |
+| SQL repositories | `sdkwork-commerce (deleted)-shop-repository-sqlx` | Tenant-scoped persistence |
 | HTTP route builders | sdkwork-routes-shop-app-api, sdkwork-routes-shop-backend-api | `build_*_router` exports without IAM |
 | IAM / gateway composition | `sdkwork-shop-standalone-gateway` | IAM middleware at T1 standalone-gateway |
 | OpenAPI / SDK authority | `sdkwork-shop/sdks/` | Per-T1 SDK families |
@@ -41,8 +41,8 @@ Migration status: **complete**.
 
 Standard 7-crate capability workspace:
 
-- `crates/sdkwork-commerce-shop-service/`
-- `crates/sdkwork-commerce-shop-repository-sqlx/`
+- `crates/sdkwork-shop-service/`
+- `crates/sdkwork-commerce (deleted)-shop-repository-sqlx/`
 - `crates/sdkwork-routes-shop-app-api/`
 - `crates/sdkwork-routes-shop-backend-api/`
 - `crates/sdkwork-shop-database-host/`

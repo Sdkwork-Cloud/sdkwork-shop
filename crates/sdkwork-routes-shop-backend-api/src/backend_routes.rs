@@ -3,7 +3,7 @@ use axum::http::StatusCode;
 use axum::response::{IntoResponse, Response};
 use axum::routing::{get, patch, post};
 use axum::{Json, Router};
-use sdkwork_commerce_contract_service::CommerceServiceError;
+use sdkwork_contract_service::CommerceServiceError;
 use sdkwork_iam_context_service::IamAppContext;
 use serde::Serialize;
 use sqlx::{postgres::PgRow, sqlite::SqliteRow, PgPool, Row, SqlitePool};
@@ -11,7 +11,7 @@ use sqlx::{postgres::PgRow, sqlite::SqliteRow, PgPool, Row, SqlitePool};
 use crate::subject::app_runtime_subject_from_extension;
 use crate::web_bootstrap::with_backend_request_identity;
 
-use sdkwork_commerce_shop_repository_sqlx::shop_subresource_upsert::{
+use sdkwork_shop_repository_sqlx::shop_subresource_upsert::{
     self, current_timestamp_string, map_row_json_pg, map_row_json_sqlite, pg_optional_string,
     pg_string, sqlite_optional_string, sqlite_string, stable_storage_id, ShopWriteDb,
 };

@@ -1,4 +1,4 @@
-use sdkwork_commerce_shop_service::{
+use sdkwork_shop_service::{
     shop_service_contract, ShopDetailQuery, ShopListQuery, ShopScopeQuery,
 };
 

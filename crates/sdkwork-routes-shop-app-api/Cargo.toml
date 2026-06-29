@@ -13,11 +13,11 @@ axum = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 sqlx = { workspace = true }
-sdkwork_commerce_contract_service.workspace = true
-sdkwork_commerce_merchandise_repository_sqlx.workspace = true
-sdkwork_commerce_merchandise_service.workspace = true
-sdkwork_commerce_shop_repository_sqlx.workspace = true
-sdkwork_commerce_shop_service.workspace = true
+sdkwork_contract_service.workspace = true
+sdkwork_merchandise_repository_sqlx.workspace = true
+sdkwork_merchandise_service.workspace = true
+sdkwork_shop_repository_sqlx.workspace = true
+sdkwork_shop_service.workspace = true
 sdkwork_iam_context_service.workspace = true
 sdkwork_routes_merchandise_app_api.workspace = true
 sdkwork_shop_service_host.workspace = true

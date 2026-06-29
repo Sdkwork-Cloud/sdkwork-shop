@@ -1,5 +1,5 @@
-use sdkwork_commerce_contract_service::CommerceServiceError;
-use sdkwork_commerce_shop_service::{
+use sdkwork_contract_service::CommerceServiceError;
+use sdkwork_shop_service::{
     ShopDetailQuery, ShopListQuery, ShopPage, ShopScopeQuery, ShopSummaryView,
 };
 use sqlx::{Column, Row, SqlitePool};
