@@ -1,4 +1,5 @@
 pub mod app_routes;
+pub mod http_envelope;
 pub mod http_route_manifest;
 pub mod paths;
 pub mod routes;

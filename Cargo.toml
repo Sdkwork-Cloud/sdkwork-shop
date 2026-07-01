@@ -57,3 +57,4 @@ sdkwork_shop_service_host = { path = "crates/sdkwork-shop-service-host", package
 sdkwork_merchandise_service = { path = "../sdkwork-merchandise/crates/sdkwork-merchandise-service", package = "sdkwork-merchandise-service" }
 sdkwork_merchandise_repository_sqlx = { path = "../sdkwork-merchandise/crates/sdkwork-merchandise-repository-sqlx", package = "sdkwork-merchandise-repository-sqlx" }
 sdkwork_routes_merchandise_app_api = { path = "../sdkwork-merchandise/crates/sdkwork-routes-merchandise-app-api", package = "sdkwork-routes-merchandise-app-api" }
+sdkwork-utils-rust = { path = "../sdkwork-utils/packages/sdkwork-utils-rust" }

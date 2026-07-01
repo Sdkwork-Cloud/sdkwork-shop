@@ -1,6 +1,4 @@
-use sdkwork_shop_service::{
-    shop_service_contract, ShopDetailQuery, ShopListQuery, ShopScopeQuery,
-};
+use sdkwork_shop_service::{shop_service_contract, ShopDetailQuery, ShopListQuery, ShopScopeQuery};
 
 #[test]
 fn shop_service_contract_declares_shop_runtime_surface() {

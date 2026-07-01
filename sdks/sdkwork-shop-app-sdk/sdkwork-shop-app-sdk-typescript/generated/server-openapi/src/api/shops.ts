@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 
-import type { CommerceApiResult, CommerceOperationCommand, CreateShopServiceAreaRequest, CurrentShopResponse, ShopApplicationListResponse, ShopApplicationResponse, ShopBrandAuthorizationListResponse, ShopBrandAuthorizationResponse, ShopBusinessHourResponse, ShopCategoryBindingListResponse, ShopCategoryBindingResponse, ShopChannelListResponse, ShopChannelResponse, ShopCustomerServiceListResponse, ShopCustomerServiceResponse, ShopDashboardResponse, ShopDepositAccountResponse, ShopDetailResponse, ShopFulfillmentProfileResponse, ShopListResponse, ShopPolicyListResponse, ShopPolicyResponse, ShopQualificationListResponse, ShopQualificationResponse, ShopReadinessResponse, ShopReturnAddressListResponse, ShopReturnAddressResponse, ShopRiskSignalListResponse, ShopServiceAreaListResponse, ShopServiceAreaResponse, ShopSettlementProfileResponse, ShopShippingTemplateListResponse, ShopShippingTemplateResponse, ShopStatusEventListResponse, ShopVerificationListResponse, SubmitShopApplicationRequest, UpdateShopBusinessHourRequest, UpdateShopChannelRequest, UpdateShopFulfillmentProfileRequest, UpdateShopPolicyRequest, UpdateShopServiceAreaRequest, UpdateShopSettlementProfileRequest, UpsertShopBrandAuthorizationRequest, UpsertShopCategoryBindingRequest, UpsertShopCustomerServiceRequest, UpsertShopQualificationRequest, UpsertShopReturnAddressRequest, UpsertShopShippingTemplateRequest } from '../types';
+import type { CommerceOperationCommand, CreateShopServiceAreaRequest, CurrentShopResponse, SdkWorkPageData, ShopApplicationResponse, ShopBrandAuthorizationResponse, ShopBusinessHourResponse, ShopCategoryBindingResponse, ShopChannelResponse, ShopCustomerServiceResponse, ShopDashboardResponse, ShopDepositAccountResponse, ShopDetailResponse, ShopFulfillmentProfileResponse, ShopPolicyResponse, ShopQualificationResponse, ShopReadinessResponse, ShopReturnAddressResponse, ShopServiceAreaResponse, ShopSettlementProfileResponse, ShopShippingTemplateResponse, SubmitShopApplicationRequest, UpdateShopBusinessHourRequest, UpdateShopChannelRequest, UpdateShopFulfillmentProfileRequest, UpdateShopPolicyRequest, UpdateShopServiceAreaRequest, UpdateShopSettlementProfileRequest, UpsertShopBrandAuthorizationRequest, UpsertShopCategoryBindingRequest, UpsertShopCustomerServiceRequest, UpsertShopQualificationRequest, UpsertShopReturnAddressRequest, UpsertShopShippingTemplateRequest } from '../types';
 
 
 export interface ShopsCurrentSettlementsListParams {
@@ -19,13 +19,13 @@ export class ShopsCurrentSettlementsApi {
 
 
 /** Shops current settlements list. */
-  async list(params?: ShopsCurrentSettlementsListParams): Promise<CommerceApiResult> {
+  async list(params?: ShopsCurrentSettlementsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<CommerceApiResult>(appendQueryString(appApiPath(`/shops/current/settlements`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/settlements`), query));
   }
 }
 
@@ -38,8 +38,8 @@ export class ShopsCurrentOrdersFulfillmentsApi {
 
 
 /** Shops current orders fulfillments create. */
-  async create(orderId: string, body: CommerceOperationCommand): Promise<CommerceApiResult> {
-    return this.client.post<CommerceApiResult>(appApiPath(`/shops/current/orders/${serializePathParameter(orderId, { name: 'orderId', style: 'simple', explode: false })}/fulfillments`), body, undefined, undefined, 'application/json');
+  async create(orderId: string, body: CommerceOperationCommand): Promise<Record<string, unknown>> {
+    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/orders/${serializePathParameter(orderId, { name: 'orderId', style: 'simple', explode: false })}/fulfillments`), body, undefined, undefined, 'application/json');
   }
 }
 
@@ -60,18 +60,18 @@ export class ShopsCurrentOrdersApi {
 
 
 /** Shops current orders list. */
-  async list(params?: ShopsCurrentOrdersListParams): Promise<CommerceApiResult> {
+  async list(params?: ShopsCurrentOrdersListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<CommerceApiResult>(appendQueryString(appApiPath(`/shops/current/orders`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/orders`), query));
   }
 
 /** Shops current orders retrieve. */
-  async retrieve(orderId: string): Promise<CommerceApiResult> {
-    return this.client.get<CommerceApiResult>(appApiPath(`/shops/current/orders/${serializePathParameter(orderId, { name: 'orderId', style: 'simple', explode: false })}`));
+  async retrieve(orderId: string): Promise<Record<string, unknown>> {
+    return this.client.get<Record<string, unknown>>(appApiPath(`/shops/current/orders/${serializePathParameter(orderId, { name: 'orderId', style: 'simple', explode: false })}`));
   }
 }
 
@@ -84,8 +84,8 @@ export class ShopsCurrentInventoryStocksAdjustmentsApi {
 
 
 /** Shops current inventory stocks adjustments create. */
-  async create(stockId: string, body: CommerceOperationCommand): Promise<CommerceApiResult> {
-    return this.client.post<CommerceApiResult>(appApiPath(`/shops/current/inventory/stocks/${serializePathParameter(stockId, { name: 'stockId', style: 'simple', explode: false })}/adjustments`), body, undefined, undefined, 'application/json');
+  async create(stockId: string, body: CommerceOperationCommand): Promise<Record<string, unknown>> {
+    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/inventory/stocks/${serializePathParameter(stockId, { name: 'stockId', style: 'simple', explode: false })}/adjustments`), body, undefined, undefined, 'application/json');
   }
 }
 
@@ -108,7 +108,7 @@ export class ShopsCurrentInventoryStocksApi {
 
 
 /** Shops current inventory stocks list. */
-  async list(params?: ShopsCurrentInventoryStocksListParams): Promise<CommerceApiResult> {
+  async list(params?: ShopsCurrentInventoryStocksListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'sku_id', value: params?.skuId, style: 'form', explode: true, allowReserved: false },
       { name: 'warehouse_id', value: params?.warehouseId, style: 'form', explode: true, allowReserved: false },
@@ -116,7 +116,7 @@ export class ShopsCurrentInventoryStocksApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<CommerceApiResult>(appendQueryString(appApiPath(`/shops/current/inventory/stocks`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/inventory/stocks`), query));
   }
 }
 
@@ -147,34 +147,34 @@ export class ShopsCurrentProductsApi {
 
 
 /** Shops current products list. */
-  async list(params?: ShopsCurrentProductsListParams): Promise<CommerceApiResult> {
+  async list(params?: ShopsCurrentProductsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<CommerceApiResult>(appendQueryString(appApiPath(`/shops/current/products`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/products`), query));
   }
 
 /** Shops current products create. */
-  async create(body: CommerceOperationCommand): Promise<CommerceApiResult> {
-    return this.client.post<CommerceApiResult>(appApiPath(`/shops/current/products`), body, undefined, undefined, 'application/json');
+  async create(body: CommerceOperationCommand): Promise<Record<string, unknown>> {
+    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/products`), body, undefined, undefined, 'application/json');
   }
 
 /** Shops current products update. */
-  async update(productId: string, body?: CommerceOperationCommand): Promise<CommerceApiResult> {
-    return this.client.patch<CommerceApiResult>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}`), body, undefined, undefined, 'application/json');
+  async update(productId: string, body?: CommerceOperationCommand): Promise<Record<string, unknown>> {
+    return this.client.patch<Record<string, unknown>>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}`), body, undefined, undefined, 'application/json');
   }
 
 /** Shops current products publish. */
-  async publish(productId: string, body: CommerceOperationCommand): Promise<CommerceApiResult> {
-    return this.client.post<CommerceApiResult>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}/publish`), body, undefined, undefined, 'application/json');
+  async publish(productId: string, body: CommerceOperationCommand): Promise<Record<string, unknown>> {
+    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}/publish`), body, undefined, undefined, 'application/json');
   }
 
 /** Shops current products unpublish. */
-  async unpublish(productId: string, body: CommerceOperationCommand): Promise<CommerceApiResult> {
-    return this.client.post<CommerceApiResult>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}/unpublish`), body, undefined, undefined, 'application/json');
+  async unpublish(productId: string, body: CommerceOperationCommand): Promise<Record<string, unknown>> {
+    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}/unpublish`), body, undefined, undefined, 'application/json');
   }
 }
 
@@ -195,7 +195,7 @@ export class ShopsCurrentRiskSignalsApi {
 
 
 /** Shops current risk Signals list. */
-  async list(params?: ShopsCurrentRiskSignalsListParams): Promise<ShopRiskSignalListResponse> {
+  async list(params?: ShopsCurrentRiskSignalsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'signal_type', value: params?.signalType, style: 'form', explode: true, allowReserved: false },
       { name: 'risk_level', value: params?.riskLevel, style: 'form', explode: true, allowReserved: false },
@@ -203,7 +203,7 @@ export class ShopsCurrentRiskSignalsApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopRiskSignalListResponse>(appendQueryString(appApiPath(`/shops/current/risk_signals`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/risk_signals`), query));
   }
 }
 
@@ -241,14 +241,14 @@ export class ShopsCurrentPoliciesApi {
 
 
 /** Shops current policies list. */
-  async list(params?: ShopsCurrentPoliciesListParams): Promise<ShopPolicyListResponse> {
+  async list(params?: ShopsCurrentPoliciesListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'policy_type', value: params?.policyType, style: 'form', explode: true, allowReserved: false },
       { name: 'policy_status', value: params?.policyStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopPolicyListResponse>(appendQueryString(appApiPath(`/shops/current/policies`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/policies`), query));
   }
 
 /** Shops current policies update. */
@@ -288,7 +288,7 @@ export class ShopsCurrentServiceAreasApi {
 
 
 /** Shops current service Areas list. */
-  async list(params?: ShopsCurrentServiceAreasListParams): Promise<ShopServiceAreaListResponse> {
+  async list(params?: ShopsCurrentServiceAreasListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'area_type', value: params?.areaType, style: 'form', explode: true, allowReserved: false },
       { name: 'region_code', value: params?.regionCode, style: 'form', explode: true, allowReserved: false },
@@ -296,7 +296,7 @@ export class ShopsCurrentServiceAreasApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopServiceAreaListResponse>(appendQueryString(appApiPath(`/shops/current/service_areas`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/service_areas`), query));
   }
 
 /** Shops current service Areas create. */
@@ -429,14 +429,14 @@ export class ShopsCurrentChannelsApi {
 
 
 /** Shops current channels list. */
-  async list(params?: ShopsCurrentChannelsListParams): Promise<ShopChannelListResponse> {
+  async list(params?: ShopsCurrentChannelsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'channel_code', value: params?.channelCode, style: 'form', explode: true, allowReserved: false },
       { name: 'storefront_status', value: params?.storefrontStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopChannelListResponse>(appendQueryString(appApiPath(`/shops/current/channels`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/channels`), query));
   }
 
 /** Shops current channels update. */
@@ -466,13 +466,13 @@ export class ShopsCurrentStatusEventsApi {
 
 
 /** Shops current status Events list. */
-  async list(params?: ShopsCurrentStatusEventsListParams): Promise<ShopStatusEventListResponse> {
+  async list(params?: ShopsCurrentStatusEventsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'event_type', value: params?.eventType, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopStatusEventListResponse>(appendQueryString(appApiPath(`/shops/current/status_events`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/status_events`), query));
   }
 }
 
@@ -492,14 +492,14 @@ export class ShopsCurrentVerificationsApi {
 
 
 /** Shops current verifications list. */
-  async list(params?: ShopsCurrentVerificationsListParams): Promise<ShopVerificationListResponse> {
+  async list(params?: ShopsCurrentVerificationsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'verification_type', value: params?.verificationType, style: 'form', explode: true, allowReserved: false },
       { name: 'verification_status', value: params?.verificationStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopVerificationListResponse>(appendQueryString(appApiPath(`/shops/current/verifications`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/verifications`), query));
   }
 }
 
@@ -522,13 +522,13 @@ export class ShopsCurrentApplicationsApi {
 
 
 /** Shops current applications list. */
-  async list(params?: ShopsCurrentApplicationsListParams): Promise<ShopApplicationListResponse> {
+  async list(params?: ShopsCurrentApplicationsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopApplicationListResponse>(appendQueryString(appApiPath(`/shops/current/applications`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/applications`), query));
   }
 
 /** Shops current applications create. */
@@ -564,7 +564,7 @@ export class ShopsCurrentShippingTemplatesApi {
 
 
 /** Shops current shipping Templates list. */
-  async list(params?: ShopsCurrentShippingTemplatesListParams): Promise<ShopShippingTemplateListResponse> {
+  async list(params?: ShopsCurrentShippingTemplatesListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'template_status', value: params?.templateStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'delivery_method', value: params?.deliveryMethod, style: 'form', explode: true, allowReserved: false },
@@ -572,7 +572,7 @@ export class ShopsCurrentShippingTemplatesApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopShippingTemplateListResponse>(appendQueryString(appApiPath(`/shops/current/shipping_templates`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/shipping_templates`), query));
   }
 
 /** Shops current shipping Templates upsert. */
@@ -608,7 +608,7 @@ export class ShopsCurrentReturnAddressesApi {
 
 
 /** Shops current return Addresses list. */
-  async list(params?: ShopsCurrentReturnAddressesListParams): Promise<ShopReturnAddressListResponse> {
+  async list(params?: ShopsCurrentReturnAddressesListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'address_usage', value: params?.addressUsage, style: 'form', explode: true, allowReserved: false },
       { name: 'address_status', value: params?.addressStatus, style: 'form', explode: true, allowReserved: false },
@@ -616,7 +616,7 @@ export class ShopsCurrentReturnAddressesApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopReturnAddressListResponse>(appendQueryString(appApiPath(`/shops/current/return_addresses`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/return_addresses`), query));
   }
 
 /** Shops current return Addresses upsert. */
@@ -652,7 +652,7 @@ export class ShopsCurrentCustomerServicesApi {
 
 
 /** Shops current customer Services list. */
-  async list(params?: ShopsCurrentCustomerServicesListParams): Promise<ShopCustomerServiceListResponse> {
+  async list(params?: ShopsCurrentCustomerServicesListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'service_channel', value: params?.serviceChannel, style: 'form', explode: true, allowReserved: false },
       { name: 'service_status', value: params?.serviceStatus, style: 'form', explode: true, allowReserved: false },
@@ -660,7 +660,7 @@ export class ShopsCurrentCustomerServicesApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopCustomerServiceListResponse>(appendQueryString(appApiPath(`/shops/current/customer_services`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/customer_services`), query));
   }
 
 /** Shops current customer Services upsert. */
@@ -697,7 +697,7 @@ export class ShopsCurrentQualificationsApi {
 
 
 /** Shops current qualifications list. */
-  async list(params?: ShopsCurrentQualificationsListParams): Promise<ShopQualificationListResponse> {
+  async list(params?: ShopsCurrentQualificationsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'qualification_type', value: params?.qualificationType, style: 'form', explode: true, allowReserved: false },
       { name: 'subject_type', value: params?.subjectType, style: 'form', explode: true, allowReserved: false },
@@ -706,7 +706,7 @@ export class ShopsCurrentQualificationsApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopQualificationListResponse>(appendQueryString(appApiPath(`/shops/current/qualifications`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/qualifications`), query));
   }
 
 /** Shops current qualifications upsert. */
@@ -741,14 +741,14 @@ export class ShopsCurrentBrandAuthorizationsApi {
 
 
 /** Shops current brand Authorizations list. */
-  async list(params?: ShopsCurrentBrandAuthorizationsListParams): Promise<ShopBrandAuthorizationListResponse> {
+  async list(params?: ShopsCurrentBrandAuthorizationsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'brand_code', value: params?.brandCode, style: 'form', explode: true, allowReserved: false },
       { name: 'authorization_status', value: params?.authorizationStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopBrandAuthorizationListResponse>(appendQueryString(appApiPath(`/shops/current/brand_authorizations`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/brand_authorizations`), query));
   }
 
 /** Shops current brand Authorizations upsert. */
@@ -785,7 +785,7 @@ export class ShopsCurrentCategoryBindingsApi {
 
 
 /** Shops current category Bindings list. */
-  async list(params?: ShopsCurrentCategoryBindingsListParams): Promise<ShopCategoryBindingListResponse> {
+  async list(params?: ShopsCurrentCategoryBindingsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'shop_category_code', value: params?.shopCategoryCode, style: 'form', explode: true, allowReserved: false },
       { name: 'platform_category_code', value: params?.platformCategoryCode, style: 'form', explode: true, allowReserved: false },
@@ -794,7 +794,7 @@ export class ShopsCurrentCategoryBindingsApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopCategoryBindingListResponse>(appendQueryString(appApiPath(`/shops/current/category_bindings`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/category_bindings`), query));
   }
 
 /** Shops current category Bindings upsert. */
@@ -916,7 +916,7 @@ export class ShopsApi {
 
 
 /** Shops list. */
-  async list(params?: ShopsListParams): Promise<ShopListResponse> {
+  async list(params?: ShopsListParams): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'shop_type', value: params?.shopType, style: 'form', explode: true, allowReserved: false },
@@ -924,7 +924,7 @@ export class ShopsApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ShopListResponse>(appendQueryString(appApiPath(`/shops`), query));
+    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops`), query));
   }
 
 /** Shops retrieve. */

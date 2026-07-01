@@ -1,6 +1,5 @@
 use axum::extract::{Extension, Path, Query, State};
-use axum::http::StatusCode;
-use axum::response::{IntoResponse, Response};
+use axum::response::Response;
 use axum::routing::{get, patch, post};
 use axum::{Json, Router};
 use sdkwork_contract_service::CommerceServiceError;
@@ -8,6 +7,10 @@ use sdkwork_iam_context_service::IamAppContext;
 use serde::Serialize;
 use sqlx::{postgres::PgRow, sqlite::SqliteRow, PgPool, Row, SqlitePool};
 
+use crate::http_envelope::{
+    not_found_response, shop_system_response, success_list, success_paged_list, success_resource,
+    unauthorized_response,
+};
 use crate::subject::app_runtime_subject_from_extension;
 use crate::web_bootstrap::with_backend_request_identity;
 
@@ -38,30 +41,6 @@ struct BackendShopAdminState {
 struct ShopListParams {
     page: Option<u32>,
     page_size: Option<u32>,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct BackendShopApiResult<T: Serialize> {
-    code: String,
-    msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    data: Option<T>,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct ListData<T: Serialize> {
-    items: Vec<T>,
-    page_info: PageInfo,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct PageInfo {
-    page: u32,
-    page_size: u32,
-    total: u64,
 }
 
 #[derive(Debug, Serialize)]
@@ -226,16 +205,8 @@ async fn list_shops(
     let page = params.page.unwrap_or(1).max(1);
     let page_size = params.page_size.unwrap_or(20).clamp(1, 200);
     match list_shops_db(&state.db, &subject.tenant_id, page, page_size).await {
-        Ok((items, total)) => Json(BackendShopApiResult::success(ListData {
-            items,
-            page_info: PageInfo {
-                page,
-                page_size,
-                total,
-            },
-        }))
-        .into_response(),
-        Err(error) => backend_shop_error_response("shop list is unavailable", error),
+        Ok((items, total)) => success_paged_list(items, page, page_size, total),
+        Err(error) => shop_system_response("shop list is unavailable", error),
     }
 }
 
@@ -256,8 +227,8 @@ async fn create_shop(
     )
     .await
     {
-        Ok(item) => Json(BackendShopApiResult::success(item)).into_response(),
-        Err(error) => backend_shop_error_response("shop create is unavailable", error),
+        Ok(item) => success_resource(item),
+        Err(error) => shop_system_response("shop create is unavailable", error),
     }
 }
 
@@ -271,9 +242,9 @@ async fn retrieve_shop(
         Err(m) => return unauthorized_response(m),
     };
     match retrieve_shop_db(&state.db, &subject.tenant_id, &shop_id).await {
-        Ok(Some(item)) => Json(BackendShopApiResult::success(item)).into_response(),
+        Ok(Some(item)) => success_resource(item),
         Ok(None) => not_found_response("shop was not found"),
-        Err(error) => backend_shop_error_response("shop detail is unavailable", error),
+        Err(error) => shop_system_response("shop detail is unavailable", error),
     }
 }
 
@@ -288,8 +259,8 @@ async fn update_shop(
         Err(m) => return unauthorized_response(m),
     };
     match update_shop_db(&state.db, &subject.tenant_id, &shop_id, payload).await {
-        Ok(item) => Json(BackendShopApiResult::success(item)).into_response(),
-        Err(error) => backend_shop_error_response("shop update is unavailable", error),
+        Ok(item) => success_resource(item),
+        Err(error) => shop_system_response("shop update is unavailable", error),
     }
 }
 
@@ -410,8 +381,8 @@ async fn resolve_risk_signal(
     )
     .await
     {
-        Ok(item) => Json(BackendShopApiResult::success(item)).into_response(),
-        Err(error) => backend_shop_error_response("risk signal resolve is unavailable", error),
+        Ok(item) => success_resource(item),
+        Err(error) => shop_system_response("risk signal resolve is unavailable", error),
     }
 }
 
@@ -571,8 +542,8 @@ async fn list_shop_table_response(
         Err(m) => return unauthorized_response(m),
     };
     match list_shop_table_rows_db(&state.db, table, &subject.tenant_id, &shop_id).await {
-        Ok(items) => Json(BackendShopApiResult::success(items)).into_response(),
-        Err(error) => backend_shop_error_response("shop resource list is unavailable", error),
+        Ok(items) => success_list(items),
+        Err(error) => shop_system_response("shop resource list is unavailable", error),
     }
 }
 
@@ -599,8 +570,8 @@ async fn upsert_shop_table_response(
     )
     .await
     {
-        Ok(item) => Json(BackendShopApiResult::success(item)).into_response(),
-        Err(error) => backend_shop_error_response("shop resource upsert is unavailable", error),
+        Ok(item) => success_resource(item),
+        Err(error) => shop_system_response("shop resource upsert is unavailable", error),
     }
 }
 
@@ -630,8 +601,8 @@ async fn transition_shop_status(
     )
     .await
     {
-        Ok(item) => Json(BackendShopApiResult::success(item)).into_response(),
-        Err(error) => backend_shop_error_response("shop transition is unavailable", error),
+        Ok(item) => success_resource(item),
+        Err(error) => shop_system_response("shop transition is unavailable", error),
     }
 }
 
@@ -1070,49 +1041,4 @@ fn map_shop_pg(row: &PgRow) -> ShopSummary {
 
 fn storage_error(error: sqlx::Error) -> CommerceServiceError {
     CommerceServiceError::storage(format!("shop storage error: {error}"))
-}
-
-fn backend_shop_error_response(context: &str, error: CommerceServiceError) -> Response {
-    (
-        StatusCode::INTERNAL_SERVER_ERROR,
-        Json(BackendShopApiResult::<()>::error(
-            "5000",
-            format!("{context}: {}", error.message()),
-        )),
-    )
-        .into_response()
-}
-
-fn unauthorized_response(message: impl Into<String>) -> Response {
-    (
-        StatusCode::UNAUTHORIZED,
-        Json(BackendShopApiResult::<()>::error("4010", message)),
-    )
-        .into_response()
-}
-
-fn not_found_response(message: impl Into<String>) -> Response {
-    (
-        StatusCode::NOT_FOUND,
-        Json(BackendShopApiResult::<()>::error("4040", message)),
-    )
-        .into_response()
-}
-
-impl<T: Serialize> BackendShopApiResult<T> {
-    fn success(data: T) -> Self {
-        Self {
-            code: "0".to_owned(),
-            msg: "success".to_owned(),
-            data: Some(data),
-        }
-    }
-
-    fn error(code: &str, msg: impl Into<String>) -> Self {
-        Self {
-            code: code.to_owned(),
-            msg: msg.into(),
-            data: None,
-        }
-    }
 }

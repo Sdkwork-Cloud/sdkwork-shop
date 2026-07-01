@@ -10,7 +10,9 @@ async fn main() {
     tracing::info!("Starting SDKWork Shop API Server...");
 
     let host = Arc::new(ShopServiceHost::new().await);
-    let business = assemble_application_router(host).await.router
+    let business = assemble_application_router(host)
+        .await
+        .router
         .layer(CorsLayer::permissive());
     let app = service_router(business, ServiceRouterConfig::default().with_always_ready());
 

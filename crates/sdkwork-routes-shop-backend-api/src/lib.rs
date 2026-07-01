@@ -1,4 +1,5 @@
 pub mod backend_routes;
+pub mod http_envelope;
 pub mod http_route_manifest;
 pub mod routes;
 pub mod subject;

@@ -3,26 +3,33 @@ use std::pin::Pin;
 use std::sync::Arc;
 
 use axum::extract::{Extension, Path, Query, State};
-use axum::http::StatusCode;
-use axum::response::{IntoResponse, Response};
+use axum::response::Response;
 use axum::routing::{get, patch, post};
 use axum::{Json, Router};
+use sdkwork_contract_service::CommerceServiceError;
+use sdkwork_iam_context_service::IamAppContext;
+use sdkwork_merchandise_repository_sqlx::{
+    PostgresCommerceCatalogStore, SqliteCommerceCatalogStore,
+};
 use sdkwork_merchandise_service::{
     ArchiveSpuCommand, CreateProductSpuCommand, ProductSpuListQuery, PublishSpuCommand,
     UpdateProductSpuCommand,
 };
-use sdkwork_contract_service::CommerceServiceError;
+use sdkwork_shop_repository_sqlx::{PostgresCommerceShopStore, SqliteCommerceShopStore};
 use sdkwork_shop_service::{
     ShopDetailQuery, ShopListQuery, ShopPage, ShopScopeQuery, ShopSummaryView,
 };
-use sdkwork_merchandise_repository_sqlx::{PostgresCommerceCatalogStore, SqliteCommerceCatalogStore};
-use sdkwork_shop_repository_sqlx::{PostgresCommerceShopStore, SqliteCommerceShopStore};
-use sdkwork_iam_context_service::IamAppContext;
 use serde::{Deserialize, Serialize};
 use sqlx::{PgPool, SqlitePool};
 
-use sdkwork_routes_merchandise_app_api::{map_spu, CommerceCatalogStore, CreateSpuBody, UpdateSpuBody};
+use crate::http_envelope::{
+    not_found_response, shop_system_response, success_list, success_paged_list, success_resource,
+    unauthorized_response, validation_response,
+};
 use crate::subject::app_runtime_subject_from_extension;
+use sdkwork_routes_merchandise_app_api::{
+    map_spu, CommerceCatalogStore, CreateSpuBody, UpdateSpuBody,
+};
 
 pub type CommerceShopFuture<'a, T> =
     Pin<Box<dyn Future<Output = Result<T, CommerceServiceError>> + Send + 'a>>;
@@ -483,15 +490,6 @@ struct ShopListParams {
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct AppShopApiResult<T: Serialize> {
-    code: String,
-    msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    data: Option<T>,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
 struct ShopSummaryResponse {
     id: String,
     tenant_id: String,
@@ -518,38 +516,6 @@ struct ShopSummaryResponse {
     updated_at: String,
 }
 
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct PageInfo {
-    page: u32,
-    page_size: u32,
-    total: u64,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct ListData<T: Serialize> {
-    items: Vec<T>,
-    page_info: PageInfo,
-}
-
-impl<T: Serialize> AppShopApiResult<T> {
-    fn success(data: T) -> Self {
-        Self {
-            code: "0".into(),
-            msg: "success".into(),
-            data: Some(data),
-        }
-    }
-    fn error(code: &str, msg: impl Into<String>) -> Self {
-        Self {
-            code: code.into(),
-            msg: msg.into(),
-            data: None,
-        }
-    }
-}
-
 pub fn app_shop_router_with_sqlite_pool(pool: SqlitePool) -> Router {
     build_app_shop_router(
         Arc::new(SqliteCommerceShopStore::new(pool.clone())),
@@ -569,135 +535,135 @@ pub fn build_app_shop_router(
     catalog: Arc<dyn CommerceCatalogStore>,
 ) -> Router {
     Router::new()
-            .route("/app/v3/api/shops", get(list_shops))
-            .route("/app/v3/api/shops/{shopId}", get(retrieve_shop))
-            .route("/app/v3/api/shops/current", get(retrieve_current_shop))
-            .route(
-                "/app/v3/api/shops/current/dashboard",
-                get(retrieve_current_dashboard),
-            )
-            .route(
-                "/app/v3/api/shops/current/readiness",
-                get(get_current_readiness),
-            )
-            .route(
-                "/app/v3/api/shops/current/category_bindings",
-                get(list_current_category_bindings).put(upsert_current_category_bindings),
-            )
-            .route(
-                "/app/v3/api/shops/current/brand_authorizations",
-                get(list_current_brand_authorizations).put(upsert_current_brand_authorizations),
-            )
-            .route(
-                "/app/v3/api/shops/current/qualifications",
-                get(list_current_qualifications).put(upsert_current_qualifications),
-            )
-            .route(
-                "/app/v3/api/shops/current/customer_services",
-                get(list_current_customer_services).put(upsert_current_customer_services),
-            )
-            .route(
-                "/app/v3/api/shops/current/return_addresses",
-                get(list_current_return_addresses).put(upsert_current_return_addresses),
-            )
-            .route(
-                "/app/v3/api/shops/current/shipping_templates",
-                get(list_current_shipping_templates).put(upsert_current_shipping_templates),
-            )
-            .route(
-                "/app/v3/api/shops/current/fulfillment_profile",
-                get(get_current_fulfillment_profile).patch(patch_current_fulfillment_profile),
-            )
-            .route(
-                "/app/v3/api/shops/current/settlement_profile",
-                get(get_current_settlement_profile).patch(patch_current_settlement_profile),
-            )
-            .route(
-                "/app/v3/api/shops/current/business_hours",
-                get(get_current_business_hours).patch(patch_current_business_hours),
-            )
-            .route(
-                "/app/v3/api/shops/current/applications",
-                get(list_current_applications),
-            )
-            .route(
-                "/app/v3/api/shops/current/verifications",
-                get(list_current_verifications),
-            )
-            .route(
-                "/app/v3/api/shops/current/status_events",
-                get(list_current_status_events),
-            )
-            .route(
-                "/app/v3/api/shops/current/channels",
-                get(list_current_channels),
-            )
-            .route(
-                "/app/v3/api/shops/current/service_areas",
-                get(list_current_service_areas),
-            )
-            .route(
-                "/app/v3/api/shops/current/policies",
-                get(list_current_policies),
-            )
-            .route(
-                "/app/v3/api/shops/current/risk_signals",
-                get(list_current_risk_signals),
-            )
-            .route(
-                "/app/v3/api/shops/current/channels/{channelId}",
-                patch(patch_current_channel),
-            )
-            .route(
-                "/app/v3/api/shops/current/service_areas",
-                post(create_current_service_area),
-            )
-            .route(
-                "/app/v3/api/shops/current/service_areas/{serviceAreaId}",
-                patch(patch_current_service_area),
-            )
-            .route(
-                "/app/v3/api/shops/current/policies/{policyId}",
-                patch(patch_current_policy),
-            )
-            .route(
-                "/app/v3/api/shops/current/applications",
-                post(create_current_application),
-            )
-            .route(
-                "/app/v3/api/shops/current/deposit_account",
-                get(get_current_deposit_account),
-            )
-            .route(
-                "/app/v3/api/shops/current/products",
-                get(list_current_products).post(create_current_product),
-            )
-            .route(
-                "/app/v3/api/shops/current/products/{productId}",
-                patch(update_current_product),
-            )
-            .route(
-                "/app/v3/api/shops/current/products/{productId}/publish",
-                post(publish_current_product),
-            )
-            .route(
-                "/app/v3/api/shops/current/products/{productId}/unpublish",
-                post(unpublish_current_product),
-            )
-            .route("/app/v3/api/shops/current/orders", get(list_current_orders))
-            .route(
-                "/app/v3/api/shops/current/orders/{orderId}",
-                get(retrieve_current_order),
-            )
-            .route(
-                "/app/v3/api/shops/current/orders/{orderId}/fulfillments",
-                post(create_current_order_fulfillment),
-            )
-            .route(
-                "/app/v3/api/shops/current/settlements",
-                get(list_current_settlements),
-            )
-            .with_state(AppShopState { shop, catalog })
+        .route("/app/v3/api/shops", get(list_shops))
+        .route("/app/v3/api/shops/{shopId}", get(retrieve_shop))
+        .route("/app/v3/api/shops/current", get(retrieve_current_shop))
+        .route(
+            "/app/v3/api/shops/current/dashboard",
+            get(retrieve_current_dashboard),
+        )
+        .route(
+            "/app/v3/api/shops/current/readiness",
+            get(get_current_readiness),
+        )
+        .route(
+            "/app/v3/api/shops/current/category_bindings",
+            get(list_current_category_bindings).put(upsert_current_category_bindings),
+        )
+        .route(
+            "/app/v3/api/shops/current/brand_authorizations",
+            get(list_current_brand_authorizations).put(upsert_current_brand_authorizations),
+        )
+        .route(
+            "/app/v3/api/shops/current/qualifications",
+            get(list_current_qualifications).put(upsert_current_qualifications),
+        )
+        .route(
+            "/app/v3/api/shops/current/customer_services",
+            get(list_current_customer_services).put(upsert_current_customer_services),
+        )
+        .route(
+            "/app/v3/api/shops/current/return_addresses",
+            get(list_current_return_addresses).put(upsert_current_return_addresses),
+        )
+        .route(
+            "/app/v3/api/shops/current/shipping_templates",
+            get(list_current_shipping_templates).put(upsert_current_shipping_templates),
+        )
+        .route(
+            "/app/v3/api/shops/current/fulfillment_profile",
+            get(get_current_fulfillment_profile).patch(patch_current_fulfillment_profile),
+        )
+        .route(
+            "/app/v3/api/shops/current/settlement_profile",
+            get(get_current_settlement_profile).patch(patch_current_settlement_profile),
+        )
+        .route(
+            "/app/v3/api/shops/current/business_hours",
+            get(get_current_business_hours).patch(patch_current_business_hours),
+        )
+        .route(
+            "/app/v3/api/shops/current/applications",
+            get(list_current_applications),
+        )
+        .route(
+            "/app/v3/api/shops/current/verifications",
+            get(list_current_verifications),
+        )
+        .route(
+            "/app/v3/api/shops/current/status_events",
+            get(list_current_status_events),
+        )
+        .route(
+            "/app/v3/api/shops/current/channels",
+            get(list_current_channels),
+        )
+        .route(
+            "/app/v3/api/shops/current/service_areas",
+            get(list_current_service_areas),
+        )
+        .route(
+            "/app/v3/api/shops/current/policies",
+            get(list_current_policies),
+        )
+        .route(
+            "/app/v3/api/shops/current/risk_signals",
+            get(list_current_risk_signals),
+        )
+        .route(
+            "/app/v3/api/shops/current/channels/{channelId}",
+            patch(patch_current_channel),
+        )
+        .route(
+            "/app/v3/api/shops/current/service_areas",
+            post(create_current_service_area),
+        )
+        .route(
+            "/app/v3/api/shops/current/service_areas/{serviceAreaId}",
+            patch(patch_current_service_area),
+        )
+        .route(
+            "/app/v3/api/shops/current/policies/{policyId}",
+            patch(patch_current_policy),
+        )
+        .route(
+            "/app/v3/api/shops/current/applications",
+            post(create_current_application),
+        )
+        .route(
+            "/app/v3/api/shops/current/deposit_account",
+            get(get_current_deposit_account),
+        )
+        .route(
+            "/app/v3/api/shops/current/products",
+            get(list_current_products).post(create_current_product),
+        )
+        .route(
+            "/app/v3/api/shops/current/products/{productId}",
+            patch(update_current_product),
+        )
+        .route(
+            "/app/v3/api/shops/current/products/{productId}/publish",
+            post(publish_current_product),
+        )
+        .route(
+            "/app/v3/api/shops/current/products/{productId}/unpublish",
+            post(unpublish_current_product),
+        )
+        .route("/app/v3/api/shops/current/orders", get(list_current_orders))
+        .route(
+            "/app/v3/api/shops/current/orders/{orderId}",
+            get(retrieve_current_order),
+        )
+        .route(
+            "/app/v3/api/shops/current/orders/{orderId}/fulfillments",
+            post(create_current_order_fulfillment),
+        )
+        .route(
+            "/app/v3/api/shops/current/settlements",
+            get(list_current_settlements),
+        )
+        .with_state(AppShopState { shop, catalog })
 }
 
 async fn current_scope(
@@ -725,10 +691,7 @@ where
         Err(resp) => return resp,
     };
     match fetch(state.shop.clone(), scope).await {
-        Ok(items) => {
-            let total = items.len() as u64;
-            Json(AppShopApiResult::success(list_data(items, 1, 20, total))).into_response()
-        }
+        Ok(items) => success_list(items),
         Err(error) => shop_system_response("shop read model is unavailable", error),
     }
 }
@@ -747,7 +710,7 @@ where
         Err(resp) => return resp,
     };
     match fetch(state.shop.clone(), scope).await {
-        Ok(Some(item)) => Json(AppShopApiResult::success(item)).into_response(),
+        Ok(Some(item)) => success_resource(item),
         Ok(None) => not_found_response("shop resource was not found"),
         Err(error) => shop_system_response("shop read model is unavailable", error),
     }
@@ -768,7 +731,7 @@ where
         Err(resp) => return resp,
     };
     match write(state.shop.clone(), scope, body).await {
-        Ok(item) => Json(AppShopApiResult::success(item)).into_response(),
+        Ok(item) => success_resource(item),
         Err(error) => shop_system_response("shop write model is unavailable", error),
     }
 }
@@ -1134,13 +1097,12 @@ async fn list_shops(
         Err(e) => return validation_response(e.message()),
     };
     match state.shop.list_shops(query).await {
-        Ok(page) => Json(AppShopApiResult::success(list_data(
+        Ok(page) => success_paged_list(
             page.items.into_iter().map(map_shop_summary).collect(),
             page.page,
             page.page_size,
             page.total,
-        )))
-        .into_response(),
+        ),
         Err(error) => shop_system_response("shop list is unavailable", error),
     }
 }
@@ -1163,7 +1125,7 @@ async fn retrieve_shop(
         Err(e) => return validation_response(e.message()),
     };
     match state.shop.retrieve_shop(query).await {
-        Ok(Some(shop)) => Json(AppShopApiResult::success(map_shop_summary(shop))).into_response(),
+        Ok(Some(shop)) => success_resource(map_shop_summary(shop)),
         Ok(None) => not_found_response("shop was not found"),
         Err(error) => shop_system_response("shop read model is unavailable", error),
     }
@@ -1178,7 +1140,7 @@ async fn retrieve_current_shop(
         Err(r) => return r,
     };
     match state.shop.retrieve_current_shop(scope).await {
-        Ok(Some(shop)) => Json(AppShopApiResult::success(map_shop_summary(shop))).into_response(),
+        Ok(Some(shop)) => success_resource(map_shop_summary(shop)),
         Ok(None) => not_found_response("current shop was not found"),
         Err(error) => shop_system_response("shop read model is unavailable", error),
     }
@@ -1193,10 +1155,7 @@ async fn retrieve_current_dashboard(
         Err(r) => return r,
     };
     match state.shop.list_dashboard_snapshots(scope).await {
-        Ok(items) => Json(AppShopApiResult::success(
-            serde_json::json!({"snapshots": items}),
-        ))
-        .into_response(),
+        Ok(items) => success_resource(serde_json::json!({"snapshots": items})),
         Err(error) => shop_system_response("shop dashboard is unavailable", error),
     }
 }
@@ -1297,13 +1256,7 @@ async fn list_current_products(
         Err(e) => return validation_response(e.message()),
     };
     match state.catalog.list_spus(query).await {
-        Ok(items) => Json(AppShopApiResult::success(list_data(
-            items.into_iter().map(map_spu).collect(),
-            1,
-            20,
-            0,
-        )))
-        .into_response(),
+        Ok(items) => success_paged_list(items.into_iter().map(map_spu).collect(), 1, 20, 0),
         Err(error) => shop_system_response("shop products are unavailable", error),
     }
 }
@@ -1336,7 +1289,7 @@ async fn create_current_product(
         return validation_response(error.message());
     }
     match state.catalog.create_spu(command).await {
-        Ok(spu) => Json(AppShopApiResult::success(map_spu(spu))).into_response(),
+        Ok(spu) => success_resource(map_spu(spu)),
         Err(error) => shop_system_response("shop product create is unavailable", error),
     }
 }
@@ -1361,7 +1314,7 @@ async fn update_current_product(
         visible_surfaces: body.visible_surfaces,
     };
     match state.catalog.update_spu(command).await {
-        Ok(spu) => Json(AppShopApiResult::success(map_spu(spu))).into_response(),
+        Ok(spu) => success_resource(map_spu(spu)),
         Err(error) => shop_system_response("shop product update is unavailable", error),
     }
 }
@@ -1383,7 +1336,7 @@ async fn publish_current_product(
         return validation_response(error.message());
     }
     match state.catalog.publish_spu(command).await {
-        Ok(spu) => Json(AppShopApiResult::success(map_spu(spu))).into_response(),
+        Ok(spu) => success_resource(map_spu(spu)),
         Err(error) => shop_system_response("shop product publish is unavailable", error),
     }
 }
@@ -1405,7 +1358,7 @@ async fn unpublish_current_product(
         return validation_response(error.message());
     }
     match state.catalog.archive_spu(command).await {
-        Ok(spu) => Json(AppShopApiResult::success(map_spu(spu))).into_response(),
+        Ok(spu) => success_resource(map_spu(spu)),
         Err(error) => shop_system_response("shop product unpublish is unavailable", error),
     }
 }
@@ -1428,13 +1381,7 @@ async fn list_current_orders(
         )
         .await
     {
-        Ok(page) => Json(AppShopApiResult::success(list_data(
-            page.items,
-            page.page,
-            page.page_size,
-            page.total,
-        )))
-        .into_response(),
+        Ok(page) => success_paged_list(page.items, page.page, page.page_size, page.total),
         Err(error) => shop_system_response("shop orders are unavailable", error),
     }
 }
@@ -1449,7 +1396,7 @@ async fn retrieve_current_order(
         Err(r) => return r,
     };
     match state.shop.retrieve_shop_order(scope, order_id).await {
-        Ok(Some(item)) => Json(AppShopApiResult::success(item)).into_response(),
+        Ok(Some(item)) => success_resource(item),
         Ok(None) => not_found_response("shop order was not found"),
         Err(error) => shop_system_response("shop orders are unavailable", error),
     }
@@ -1481,13 +1428,7 @@ async fn list_current_settlements(
         Err(r) => return r,
     };
     match state.shop.list_settlements(scope).await {
-        Ok(page) => Json(AppShopApiResult::success(list_data(
-            page.items,
-            page.page,
-            page.page_size,
-            page.total,
-        )))
-        .into_response(),
+        Ok(page) => success_paged_list(page.items, page.page, page.page_size, page.total),
         Err(error) => shop_system_response("shop settlements are unavailable", error),
     }
 }
@@ -1513,59 +1454,5 @@ fn map_shop_summary(value: ShopSummaryView) -> ShopSummaryResponse {
         version: value.version,
         created_at: value.created_at,
         updated_at: value.updated_at,
-    }
-}
-
-fn list_data<T: Serialize>(items: Vec<T>, page: u32, page_size: u32, total: u64) -> ListData<T> {
-    ListData {
-        items,
-        page_info: PageInfo {
-            page,
-            page_size,
-            total,
-        },
-    }
-}
-
-fn unauthorized_response(message: impl Into<String>) -> Response {
-    (
-        StatusCode::UNAUTHORIZED,
-        Json(AppShopApiResult::<()>::error("4010", message)),
-    )
-        .into_response()
-}
-fn validation_response(message: impl Into<String>) -> Response {
-    (
-        StatusCode::BAD_REQUEST,
-        Json(AppShopApiResult::<()>::error("4001", message)),
-    )
-        .into_response()
-}
-fn not_found_response(message: impl Into<String>) -> Response {
-    (
-        StatusCode::NOT_FOUND,
-        Json(AppShopApiResult::<()>::error("4040", message)),
-    )
-        .into_response()
-}
-
-fn shop_system_response(context: &str, error: CommerceServiceError) -> Response {
-    match error.code() {
-        "validation" => validation_response(error.message()),
-        "not_found" => not_found_response(error.message()),
-        "conflict" => (
-            StatusCode::CONFLICT,
-            Json(AppShopApiResult::<()>::error("4090", error.message())),
-        )
-            .into_response(),
-        "unauthenticated" => unauthorized_response(error.message()),
-        _ => (
-            StatusCode::INTERNAL_SERVER_ERROR,
-            Json(AppShopApiResult::<()>::error(
-                "5000",
-                format!("{context}: {}", error.message()),
-            )),
-        )
-            .into_response(),
     }
 }

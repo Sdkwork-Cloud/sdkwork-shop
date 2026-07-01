@@ -12,6 +12,7 @@ test("workspace declares sdkwork-web-framework and sdkwork-database deps", () =>
   assert.match(cargo, /sdkwork-web-axum/);
   assert.match(cargo, /sdkwork-database-config/);
   assert.match(cargo, /sdkwork-database-lifecycle/);
+  assert.match(cargo, /sdkwork-utils-rust/);
   assert.doesNotMatch(cargo, /sdkwork-discovery/);
 });
 

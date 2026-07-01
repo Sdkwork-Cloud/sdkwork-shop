@@ -1,20 +1,20 @@
 # sdkwork-shop
+repository-kind: application
 
-SDKWork commerce **shop** capability building-block repository (domain `commerce`).
+SDKWork commerce **shop** capability building-block repository (domain `commerce`, capability `shop`).
 
 - Standards: `../sdkwork-specs/README.md`
-- Composition consumer: `../sdkwork-clawrouter/vendor/sdkwork-commerce (deleted)` (archived transitional platform snapshot)
 - Domain service: `crates/sdkwork-shop-service/`
-- Repository SQL: `crates/sdkwork-commerce (deleted)-shop-repository-sqlx/`
+- Repository SQL: `crates/sdkwork-shop-repository-sqlx/`
 - PC app: `apps/sdkwork-shop-pc/`
 - HTTP API server: `crates/sdkwork-shop-standalone-gateway/`
 
 ## Quick start
 
 ```bash
+pnpm install
 pnpm verify
 pnpm db:validate
-cargo test --workspace
 ```
 
 ## Documentation Canon
