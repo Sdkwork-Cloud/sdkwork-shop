@@ -97,12 +97,16 @@
     "viewLogistics": "查看物流",
     "confirmReceive": "确认收货",
     "applyAfterSales": "申请售后",
-    "reviewOrder": "评价订单"
+    "reviewOrder": "评价订单",
+    "shippingAddressUnavailable": "收货地址由订单履约服务返回；当前订单未包含可展示的收揽明细。",
+    "waitFulfillment": "等待履约完成",
+    "waitFulfillmentTitle": "确认收货由履约生命周期驱动，当前无独立确认命令"
   },
   "toast": {
     "orderCancelled": "订单已取消",
     "orderShipped": "订单已发货",
     "refundSubmitted": "退款申请已提交，等待卖家处理",
+    "cancelRequestSubmitted": "取消申请已提交",
     "tradeSuccess": "交易成功",
     "afterSalesApplied": "已发起售后申请",
     "addressCopied": "已复制收揽地址",

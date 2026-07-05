@@ -27,7 +27,7 @@ export const CheckoutView = ({
 }: any) => {
   const { t } = useTranslation(["checkout", "common"]);
   const sessionUser = readShopSessionUser();
-  const accountLabel = sessionUser?.phone ?? sessionUser?.displayName ?? t("checkout:accountUnavailable", { defaultValue: "当前账号暂未绑定" });
+  const accountLabel = sessionUser?.phone ?? sessionUser?.displayName ?? t("checkout:accountUnavailable");
   const [addresses, setAddresses] = useState<ShopShippingAddress[]>([]);
   const [addressesLoading, setAddressesLoading] = useState(true);
   const [selectedAddressId, setSelectedAddressId] = useState("");
@@ -173,7 +173,7 @@ export const CheckoutView = ({
           className="flex items-center gap-2 hover:bg-white/5 px-3 py-1.5 rounded-full transition-colors text-gray-400 hover:text-white"
         >
           <ArrowLeft size={18} />
-          <span className="text-sm font-medium">返回购物中心</span>
+          <span className="text-sm font-medium">{t("checkout:backToShop")}</span>
         </button>
       </div>
 
@@ -181,7 +181,7 @@ export const CheckoutView = ({
         <div className="w-full max-w-6xl flex flex-col lg:flex-row gap-8">
           <div className="flex-1 space-y-6">
             <h2 className="text-xl font-bold text-gray-100 mb-6 hidden lg:block tracking-tight">
-              确认订单信息
+              {t("checkout:confirmOrderInfo")}
             </h2>
             {!isAllVirtual ? (
               <div
@@ -195,7 +195,7 @@ export const CheckoutView = ({
                   <div className="flex-1 min-w-0">
                     <div className="flex items-end gap-3 mb-2">
                       <span className="text-xl font-bold text-gray-100">
-                        {addressObj?.name || t("checkout:selectAddress", { defaultValue: "选择收货地址" })}
+                        {addressObj?.name || t("checkout:selectAddress")}
                       </span>
                       {addressObj?.phone ? (
                         <span className="text-base text-gray-400 font-mono">
@@ -205,7 +205,7 @@ export const CheckoutView = ({
                     </div>
                     {addressesLoading ? (
                       <p className="text-base text-gray-400 leading-relaxed truncate">
-                        {t("checkout:loadingAddresses", { defaultValue: "加载收货地址..." })}
+                        {t("checkout:loadingAddresses")}
                       </p>
                     ) : addressObj?.address ? (
                       <p className="text-base text-gray-300 leading-relaxed truncate">
@@ -213,7 +213,7 @@ export const CheckoutView = ({
                       </p>
                     ) : (
                       <p className="text-base text-gray-400 leading-relaxed truncate">
-                        {t("checkout:shippingAddressUnavailable", { defaultValue: "收货地址合约暂未开放，请稍后再�? })}
+                        {t("checkout:shippingAddressUnavailable")}
                       </p>
                     )}
                   </div>

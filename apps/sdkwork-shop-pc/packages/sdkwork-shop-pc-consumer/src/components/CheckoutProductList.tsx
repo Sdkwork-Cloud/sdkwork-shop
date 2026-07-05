@@ -11,7 +11,7 @@ export const CheckoutProductList = ({ selectedItems, products }: any) => {
           {t("checkout:productListTitle", { defaultValue: "商品详情" })}
         </h3>
         <span className="text-sm text-gray-400">
-          �?{selectedItems.length} �?
+          共 {selectedItems.length} 件
         </span>
       </div>
       <div className="p-8 space-y-6">
@@ -62,9 +62,9 @@ export const CheckoutProductList = ({ selectedItems, products }: any) => {
         })}
       </div>
       <div className="px-8 py-5 border-t border-white/5 bg-black/10 flex justify-between items-center text-gray-300">
-        <span>配送方�?/span>
+        <span>配送方式</span>
         <span className="font-medium text-gray-200">
-          普通快�?运费 ¥0.00
+          普通快递 运费 ¥0.00
         </span>
       </div>
     </div>

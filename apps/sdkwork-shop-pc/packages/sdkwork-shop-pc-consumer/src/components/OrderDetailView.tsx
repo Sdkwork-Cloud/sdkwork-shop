@@ -84,9 +84,7 @@ export const OrderDetailView = ({
           className="flex items-center gap-2 hover:bg-white/5 px-3 py-1.5 rounded-full transition-colors text-gray-400 hover:text-white"
         >
           <ArrowLeft size={18} />
-          <span className="text-sm font-medium">
-            {t("common:back", { defaultValue: "返回购物中心" })}
-          </span>
+          <span className="text-sm font-medium">{t("checkout:backToShop")}</span>
         </button>
       </div>
 
@@ -96,40 +94,32 @@ export const OrderDetailView = ({
             <CheckCircle2 size={40} />
           </div>
           <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
-            {t("checkout:paySuccess", { defaultValue: "订单支付成功" })}
+            {t("checkout:paySuccess")}
           </h2>
           <p className="text-gray-400 text-sm font-mono mb-8">
-            {t("checkout:orderNo", {
-              orderId,
-              defaultValue: `订单�? ${orderId}`,
-            })}
+            {t("checkout:orderNo", { orderId })}
           </p>
 
           {coupons.length > 0 && (
             <div className="w-full mb-8">
               <h3 className="text-lg font-medium text-gray-200 mb-4 flex items-center gap-2">
                 <Ticket size={20} className="text-pink-500" />
-                {t("checkout:yourCoupons", {
-                  count: coupons.length,
-                  defaultValue: `您的卡券 (${coupons.length})`,
-                })}
+                {t("checkout:yourCoupons", { count: coupons.length })}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {coupons}
               </div>
               <p className="text-xs text-gray-500 mt-4 text-center">
-                {t("checkout:couponSentTips", {
-                  defaultValue: "优惠券详情已发送至您的聊天会话",
-                })}
+                {t("checkout:couponSentTips")}
               </p>
             </div>
           )}
 
           <div className="w-full bg-[#1e1e20] rounded-2xl p-6 border border-white/5 mt-4 group hover:border-pink-500/20 transition-colors">
             <h3 className="text-base font-medium text-gray-200 mb-4 flex items-center justify-between">
-              {t("checkout:productListTitle", { defaultValue: "商品清单" })}
+              {t("checkout:productListTitle")}
               <span className="text-sm font-normal text-gray-500">
-                {items.length} �?
+                {t("checkout:itemCount", { count: items.length })}
               </span>
             </h3>
             <div className="space-y-4">
@@ -150,10 +140,7 @@ export const OrderDetailView = ({
                       </div>
                       <div className="text-xs text-gray-500 mt-1.5 flex items-center gap-2">
                         <span className="bg-white/5 px-2 py-0.5 rounded text-gray-400">
-                          {t("checkout:quantity", {
-                            count: item.quantity,
-                            defaultValue: `数量: ${item.quantity}`,
-                          })}
+                          {t("checkout:quantity", { count: item.quantity })}
                         </span>
                         {item.skuId && (
                           <span className="bg-white/5 px-2 py-0.5 rounded text-gray-400 truncate">
@@ -179,7 +166,7 @@ export const OrderDetailView = ({
           <div className="flex-1 h-px bg-gradient-to-r from-transparent to-white/10"></div>
           <h3 className="text-lg font-medium text-gray-300 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
-            {t("checkout:recommended", { defaultValue: "猜你喜欢" })}
+            {t("checkout:recommended")}
             <span className="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
           </h3>
           <div className="flex-1 h-px bg-gradient-to-l from-transparent to-white/10"></div>

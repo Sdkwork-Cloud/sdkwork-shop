@@ -184,7 +184,7 @@ export const ShopHome = ({
           {displayProducts.length === 0 && (
             <div className="py-20 flex flex-col items-center justify-center text-gray-500">
               <span className="text-4xl mb-4">🛒</span>
-              <p>没有找到该分类下的商�?/p>
+              <p>没有找到该分类下的商品</p>
             </div>
           )}
 
@@ -195,7 +195,7 @@ export const ShopHome = ({
               disabled={loadingMoreProducts}
               className="mt-6 w-full py-3 text-sm text-pink-400 hover:text-pink-300 disabled:opacity-50"
             >
-              {loadingMoreProducts ? '加载中�? : '加载更多'}
+              {loadingMoreProducts ? '加载中…' : '加载更多'}
             </button>
           ) : null}
         </div>

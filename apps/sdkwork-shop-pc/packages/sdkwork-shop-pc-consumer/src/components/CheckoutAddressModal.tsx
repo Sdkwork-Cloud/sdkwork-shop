@@ -47,16 +47,16 @@ export const CheckoutAddressModal = ({
           {addressForm ? (
             <form onSubmit={handleSaveAddress} className="space-y-4">
               <div>
-                <label className="text-sm font-medium text-gray-400 mb-1.5 block">收货�?/label>
+                <label className="text-sm font-medium text-gray-400 mb-1.5 block">收货人</label>
                 <input type="text" value={addressForm.name || ""} onChange={e => setAddressForm({...addressForm, name: e.target.value})} className="w-full bg-black/20 border border-white/10 focus:border-pink-500/50 outline-none rounded-lg px-4 py-2.5 text-white text-sm transition-colors" placeholder="真实姓名" required />
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-400 mb-1.5 block">手机�?/label>
+                <label className="text-sm font-medium text-gray-400 mb-1.5 block">手机号</label>
                 <input type="text" value={addressForm.phone || ""} onChange={e => setAddressForm({...addressForm, phone: e.target.value})} className="w-full bg-black/20 border border-white/10 focus:border-pink-500/50 outline-none rounded-lg px-4 py-2.5 text-white text-sm transition-colors" placeholder="11位手机号" required />
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-400 mb-1.5 block">详细地址</label>
-                <textarea value={addressForm.address || ""} onChange={e => setAddressForm({...addressForm, address: e.target.value})} className="w-full bg-black/20 border border-white/10 focus:border-pink-500/50 outline-none rounded-lg px-4 py-2.5 text-white text-sm h-24 resize-none transition-colors custom-scrollbar" placeholder="省市�?街道门牌�? required />
+                <textarea value={addressForm.address || ""} onChange={e => setAddressForm({...addressForm, address: e.target.value})} className="w-full bg-black/20 border border-white/10 focus:border-pink-500/50 outline-none rounded-lg px-4 py-2.5 text-white text-sm h-24 resize-none transition-colors custom-scrollbar" placeholder="省市区 街道门牌号" required />
               </div>
               <div className="flex items-center gap-2 mt-2 cursor-pointer w-fit" onClick={() => setAddressForm({...addressForm, isDefault: !addressForm.isDefault})}>
                 <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${addressForm.isDefault ? "bg-pink-500 border-pink-500" : "border-white/20"}`}>

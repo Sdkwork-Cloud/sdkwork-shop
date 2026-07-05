@@ -3,6 +3,14 @@ packages:
   - "apps/sdkwork-shop-common/packages/*"
   - "apps/sdkwork-shop-pc"
   - "apps/sdkwork-shop-pc/packages/*"
+  - "sdks/sdkwork-shop-app-sdk/sdkwork-shop-app-sdk-typescript"
+  - "sdks/sdkwork-shop-app-sdk/sdkwork-shop-app-sdk-typescript/generated/server-openapi"
+  - "../sdkwork-catalog/sdks/sdkwork-catalog-app-sdk/sdkwork-catalog-app-sdk-typescript"
+  - "../sdkwork-catalog/sdks/sdkwork-catalog-app-sdk/sdkwork-catalog-app-sdk-typescript/generated/server-openapi"
+  - "../sdkwork-order/sdks/sdkwork-order-app-sdk/sdkwork-order-app-sdk-typescript"
+  - "../sdkwork-order/sdks/sdkwork-order-app-sdk/sdkwork-order-app-sdk-typescript/generated/server-openapi"
+  - "../sdkwork-core/sdkwork-core-pc-react"
+  - "../sdkwork-sdk-commons/sdkwork-sdk-common-typescript"
   - "../sdkwork-utils/packages/sdkwork-utils-typescript"
 
 catalog:
@@ -95,6 +103,7 @@ catalog:
   motion: ^12.23.24
   postcss: ^8.5.8
   qrcode: ^1.5.4
+  react-qr-code: ^2.0.21
   react: ^19.2.4
   react-dom: ^19.2.4
   react-hook-form: ^7.72.1

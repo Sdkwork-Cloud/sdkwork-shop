@@ -37,7 +37,7 @@ export const CouponDetailView = ({
           <ArrowLeft size={20} />
         </button>
         <h2 className="text-xl font-bold text-gray-100 flex items-center gap-2">
-          {t("checkout:couponDetail", { defaultValue: "卡券详情" })}
+          {t("checkout:couponDetail")}
         </h2>
       </div>
 
@@ -63,9 +63,7 @@ export const CouponDetailView = ({
 
           <div className="text-center mb-6">
             <div className="text-sm text-gray-400 mb-2">
-              {t("checkout:showQrCode", {
-                defaultValue: "向商家出示此二维码核销",
-              })}
+              {t("checkout:showQrCode")}
             </div>
             <div className="bg-white p-4 rounded-xl inline-block w-48 h-48">
               <QRCode
@@ -79,7 +77,7 @@ export const CouponDetailView = ({
 
           <div className="w-full bg-[#1e1e20] rounded-xl p-4 flex items-center justify-between">
             <span className="text-gray-400 text-sm">
-              {t("checkout:couponCode", { defaultValue: "券码�? })}
+              {t("checkout:couponCode")}
             </span>
             <span className="font-mono text-gray-200 tracking-wider font-bold text-lg">
               {code}
@@ -90,30 +88,25 @@ export const CouponDetailView = ({
         <div className="p-6 space-y-4 bg-[#252527]">
           <div>
             <div className="text-gray-400 text-xs mb-1 flex items-center gap-1.5">
-              <Info size={14} />{" "}
-              {t("checkout:usageRules", { defaultValue: "使用须知" })}
+              <Info size={14} /> {t("checkout:usageRules")}
             </div>
             <div className="text-gray-300 text-sm leading-relaxed">
               {product.description}
               <br />
-              {t("checkout:usageRulesDesc", {
-                defaultValue: "请在结账前出示此二维码或券码�?,
-              })}
+              {t("checkout:usageRulesDesc")}
             </div>
           </div>
           <div>
             <div className="text-gray-400 text-xs mb-1 flex items-center gap-1.5">
-              <Store size={14} />{" "}
-              {t("checkout:applicableStores", { defaultValue: "适用门店" })}
+              <Store size={14} /> {t("checkout:applicableStores")}
             </div>
             <div className="text-gray-300 text-sm">
-              {t("checkout:allStores", { defaultValue: "全国所有直营门�? })}
+              {t("checkout:allStores")}
             </div>
           </div>
           <div>
             <div className="text-gray-400 text-xs mb-1 flex items-center gap-1.5">
-              <Phone size={14} />{" "}
-              {t("checkout:customerService", { defaultValue: "客服热线" })}
+              <Phone size={14} /> {t("checkout:customerService")}
             </div>
             <div className="text-gray-300 text-sm">400-800-8888</div>
           </div>

@@ -97,12 +97,16 @@
     "viewLogistics": "View Logistics",
     "confirmReceive": "Confirm Receipt",
     "applyAfterSales": "After-Sales",
-    "reviewOrder": "Review Order"
+    "reviewOrder": "Review Order",
+    "shippingAddressUnavailable": "Shipping address is returned by order fulfillment; this order has no displayable shipping details.",
+    "waitFulfillment": "Awaiting fulfillment",
+    "waitFulfillmentTitle": "Receipt confirmation is driven by fulfillment lifecycle; no standalone confirm command is available"
   },
   "toast": {
     "orderCancelled": "Order cancelled",
     "orderShipped": "Order shipped",
     "refundSubmitted": "Refund submitted, awaiting seller processing",
+    "cancelRequestSubmitted": "Cancellation request submitted",
     "tradeSuccess": "Trade successful",
     "afterSalesApplied": "After-sales request submitted",
     "addressCopied": "Shipping address copied",
