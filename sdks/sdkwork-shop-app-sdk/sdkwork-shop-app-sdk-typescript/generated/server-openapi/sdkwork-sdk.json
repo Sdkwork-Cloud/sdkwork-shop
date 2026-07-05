@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "language": "typescript",
   "sdkType": "app",
-  "packageName": "@sdkwork/shop-app-sdk",
+  "packageName": "sdkwork-shop-app-sdk-generated-typescript",
   "generator": "@sdkwork/sdk-generator",
   "capabilities": {
     "supportsGeneratedTests": true,
@@ -26,5 +26,7 @@
     "stateRoots": [
       ".sdkwork/"
     ]
-  }
+  },
+  "transportPackageName": "sdkwork-shop-app-sdk-generated-typescript",
+  "consumerPackageName": "@sdkwork/shop-app-sdk"
 }

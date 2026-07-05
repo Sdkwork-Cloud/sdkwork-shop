@@ -1,0 +1,25 @@
+{
+  "name": "@sdkwork/shop-pc-orders",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@sdkwork/order-app-sdk": "workspace:*",
+    "@sdkwork/shop-app-sdk": "workspace:*",
+    "@sdkwork/shop-pc-core": "workspace:*",
+    "framer-motion": "catalog:",
+    "i18next": "catalog:",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-i18next": "catalog:"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  }
+}
