@@ -1,5 +1,4 @@
-import type { CatalogAppSdkClient } from '@sdkwork/shop-pc-core/sdk/catalogAppSdkClient';
-import type { OrderAppSdkClient } from '@sdkwork/shop-pc-core/sdk/orderAppSdkClient';
+import type { CatalogAppSdkClient, OrderAppSdkClient } from '@sdkwork/shop-pc-core';
 import {
   extractAppSdkPayload,
   extractAppSdkRecordsFromResult,
@@ -9,9 +8,10 @@ import {
   readOptionalString,
   readString,
   SDKWORK_DEFAULT_PAGE_SIZE,
-} from '@sdkwork/shop-pc-core/sdk/appSdkResponseHelpers';
-import { getCatalogAppSdkClientWithSession } from '@sdkwork/shop-pc-core/sdk/catalogAppSdkClient';
-import { getOrderAppSdkClientWithSession } from '@sdkwork/shop-pc-core/sdk/orderAppSdkClient';
+  getCatalogAppSdkClientWithSession,
+  getOrderAppSdkClientWithSession,
+  createSdkworkWriteCommandParams,
+} from '@sdkwork/shop-pc-core';
 
 export interface ShopCategory {
   id: string;
@@ -366,17 +366,29 @@ class SdkworkShopService implements ShopService {
       throw new Error('Select at least one cart item before checkout.');
     }
 
-    const sessionResult = await this.orderClient().checkout.sessions.create({
+    const checkoutSessionCommand = {
       items: checkoutLines,
       currencyCode: 'CNY',
-    });
+    };
+    const sessionResult = await this.orderClient().checkout.sessions.create(
+      checkoutSessionCommand,
+      createSdkworkWriteCommandParams('checkout.sessions.create', checkoutSessionCommand),
+    );
     const sessionRecord = extractAppSdkPayload(sessionResult);
     const sessionId = readString(sessionRecord as Record<string, unknown>, 'checkoutSessionId', 'checkout_session_id');
     if (!sessionId) {
       throw new Error('Commerce checkout session id is missing from the SDK response.');
     }
 
-    const orderResult = await this.orderClient().checkout.sessions.orders.create(sessionId, {});
+    const createOrderCommand = {};
+    const orderResult = await this.orderClient().checkout.sessions.orders.create(
+      sessionId,
+      createOrderCommand,
+      createSdkworkWriteCommandParams('checkout.sessions.orders.create', {
+        checkoutSessionId: sessionId,
+        ...createOrderCommand,
+      }),
+    );
     const orderRecord = extractAppSdkPayload(orderResult);
     const orderId = readString(orderRecord as Record<string, unknown>, 'orderId', 'order_id', 'id');
     const total = parseMoneyAmount(
@@ -427,7 +439,15 @@ class SdkworkShopService implements ShopService {
     if (!normalizedId) {
       throw new Error('Order id is required.');
     }
-    await this.orderClient().orders.pay(normalizedId, {});
+    const payCommand = {};
+    await this.orderClient().orders.pay(
+      normalizedId,
+      payCommand,
+      createSdkworkWriteCommandParams('orders.pay', {
+        orderId: normalizedId,
+        ...payCommand,
+      }),
+    );
   }
 }
 

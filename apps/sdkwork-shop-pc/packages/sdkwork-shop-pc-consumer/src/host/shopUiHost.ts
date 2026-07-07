@@ -1,7 +1,7 @@
 import {
   getShopPcHost,
   type ShopPcToastVariant,
-} from '@sdkwork/shop-pc-core/host';
+} from '@sdkwork/shop-pc-core';
 
 export interface ShopPcSessionUser {
   phone?: string;
@@ -11,7 +11,7 @@ export interface ShopPcSessionUser {
 }
 
 export function shopToast(message: string, variant: ShopPcToastVariant = 'info'): void {
-  getShopPcHost().shopToast(message, variant);
+  getShopPcHost().toast(message, variant);
 }
 
 export function readShopSessionUser(): ShopPcSessionUser | null {

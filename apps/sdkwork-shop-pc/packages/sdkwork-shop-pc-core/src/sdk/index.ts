@@ -4,3 +4,4 @@ export * from './orderAppSdkClient';
 export * from './pcTokenManager';
 export * from './sdkBaseUrls';
 export * from './shopAppSdkClient';
+export * from './writeCommandParams';

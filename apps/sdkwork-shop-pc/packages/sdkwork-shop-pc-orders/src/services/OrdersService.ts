@@ -1,5 +1,4 @@
-import type { OrderAppSdkClient } from '@sdkwork/shop-pc-core/sdk/orderAppSdkClient';
-import type { ShopAppSdkClient } from '@sdkwork/shop-pc-core/sdk/shopAppSdkClient';
+import type { OrderAppSdkClient, ShopAppSdkClient } from '@sdkwork/shop-pc-core';
 import {
   extractAppSdkPayload,
   mapAppSdkOffsetPage,
@@ -8,9 +7,10 @@ import {
   readNumber,
   readOptionalString,
   readString,
-} from '@sdkwork/shop-pc-core/sdk/appSdkResponseHelpers';
-import { getOrderAppSdkClientWithSession } from '@sdkwork/shop-pc-core/sdk/orderAppSdkClient';
-import { getShopAppSdkClientWithSession } from '@sdkwork/shop-pc-core/sdk/shopAppSdkClient';
+  getOrderAppSdkClientWithSession,
+  getShopAppSdkClientWithSession,
+  createSdkworkWriteCommandParams,
+} from '@sdkwork/shop-pc-core';
 
 export interface OrderItem {
   id: string;
@@ -269,9 +269,23 @@ class SdkworkOrdersService implements OrdersService {
     switch (status) {
       case 'CANCELLED':
         try {
-          await this.orderClient().orders.cancel(normalizedId, COMMERCE_COMMAND);
+          await this.orderClient().orders.cancel(
+            normalizedId,
+            createSdkworkWriteCommandParams('orders.cancel', {
+              orderId: normalizedId,
+              ...COMMERCE_COMMAND,
+            }),
+            COMMERCE_COMMAND,
+          );
         } catch {
-          await this.orderClient().orders.cancellations.create(normalizedId, COMMERCE_COMMAND);
+          await this.orderClient().orders.cancellations.create(
+            normalizedId,
+            createSdkworkWriteCommandParams('orders.cancellations.create', {
+              orderId: normalizedId,
+              ...COMMERCE_COMMAND,
+            }),
+            COMMERCE_COMMAND,
+          );
         }
         break;
       case 'SHIPPED':
@@ -295,7 +309,14 @@ class SdkworkOrdersService implements OrdersService {
     if (!normalizedId) {
       throw new Error('Order id is required');
     }
-    await this.orderClient().orders.pay(normalizedId, COMMERCE_COMMAND);
+    await this.orderClient().orders.pay(
+      normalizedId,
+      COMMERCE_COMMAND,
+      createSdkworkWriteCommandParams('orders.pay', {
+        orderId: normalizedId,
+        ...COMMERCE_COMMAND,
+      }),
+    );
     const refreshed = await this.getOrderById(normalizedId);
     if (!refreshed) {
       throw new Error('Payment command accepted but refresh failed');

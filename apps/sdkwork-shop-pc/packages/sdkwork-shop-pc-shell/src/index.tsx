@@ -1,9 +1,12 @@
-import { buildShopDraft, describeShop } from "@sdkwork/shop-pc-core";
+import {
+  formatShopHeadline,
+  normalizeCreateShopInput,
+} from "@sdkwork/shop-pc-core";
 
-const demoShop = buildShopDraft({ name: "示例店铺", slug: "" });
+const demoShop = normalizeCreateShopInput({ name: "示例店铺", slug: "" });
 
 export function ShopAppShell() {
-  const headline = describeShop({
+  const headline = formatShopHeadline({
     id: "demo",
     name: demoShop.name,
     slug: demoShop.slug,

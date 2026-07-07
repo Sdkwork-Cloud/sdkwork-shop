@@ -1,6 +1,6 @@
 import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { getShopPcHost } from '@sdkwork/shop-pc-core/host';
+import { getShopPcHost } from '@sdkwork/shop-pc-core';
 
 import zhCN from './locales/zh-CN/orders.json';
 import enUS from './locales/en-US/orders.json';

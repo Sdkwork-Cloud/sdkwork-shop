@@ -196,7 +196,7 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
                     </div>
                     <div className="flex flex-col items-end py-1 shrink-0 ml-4">
                       <div className="text-base font-bold text-gray-200 mb-1">
-                        <span className="text-sm mr-0.5">¥</span>
+                        <span className="text-sm mr-0.5">ï¿½</span>
                         {item.price.toLocaleString("zh-CN", {
                           minimumFractionDigits: 2,
                         })}
@@ -225,7 +225,7 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
                   <div className="flex justify-between items-center text-gray-400">
                     <span>{t("detail.productTotal")}</span>
                     <span>
-                      ¥{" "}
+                      ï¿½{" "}
                       {order.amount.toLocaleString("zh-CN", {
                         minimumFractionDigits: 2,
                       })}
@@ -233,11 +233,11 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
                   </div>
                   <div className="flex justify-between items-center text-gray-400">
                     <span>{t("detail.shippingFee")}</span>
-                    <span>¥ 0.00</span>
+                    <span>ï¿½ 0.00</span>
                   </div>
                   <div className="flex justify-between items-center text-gray-400">
                     <span>{t("detail.shopDiscount")}</span>
-                    <span className="text-orange-400">- ¥ 0.00</span>
+                    <span className="text-orange-400">- ï¿½ 0.00</span>
                   </div>
                   <div className="h-px bg-white/10" />
                   <div className="flex justify-between items-end">
@@ -245,7 +245,7 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
                       {t("detail.actualPayment")}
                     </span>
                     <span className="text-2xl font-bold text-orange-500 mb-[-2px] tracking-tight">
-                      <span className="text-sm font-normal mr-1">¥</span>
+                      <span className="text-sm font-normal mr-1">ï¿½</span>
                       {order.amount.toLocaleString("zh-CN", {
                         minimumFractionDigits: 2,
                       })}
