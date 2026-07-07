@@ -3,6 +3,7 @@ import { StringUtils } from '@sdkwork/sdk-common/utils';
 export interface SdkworkWriteCommandParams {
   idempotencyKey: string;
   sdkworkRequestHash: string;
+  xIdempotencyFingerprint: string;
 }
 
 function normalizeRequestHashPart(part: string): string {
@@ -43,10 +44,12 @@ export function createSdkworkWriteCommandParams(
   payload: unknown,
   idempotencyKey = StringUtils.uuid(),
 ): SdkworkWriteCommandParams {
+  const sdkworkRequestHash = [scope, canonicalJsonString(payload)]
+    .map(normalizeRequestHashPart)
+    .join('-');
   return {
     idempotencyKey,
-    sdkworkRequestHash: [scope, canonicalJsonString(payload)]
-      .map(normalizeRequestHashPart)
-      .join('-'),
+    sdkworkRequestHash,
+    xIdempotencyFingerprint: sdkworkRequestHash,
   };
 }
