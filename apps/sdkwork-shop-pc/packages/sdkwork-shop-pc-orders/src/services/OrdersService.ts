@@ -309,10 +309,10 @@ class SdkworkOrdersService implements OrdersService {
     if (!normalizedId) {
       throw new Error('Order id is required');
     }
-    await this.orderClient().orders.pay(
+    await this.orderClient().orders.payments.create(
       normalizedId,
       COMMERCE_COMMAND,
-      createSdkworkWriteCommandParams('orders.pay', {
+      createSdkworkWriteCommandParams('orders.payments.create', {
         orderId: normalizedId,
         ...COMMERCE_COMMAND,
       }),

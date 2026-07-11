@@ -440,10 +440,10 @@ class SdkworkShopService implements ShopService {
       throw new Error('Order id is required.');
     }
     const payCommand = {};
-    await this.orderClient().orders.pay(
+    await this.orderClient().orders.payments.create(
       normalizedId,
       payCommand,
-      createSdkworkWriteCommandParams('orders.pay', {
+      createSdkworkWriteCommandParams('orders.payments.create', {
         orderId: normalizedId,
         ...payCommand,
       }),

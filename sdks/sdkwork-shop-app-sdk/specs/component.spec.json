@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.component.spec",
+  "component": {
+    "name": "sdkwork-shop-app-sdk",
+    "displayName": "SDKWork Shop App SDK",
+    "version": "0.1.0",
+    "type": "sdk-family",
+    "root": "sdks/sdkwork-shop-app-sdk",
+    "domain": "commerce",
+    "capability": "shop-app-sdk",
+    "surface": "app-api",
+    "status": "standardized",
+    "languages": [
+      "typescript"
+    ],
+    "generated": true,
+    "private": false,
+    "manifests": [
+      "sdk-manifest.json"
+    ]
+  },
+  "canonicalSpecs": [
+    {
+      "file": "SDK_MANIFEST_SPEC.md",
+      "path": "../../../sdkwork-specs/SDK_MANIFEST_SPEC.md",
+      "purpose": "SDK family manifest single-source-of-truth rules."
+    },
+    {
+      "file": "SDK_SPEC.md",
+      "path": "../../../sdkwork-specs/SDK_SPEC.md",
+      "purpose": "SDK family naming, generation, dependency, and consumer integration rules."
+    },
+    {
+      "file": "SDK_WORKSPACE_GENERATION_SPEC.md",
+      "path": "../../../sdkwork-specs/SDK_WORKSPACE_GENERATION_SPEC.md",
+      "purpose": "SDK workspace layout, authority OpenAPI, derived input, and generated output rules."
+    },
+    {
+      "file": "APP_SDK_INTEGRATION_SPEC.md",
+      "path": "../../../sdkwork-specs/APP_SDK_INTEGRATION_SPEC.md",
+      "purpose": "App SDK consumer facade and dependency SDK integration rules."
+    },
+    {
+      "file": "API_SPEC.md",
+      "path": "../../../sdkwork-specs/API_SPEC.md",
+      "purpose": "OpenAPI authority, API surface, schema, and SDK-generation contract rules."
+    },
+    {
+      "file": "TEST_SPEC.md",
+      "path": "../../../sdkwork-specs/TEST_SPEC.md",
+      "purpose": "SDK generation, contract, and workspace verification rules."
+    }
+  ],
+  "sdk": {
+    "family": "sdkwork-shop-app-sdk",
+    "authority": "sdkwork-shop-app-api",
+    "sdkOwner": "sdkwork-shop",
+    "apiPrefix": "/app/v3/api",
+    "packageName": "@sdkwork/shop-app-sdk",
+    "sdkName": "sdkwork-shop-app-sdk",
+    "sdkType": "app",
+    "sdkSurface": "app",
+    "generatedOutput": "sdkwork-shop-app-sdk-typescript/generated/server-openapi",
+    "standardProfile": "sdkwork-v3"
+  },
+  "contracts": {
+    "apiAuthority": {
+      "name": "sdkwork-shop-app-api",
+      "owner": "sdkwork-shop",
+      "prefix": "/app/v3/api",
+      "authorityOpenApi": "openapi/sdkwork-shop-app-api.openapi.json",
+      "derivedOpenApi": [
+        "openapi/sdkwork-shop-app-api.sdkgen.json"
+      ],
+      "standard": "../../../sdkwork-specs/SDK_SPEC.md"
+    },
+    "publicExports": [],
+    "runtimeEntrypoints": [
+      "sdk-manifest.json"
+    ],
+    "routeManifest": null,
+    "sdkDependencies": [],
+    "dependencyApiExports": [],
+    "dependencyApiSurfaces": [],
+    "sdkClients": [
+      "SdkworkAppClient"
+    ],
+    "events": [],
+    "configKeys": [
+      "sdk-manifest.json"
+    ]
+  },
+  "metadata": {
+    "managedBy": "sdkwork-shop",
+    "standardVersion": "2026-07-08"
+  },
+  "verification": {
+    "commands": [
+      "node ../sdkwork-specs/tools/check-sdk-standard.mjs --workspace ..",
+      "node ../sdkwork-specs/tools/check-component-port-bindings.mjs --root ."
+    ]
+  }
+}

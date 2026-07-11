@@ -4,7 +4,7 @@
   "applicationCode": "shop",
   "packageName": "sdkwork-shop-gateway-assembly",
   "crateDir": "crates/sdkwork-shop-gateway-assembly",
-  "generatedAt": "2026-06-25T13:08:05.604Z",
+  "generatedAt": "2026-07-08T01:34:22.551Z",
   "routeCrates": [
     {
       "packageName": "sdkwork-routes-shop-app-api",
