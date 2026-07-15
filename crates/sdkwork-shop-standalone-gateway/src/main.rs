@@ -2,7 +2,6 @@ use sdkwork_shop_gateway_assembly::assemble_application_router;
 use sdkwork_shop_service_host::ShopServiceHost;
 use sdkwork_web_bootstrap::{service_router, ServiceRouterConfig};
 use std::sync::Arc;
-use tower_http::cors::CorsLayer;
 
 #[tokio::main]
 async fn main() {
@@ -13,7 +12,10 @@ async fn main() {
     let business = assemble_application_router(host)
         .await
         .router
-        .layer(CorsLayer::permissive());
+        .layer(sdkwork_web_bootstrap::application_cors_layer_from_env(
+            &["SDKWORK_SHOP_ENVIRONMENT"],
+            &["SDKWORK_SHOP_CORS_ALLOWED_ORIGINS", "SDKWORK_CORS_ALLOWED_ORIGINS"],
+        ));
     let app = service_router(business, ServiceRouterConfig::default().with_always_ready());
 
     let addr = std::env::var("SHOP_API_BIND").unwrap_or_else(|_| "0.0.0.0:18090".to_owned());
