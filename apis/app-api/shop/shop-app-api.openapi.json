@@ -889,7 +889,7 @@
           "shops"
         ],
         "summary": "Shops current category Bindings upsert.",
-        "operationId": "shops.current.categoryBindings.upsert",
+        "operationId": "shops.current.categoryBindings.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -1164,7 +1164,7 @@
           "shops"
         ],
         "summary": "Shops current brand Authorizations upsert.",
-        "operationId": "shops.current.brandAuthorizations.upsert",
+        "operationId": "shops.current.brandAuthorizations.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -1455,7 +1455,7 @@
           "shops"
         ],
         "summary": "Shops current qualifications upsert.",
-        "operationId": "shops.current.qualifications.upsert",
+        "operationId": "shops.current.qualifications.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -1738,7 +1738,7 @@
           "shops"
         ],
         "summary": "Shops current customer Services upsert.",
-        "operationId": "shops.current.customerServices.upsert",
+        "operationId": "shops.current.customerServices.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -2021,7 +2021,7 @@
           "shops"
         ],
         "summary": "Shops current return Addresses upsert.",
-        "operationId": "shops.current.returnAddresses.upsert",
+        "operationId": "shops.current.returnAddresses.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -2304,7 +2304,7 @@
           "shops"
         ],
         "summary": "Shops current shipping Templates upsert.",
-        "operationId": "shops.current.shippingTemplates.upsert",
+        "operationId": "shops.current.shippingTemplates.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -2586,7 +2586,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -4194,7 +4194,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -5153,7 +5153,7 @@
         "operationId": "shops.current.products.create",
         "parameters": [],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -5750,7 +5750,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -6093,7 +6093,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
