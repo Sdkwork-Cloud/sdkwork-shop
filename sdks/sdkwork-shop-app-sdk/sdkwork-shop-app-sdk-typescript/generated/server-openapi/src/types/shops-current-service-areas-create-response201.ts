@@ -1,6 +1,6 @@
 import type { ShopServiceAreaResponse } from './shop-service-area-response';
 
-export interface ShopsCurrentServiceAreasCreateResponse {
+export interface ShopsCurrentServiceAreasCreateResponse201 {
   code: 0;
   data: unknown & Record<string, unknown>;
   /** Server-owned request correlation id. */

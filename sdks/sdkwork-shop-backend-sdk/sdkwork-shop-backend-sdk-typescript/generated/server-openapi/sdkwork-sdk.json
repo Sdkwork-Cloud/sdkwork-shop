@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "sdkwork-shop-app-sdk",
+  "name": "sdkwork-shop-backend-sdk",
   "version": "0.1.0",
   "language": "typescript",
-  "sdkType": "app",
-  "packageName": "sdkwork-shop-app-sdk-generated-typescript",
-  "transportPackageName": "sdkwork-shop-app-sdk-generated-typescript",
-  "consumerPackageName": "@sdkwork/shop-app-sdk",
+  "sdkType": "backend",
+  "packageName": "sdkwork-shop-backend-sdk-generated-typescript",
+  "transportPackageName": "sdkwork-shop-backend-sdk-generated-typescript",
+  "consumerPackageName": "@sdkwork/shop-backend-sdk",
   "generator": "@sdkwork/sdk-generator",
   "capabilities": {
     "supportsGeneratedTests": true,

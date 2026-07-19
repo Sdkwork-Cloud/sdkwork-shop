@@ -42,7 +42,7 @@
     {
       "language": "typescript",
       "workspace": "sdkwork-shop-app-sdk-typescript",
-      "generationState": "source_ready",
+      "generationState": "generated",
       "releaseState": "not_published",
       "packagePath": "sdkwork-shop-app-sdk-typescript/generated/server-openapi",
       "manifestPath": "sdkwork-shop-app-sdk-typescript/generated/server-openapi/package.json",
@@ -52,5 +52,6 @@
       "consumerPackageName": "@sdkwork/shop-app-sdk",
       "transportPackageName": "sdkwork-shop-app-sdk-generated-typescript"
     }
-  ]
+  ],
+  "ownerOnlyOperationCount": 47
 }

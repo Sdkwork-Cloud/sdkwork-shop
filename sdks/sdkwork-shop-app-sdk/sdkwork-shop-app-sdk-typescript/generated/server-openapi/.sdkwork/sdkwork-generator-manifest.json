@@ -7,7 +7,7 @@
     "language": "typescript",
     "sdkType": "app",
     "protocol": "http",
-    "packageName": "@sdkwork/shop-app-sdk"
+    "packageName": "sdkwork-shop-app-sdk-generated-typescript"
   },
   "generatedFiles": [
     {
@@ -40,15 +40,15 @@
     },
     {
       "path": "package.json",
-      "sha256": "726ec8055ea81edd3057b661be788d088e4bc24c9b4621cc36dd2ec7b81cede1"
+      "sha256": "10a8dcbe5168c8f5dc36c0bad659bfcb15f2c77101a4b223f9ddf58b8c8e7aa5"
     },
     {
       "path": "README.md",
-      "sha256": "787f63263d896efe2b550286ca5085dad2f6442ea3cc433b06d01fde6324c771"
+      "sha256": "645953311d692be818b9933c180576ec1323e7061a7e459f2b9eaa9bf7f43580"
     },
     {
       "path": "sdkwork-sdk.json",
-      "sha256": "202fa09e0353733489e7b1ca66e4c5665b9e034b0d946393926ebf2fddfecc40"
+      "sha256": "ad8185b87da40536cd608a6994bb62439fb64ee2d68c0364f9123a09e4427d5f"
     },
     {
       "path": "src/api/base.ts",
@@ -64,7 +64,7 @@
     },
     {
       "path": "src/api/shops.ts",
-      "sha256": "3b0a178209756674a76cf169b67527f08b7488a48d92f8918a353975ff047b90"
+      "sha256": "75f94bb7323f735a22f00fb03837a7ba9eae050eb500f7c032ccfad919c4e53b"
     },
     {
       "path": "src/auth/index.ts",
@@ -136,7 +136,7 @@
     },
     {
       "path": "src/types/index.ts",
-      "sha256": "d9521d98e43d3b0322dd73fdbc285aae102aa0578eda3fe240e251e8b963bc12"
+      "sha256": "7ea7dde2322dffd1530f04733e701d11625aa36d577ce4d85162fb4269c83d09"
     },
     {
       "path": "src/types/page-info.ts",
@@ -335,12 +335,12 @@
       "sha256": "1d5ad526e4bd3ab5d12f68b6276b27962f87da0123d94b50002eac0125f76d19"
     },
     {
-      "path": "src/types/shops-current-applications-create-response.ts",
-      "sha256": "d488dff8ea374f1298b64e3eafc6ac8edfb0d341f938effcd487cfc549e67880"
+      "path": "src/types/shops-current-applications-create-response201.ts",
+      "sha256": "e330995bf208e791e9fd7e206449632bdc3dba9ae69007234151839c34d1f05a"
     },
     {
-      "path": "src/types/shops-current-brand-authorizations-upsert-response.ts",
-      "sha256": "35c7077d5aac03121d9dbb868612fee6c4a57f4d0dcaf6c29e37c1077cd2404d"
+      "path": "src/types/shops-current-brand-authorizations-update-response.ts",
+      "sha256": "7dbc3184daab50b47d6f931482f0e9aec5feade70d936ff48652b5df1ffff4c1"
     },
     {
       "path": "src/types/shops-current-business-hours-retrieve-response.ts",
@@ -351,16 +351,16 @@
       "sha256": "64482aee6d4d9c9f0e843afb0e4f934e23140635c7ec9803ef36ea4bef601ff5"
     },
     {
-      "path": "src/types/shops-current-category-bindings-upsert-response.ts",
-      "sha256": "e408dcf726a71060facbd15315608070ad953cb54c539d08f34f89d9ad28299f"
+      "path": "src/types/shops-current-category-bindings-update-response.ts",
+      "sha256": "f1992b7ad0fbb09a39499656ee14862bca59c3663f38f3a70b26d544ab575c14"
     },
     {
       "path": "src/types/shops-current-channels-update-response.ts",
       "sha256": "d1aab72043ebab9d6556c0a14869e0ed118cbc84bfd4cb422708cacbfae8790f"
     },
     {
-      "path": "src/types/shops-current-customer-services-upsert-response.ts",
-      "sha256": "7bc96cb53aafbbffa7a9fa44acfbbe008e99aaf31e86601e233f8e7f756faa90"
+      "path": "src/types/shops-current-customer-services-update-response.ts",
+      "sha256": "05df9d344f6f69fe24a5a3479ce2b67bbee80a2a08d184d0e61af367f51b9d08"
     },
     {
       "path": "src/types/shops-current-dashboard-retrieve-response.ts",
@@ -383,8 +383,8 @@
       "sha256": "06652be44b0a237b727a918c5e79087061f21ceb330915b1f9a1f6d0a410e200"
     },
     {
-      "path": "src/types/shops-current-qualifications-upsert-response.ts",
-      "sha256": "53ba09b3abfcf69db23de16b6b34bc6826938fd9ef07cbb85add2f3c1ce29ba7"
+      "path": "src/types/shops-current-qualifications-update-response.ts",
+      "sha256": "a219e201598ebf498278c09df5600b98dd4ba1fc2171c702ec849c6b67e505f3"
     },
     {
       "path": "src/types/shops-current-readiness-retrieve-response.ts",
@@ -395,12 +395,12 @@
       "sha256": "f4411d2bf15607efd27a57d3ca0d8a003628b2a5136613035f9a42ee082f771e"
     },
     {
-      "path": "src/types/shops-current-return-addresses-upsert-response.ts",
-      "sha256": "40bd4aa6b151fc09a1943b004f9595540e63feefb643210ae05db1c85f1c1984"
+      "path": "src/types/shops-current-return-addresses-update-response.ts",
+      "sha256": "2af411f40546cd60918ba3a0bf8587191eacf94ead528132f9d0605713860ad0"
     },
     {
-      "path": "src/types/shops-current-service-areas-create-response.ts",
-      "sha256": "331d2978db4be818db62b2a6813cf7e0c243277f93b9a0f30c8e9d1e2620b848"
+      "path": "src/types/shops-current-service-areas-create-response201.ts",
+      "sha256": "97e13d2dc7fbd17f3c9a1cd143c620d55883635f5d0268e80b714cf8bb2d0ad3"
     },
     {
       "path": "src/types/shops-current-service-areas-update-response.ts",
@@ -415,8 +415,8 @@
       "sha256": "270b249d26e35a17ea9766936fe994b74fe9e6eafada21a4573cd7b45548e166"
     },
     {
-      "path": "src/types/shops-current-shipping-templates-upsert-response.ts",
-      "sha256": "9fbc55b0eeb3f6d5a67ecb41583822818e3d8d1f85483fb2f3dfebf4e7f8d4c8"
+      "path": "src/types/shops-current-shipping-templates-update-response.ts",
+      "sha256": "580bf303cd90ef4adca6d68466b436dddb5d06eef37434e58332bb6c6d0c6340"
     },
     {
       "path": "src/types/shops-retrieve-response.ts",

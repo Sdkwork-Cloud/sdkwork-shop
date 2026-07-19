@@ -1,6 +1,6 @@
 import type { ShopBrandAuthorizationResponse } from './shop-brand-authorization-response';
 
-export interface ShopsCurrentBrandAuthorizationsUpsertResponse {
+export interface ShopsCurrentBrandAuthorizationsUpdateResponse {
   code: 0;
   data: unknown & Record<string, unknown>;
   /** Server-owned request correlation id. */

@@ -1,23 +1,23 @@
-# sdkwork-shop-app-sdk
+# sdkwork-shop-backend-sdk
 
 Generated SDKWork v3 dual-token transport SDK.
 
 ## Installation
 
 ```bash
-npm install sdkwork-shop-app-sdk-generated-typescript
+npm install sdkwork-shop-backend-sdk-generated-typescript
 # or
-yarn add sdkwork-shop-app-sdk-generated-typescript
+yarn add sdkwork-shop-backend-sdk-generated-typescript
 # or
-pnpm add sdkwork-shop-app-sdk-generated-typescript
+pnpm add sdkwork-shop-backend-sdk-generated-typescript
 ```
 
 ## Quick Start
 
 ```typescript
-import { SdkworkAppClient } from 'sdkwork-shop-app-sdk-generated-typescript';
+import { SdkworkBackendClient } from 'sdkwork-shop-backend-sdk-generated-typescript';
 
-const client = new SdkworkAppClient({
+const client = new SdkworkBackendClient({
   baseUrl: 'http://127.0.0.1:8080',
   timeout: 30000,
 });
@@ -27,7 +27,7 @@ client.setAuthToken('your-auth-token');
 client.setAccessToken('your-access-token');
 
 // Use the SDK
-const result = await client.shops.current.retrieve();
+const result = await client.shops.shops.admin.list();
 ```
 
 ## Authentication
@@ -41,9 +41,9 @@ Access-Token: <accessToken>
 ## Configuration (Non-Auth)
 
 ```typescript
-import { SdkworkAppClient } from 'sdkwork-shop-app-sdk-generated-typescript';
+import { SdkworkBackendClient } from 'sdkwork-shop-backend-sdk-generated-typescript';
 
-const client = new SdkworkAppClient({
+const client = new SdkworkBackendClient({
   baseUrl: 'http://127.0.0.1:8080',
   timeout: 30000, // Request timeout in ms
   headers: {      // Custom headers
@@ -61,17 +61,17 @@ const client = new SdkworkAppClient({
 ### shops
 
 ```typescript
-// Shops current retrieve.
-const result = await client.shops.current.retrieve();
+// List shops for operator review
+const result = await client.shops.shops.admin.list();
 ```
 
 ## Error Handling
 
 ```typescript
-import { SdkworkAppClient, NetworkError, TimeoutError, AuthenticationError } from 'sdkwork-shop-app-sdk-generated-typescript';
+import { SdkworkBackendClient, NetworkError, TimeoutError, AuthenticationError } from 'sdkwork-shop-backend-sdk-generated-typescript';
 
 try {
-  const result = await client.shops.current.retrieve();
+  const result = await client.shops.shops.admin.list();
 } catch (error) {
   if (error instanceof AuthenticationError) {
     console.error('Authentication failed:', error.message);

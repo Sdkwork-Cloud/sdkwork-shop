@@ -1,9 +1,9 @@
 {
-  "name": "sdkwork-shop-app-sdk-generated-typescript",
+  "name": "sdkwork-shop-backend-sdk-generated-typescript",
   "version": "0.1.0",
   "private": true,
   "sdkworkRole": "transport",
-  "description": "Generator-owned TypeScript transport SDK for sdkwork-shop-app-sdk.",
+  "description": "Generator-owned TypeScript transport SDK for sdkwork-shop-backend-sdk.",
   "author": "SDKWork Team",
   "license": "MIT",
   "type": "module",
@@ -36,7 +36,7 @@
   "keywords": [
     "sdk",
     "api",
-    "app",
+    "backend",
     "sdkwork"
   ]
 }

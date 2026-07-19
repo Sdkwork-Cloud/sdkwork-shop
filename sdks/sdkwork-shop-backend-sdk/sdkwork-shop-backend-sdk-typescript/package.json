@@ -1,7 +1,7 @@
 {
-  "name": "@sdkwork/shop-app-sdk",
+  "name": "@sdkwork/shop-backend-sdk",
   "version": "0.1.0",
-  "description": "SDKWork sdkwork-shop-app-sdk composed consumer facade.",
+  "description": "SDKWork Shop Backend API composed consumer SDK.",
   "type": "module",
   "private": false,
   "main": "./src/index.ts",
@@ -24,7 +24,6 @@
   "files": [
     "src",
     "dist",
-    "composed",
     "generated/server-openapi/dist",
     "generated/server-openapi/src",
     "generated/server-openapi/sdkwork-sdk.json",

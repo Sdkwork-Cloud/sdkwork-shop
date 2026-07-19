@@ -4,6 +4,7 @@ packages:
   - "apps/sdkwork-shop-pc"
   - "apps/sdkwork-shop-pc/packages/*"
   - "sdks/sdkwork-shop-app-sdk/sdkwork-shop-app-sdk-typescript"
+  - "sdks/sdkwork-shop-backend-sdk/sdkwork-shop-backend-sdk-typescript"
   - "../sdkwork-catalog/sdks/sdkwork-catalog-app-sdk/sdkwork-catalog-app-sdk-typescript"
   - "../sdkwork-order/sdks/sdkwork-order-app-sdk/sdkwork-order-app-sdk-typescript"
   - "../sdkwork-core/sdkwork-core-pc-react"

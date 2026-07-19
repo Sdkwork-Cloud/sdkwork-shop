@@ -2,8 +2,27 @@
   "schemaVersion": 1,
   "kind": "sdkwork.iam.module",
   "moduleId": "shop",
-  "domain": "shop",
+  "domain": "commerce",
   "permissions": {
-    "catalog": []
+    "catalog": [
+      {
+        "code": "commerce.shops.read",
+        "name": "Read shops",
+        "resource": "commerce.shops",
+        "action": "read",
+        "status": "active",
+        "since": "1.0.0",
+        "replacementCode": null
+      },
+      {
+        "code": "commerce.shops.manage",
+        "name": "Manage shops",
+        "resource": "commerce.shops",
+        "action": "manage",
+        "status": "active",
+        "since": "1.0.0",
+        "replacementCode": null
+      }
+    ]
   }
 }

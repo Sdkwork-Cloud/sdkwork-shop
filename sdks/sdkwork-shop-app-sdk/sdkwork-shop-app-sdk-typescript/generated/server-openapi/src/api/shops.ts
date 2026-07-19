@@ -551,7 +551,7 @@ export interface ShopsCurrentShippingTemplatesListParams {
   pageSize?: number;
 }
 
-export interface ShopsCurrentShippingTemplatesUpsertParams {
+export interface ShopsCurrentShippingTemplatesUpdateParams {
   idempotencyKey: string;
 }
 
@@ -576,7 +576,7 @@ export class ShopsCurrentShippingTemplatesApi {
   }
 
 /** Shops current shipping Templates upsert. */
-  async upsert(body: UpsertShopShippingTemplateRequest, params: ShopsCurrentShippingTemplatesUpsertParams): Promise<ShopShippingTemplateResponse> {
+  async update(body: UpsertShopShippingTemplateRequest, params: ShopsCurrentShippingTemplatesUpdateParams): Promise<ShopShippingTemplateResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
@@ -595,7 +595,7 @@ export interface ShopsCurrentReturnAddressesListParams {
   pageSize?: number;
 }
 
-export interface ShopsCurrentReturnAddressesUpsertParams {
+export interface ShopsCurrentReturnAddressesUpdateParams {
   idempotencyKey: string;
 }
 
@@ -620,7 +620,7 @@ export class ShopsCurrentReturnAddressesApi {
   }
 
 /** Shops current return Addresses upsert. */
-  async upsert(body: UpsertShopReturnAddressRequest, params: ShopsCurrentReturnAddressesUpsertParams): Promise<ShopReturnAddressResponse> {
+  async update(body: UpsertShopReturnAddressRequest, params: ShopsCurrentReturnAddressesUpdateParams): Promise<ShopReturnAddressResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
@@ -639,7 +639,7 @@ export interface ShopsCurrentCustomerServicesListParams {
   pageSize?: number;
 }
 
-export interface ShopsCurrentCustomerServicesUpsertParams {
+export interface ShopsCurrentCustomerServicesUpdateParams {
   idempotencyKey: string;
 }
 
@@ -664,7 +664,7 @@ export class ShopsCurrentCustomerServicesApi {
   }
 
 /** Shops current customer Services upsert. */
-  async upsert(body: UpsertShopCustomerServiceRequest, params: ShopsCurrentCustomerServicesUpsertParams): Promise<ShopCustomerServiceResponse> {
+  async update(body: UpsertShopCustomerServiceRequest, params: ShopsCurrentCustomerServicesUpdateParams): Promise<ShopCustomerServiceResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
@@ -684,7 +684,7 @@ export interface ShopsCurrentQualificationsListParams {
   pageSize?: number;
 }
 
-export interface ShopsCurrentQualificationsUpsertParams {
+export interface ShopsCurrentQualificationsUpdateParams {
   idempotencyKey: string;
 }
 
@@ -710,7 +710,7 @@ export class ShopsCurrentQualificationsApi {
   }
 
 /** Shops current qualifications upsert. */
-  async upsert(body: UpsertShopQualificationRequest, params: ShopsCurrentQualificationsUpsertParams): Promise<ShopQualificationResponse> {
+  async update(body: UpsertShopQualificationRequest, params: ShopsCurrentQualificationsUpdateParams): Promise<ShopQualificationResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
@@ -728,7 +728,7 @@ export interface ShopsCurrentBrandAuthorizationsListParams {
   pageSize?: number;
 }
 
-export interface ShopsCurrentBrandAuthorizationsUpsertParams {
+export interface ShopsCurrentBrandAuthorizationsUpdateParams {
   idempotencyKey: string;
 }
 
@@ -752,7 +752,7 @@ export class ShopsCurrentBrandAuthorizationsApi {
   }
 
 /** Shops current brand Authorizations upsert. */
-  async upsert(body: UpsertShopBrandAuthorizationRequest, params: ShopsCurrentBrandAuthorizationsUpsertParams): Promise<ShopBrandAuthorizationResponse> {
+  async update(body: UpsertShopBrandAuthorizationRequest, params: ShopsCurrentBrandAuthorizationsUpdateParams): Promise<ShopBrandAuthorizationResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
@@ -772,7 +772,7 @@ export interface ShopsCurrentCategoryBindingsListParams {
   pageSize?: number;
 }
 
-export interface ShopsCurrentCategoryBindingsUpsertParams {
+export interface ShopsCurrentCategoryBindingsUpdateParams {
   idempotencyKey: string;
 }
 
@@ -798,7 +798,7 @@ export class ShopsCurrentCategoryBindingsApi {
   }
 
 /** Shops current category Bindings upsert. */
-  async upsert(body: UpsertShopCategoryBindingRequest, params: ShopsCurrentCategoryBindingsUpsertParams): Promise<ShopCategoryBindingResponse> {
+  async update(body: UpsertShopCategoryBindingRequest, params: ShopsCurrentCategoryBindingsUpdateParams): Promise<ShopCategoryBindingResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },

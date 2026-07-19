@@ -889,7 +889,7 @@
           "shops"
         ],
         "summary": "Shops current category Bindings upsert.",
-        "operationId": "shops.current.categoryBindings.upsert",
+        "operationId": "shops.current.categoryBindings.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -1164,7 +1164,7 @@
           "shops"
         ],
         "summary": "Shops current brand Authorizations upsert.",
-        "operationId": "shops.current.brandAuthorizations.upsert",
+        "operationId": "shops.current.brandAuthorizations.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -1455,7 +1455,7 @@
           "shops"
         ],
         "summary": "Shops current qualifications upsert.",
-        "operationId": "shops.current.qualifications.upsert",
+        "operationId": "shops.current.qualifications.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -1738,7 +1738,7 @@
           "shops"
         ],
         "summary": "Shops current customer Services upsert.",
-        "operationId": "shops.current.customerServices.upsert",
+        "operationId": "shops.current.customerServices.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -2021,7 +2021,7 @@
           "shops"
         ],
         "summary": "Shops current return Addresses upsert.",
-        "operationId": "shops.current.returnAddresses.upsert",
+        "operationId": "shops.current.returnAddresses.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -2304,7 +2304,7 @@
           "shops"
         ],
         "summary": "Shops current shipping Templates upsert.",
-        "operationId": "shops.current.shippingTemplates.upsert",
+        "operationId": "shops.current.shippingTemplates.update",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -2586,7 +2586,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -4194,7 +4194,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -5020,6 +5020,7 @@
         ],
         "summary": "Shops current products list.",
         "operationId": "shops.current.products.list",
+        "x-sdkwork-permission": "commerce.shops.read",
         "parameters": [
           {
             "name": "q",
@@ -5151,9 +5152,10 @@
         ],
         "summary": "Shops current products create.",
         "operationId": "shops.current.products.create",
+        "x-sdkwork-permission": "commerce.shops.manage",
         "parameters": [],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -5256,6 +5258,7 @@
         ],
         "summary": "Shops current products update.",
         "operationId": "shops.current.products.update",
+        "x-sdkwork-permission": "commerce.shops.manage",
         "parameters": [
           {
             "name": "productId",
@@ -5370,6 +5373,7 @@
         ],
         "summary": "Shops current products publish.",
         "operationId": "shops.current.products.publish",
+        "x-sdkwork-permission": "commerce.shops.manage",
         "parameters": [
           {
             "name": "productId",
@@ -5484,6 +5488,7 @@
         ],
         "summary": "Shops current products unpublish.",
         "operationId": "shops.current.products.unpublish",
+        "x-sdkwork-permission": "commerce.shops.manage",
         "parameters": [
           {
             "name": "productId",
@@ -5598,6 +5603,7 @@
         ],
         "summary": "Shops current inventory stocks list.",
         "operationId": "shops.current.inventory.stocks.list",
+        "x-sdkwork-permission": "commerce.shops.read",
         "parameters": [
           {
             "name": "sku_id",
@@ -5739,6 +5745,7 @@
         ],
         "summary": "Shops current inventory stocks adjustments create.",
         "operationId": "shops.current.inventory.stocks.adjustments.create",
+        "x-sdkwork-permission": "commerce.shops.manage",
         "parameters": [
           {
             "name": "stockId",
@@ -5750,7 +5757,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -5853,6 +5860,7 @@
         ],
         "summary": "Shops current orders list.",
         "operationId": "shops.current.orders.list",
+        "x-sdkwork-permission": "commerce.shops.read",
         "parameters": [
           {
             "name": "status",
@@ -5978,6 +5986,7 @@
         ],
         "summary": "Shops current orders retrieve.",
         "operationId": "shops.current.orders.retrieve",
+        "x-sdkwork-permission": "commerce.shops.read",
         "parameters": [
           {
             "name": "orderId",
@@ -6082,6 +6091,7 @@
         ],
         "summary": "Shops current orders fulfillments create.",
         "operationId": "shops.current.orders.fulfillments.create",
+        "x-sdkwork-permission": "commerce.shops.manage",
         "parameters": [
           {
             "name": "orderId",
@@ -6093,7 +6103,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -6196,6 +6206,7 @@
         ],
         "summary": "Shops current settlements list.",
         "operationId": "shops.current.settlements.list",
+        "x-sdkwork-permission": "commerce.shops.read",
         "parameters": [
           {
             "name": "status",
