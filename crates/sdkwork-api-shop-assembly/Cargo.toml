@@ -1,0 +1,16 @@
+[package]
+name = "sdkwork-api-shop-assembly"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+description = "Generated API assembly for sdkwork-shop application HTTP plane."
+
+[lib]
+name = "sdkwork_api_shop_assembly"
+path = "src/lib.rs"
+
+[dependencies]
+axum.workspace = true
+tokio.workspace = true
+sdkwork-routes-shop-app-api = { path = "../sdkwork-routes-shop-app-api" }
+sdkwork-routes-shop-backend-api = { path = "../sdkwork-routes-shop-backend-api" }
