@@ -2,14 +2,14 @@
 resolver = "2"
 members = [
     "crates/sdkwork-api-shop-assembly",
-    "crates/sdkwork-shop-gateway-assembly",
+    "crates/sdkwork-api-shop-assembly",
   "crates/sdkwork-shop-service",
   "crates/sdkwork-shop-repository-sqlx",
   "crates/sdkwork-routes-shop-app-api",
   "crates/sdkwork-routes-shop-backend-api",
   "crates/sdkwork-shop-database-host",
   "crates/sdkwork-shop-service-host",
-  "crates/sdkwork-shop-standalone-gateway",
+  "crates/sdkwork-api-shop-standalone-gateway",
 ]
 
 [workspace.package]

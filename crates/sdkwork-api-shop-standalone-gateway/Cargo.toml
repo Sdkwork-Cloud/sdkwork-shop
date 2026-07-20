@@ -1,5 +1,5 @@
 [package]
-name = "sdkwork-shop-standalone-gateway"
+name = "sdkwork-api-shop-standalone-gateway"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -7,11 +7,11 @@ publish.workspace = true
 
 
 [[bin]]
-name = "sdkwork-shop-standalone-gateway"
+name = "sdkwork-api-shop-standalone-gateway"
 path = "src/main.rs"
 
 [dependencies]
-sdkwork_shop_gateway_assembly = { package = "sdkwork-shop-gateway-assembly", path = "../sdkwork-shop-gateway-assembly" }
+sdkwork_api_shop_assembly = { package = "sdkwork-api-shop-assembly", path = "../sdkwork-api-shop-assembly" }
 axum = { workspace = true }
 serde_json = { workspace = true }
 sdkwork_shop_service_host.workspace = true

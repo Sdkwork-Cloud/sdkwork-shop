@@ -51,7 +51,7 @@ Migration status: **complete**.
 ## 5. User Scenarios
 
 - A merchant operator creates a shop, submits deposit account details, and an admin approves the account.
-- The T1 `sdkwork-shop-standalone-gateway` applies IAM identity middleware to shop app routes while route handlers execute in this repository.
+- The T1 `sdkwork-api-shop-standalone-gateway` applies IAM identity middleware to shop app routes while route handlers execute in this repository.
 - An integrator consumes generated per-T1 SDK shop operations against the standalone API server.
 
 ## 6. Success Metrics

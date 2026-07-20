@@ -13,7 +13,7 @@ Specs: ARCHITECTURE_DECISION_SPEC.md, RUST_CODE_SPEC.md, API_SPEC.md, WEB_FRAMEW
 sdkwork-shop-service          → domain commands/queries
 sdkwork-shop-repository-sqlx  → tenant-scoped SQL persistence
 sdkwork-routes-shop-*-api     → build_*_router() (no IAM)
-sdkwork-shop-standalone-gateway → IAM middleware + gateway assembly
+sdkwork-api-shop-standalone-gateway → IAM middleware + gateway assembly
 ```
 
 ## 2. Technology Choices
@@ -33,7 +33,7 @@ sdkwork-shop-standalone-gateway → IAM middleware + gateway assembly
 | HTTP route builders | `sdkwork-routes-shop-app-api`, `sdkwork-routes-shop-backend-api` | `build_*_router` exports; `SdkWorkApiResponse` via `http_envelope` |
 | Database host | `sdkwork-shop-database-host` | Lifecycle bootstrap from env |
 | Service host | `sdkwork-shop-service-host` | Wires database + shop service |
-| IAM / gateway composition | `sdkwork-shop-standalone-gateway`, `sdkwork-shop-gateway-assembly` | IAM middleware at standalone gateway |
+| IAM / gateway composition | `sdkwork-api-shop-standalone-gateway`, `sdkwork-api-shop-assembly` | IAM middleware at standalone gateway |
 | OpenAPI / SDK authority | `apis/`, `sdks/` | Per-capability SDK families; no raw HTTP in apps |
 | PC application root | `apps/sdkwork-shop-pc/` | Merchant console via generated app SDK |
 
@@ -47,8 +47,8 @@ Standard capability workspace crates:
 - `crates/sdkwork-routes-shop-backend-api/`
 - `crates/sdkwork-shop-database-host/`
 - `crates/sdkwork-shop-service-host/`
-- `crates/sdkwork-shop-standalone-gateway/`
-- `crates/sdkwork-shop-gateway-assembly/`
+- `crates/sdkwork-api-shop-standalone-gateway/`
+- `crates/sdkwork-api-shop-assembly/`
 
 Supporting assets: `database/`, `apis/`, `sdks/`, `specs/`, `deployments/`, `apps/sdkwork-shop-pc/`.
 
@@ -77,7 +77,7 @@ Supporting assets: `database/`, `apis/`, `sdks/`, `specs/`, `deployments/`, `app
 ## 8. Deployment And Runtime Topology
 
 - Local development: `pnpm verify`, `cargo test --workspace`
-- Standalone HTTP entry: `sdkwork-shop-standalone-gateway` (`pnpm start`)
+- Standalone HTTP entry: `sdkwork-api-shop-standalone-gateway` (`pnpm start`)
 - Deployment manifest: `deployments/` per `SDKWORK_DEPLOY_SPEC.md`
 - Topology spec: `specs/topology.spec.json`
 

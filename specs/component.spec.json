@@ -44,7 +44,7 @@
     "runtimeEntrypoints": [
       "package.json#scripts.verify"
     ],
-    "routeManifest": "sdks/_route-manifests/app-api/sdkwork-shop-standalone-gateway.route-manifest.json",
+    "routeManifest": "sdks/_route-manifests/app-api/sdkwork-api-shop-standalone-gateway.route-manifest.json",
     "sdkClients": [],
     "events": [],
     "configKeys": []

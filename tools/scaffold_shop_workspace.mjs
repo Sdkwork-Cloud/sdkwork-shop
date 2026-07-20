@@ -121,7 +121,7 @@ SDKWork commerce **shop** capability application: merchant shop configuration, o
 - Standards: \`../sdkwork-specs/README.md\`
 - Domain: \`commerce\` / capability: \`shop\`
 - PC app: \`apps/sdkwork-shop-pc/\`
-- HTTP API: \`crates/sdkwork-shop-standalone-gateway/\`
+- HTTP API: \`crates/sdkwork-api-shop-standalone-gateway/\`
 - Database: \`database/\` via \`sdkwork-database\`
 
 ## Quick start
@@ -161,7 +161,7 @@ await writeAlways(
       contracts: {
         publicExports: ["."],
         runtimeEntrypoints: ["package.json#scripts.verify"],
-        routeManifest: "sdks/_route-manifests/app-api/sdkwork-shop-standalone-gateway.route-manifest.json",
+        routeManifest: "sdks/_route-manifests/app-api/sdkwork-api-shop-standalone-gateway.route-manifest.json",
         sdkClients: [],
         events: [],
         configKeys: [],

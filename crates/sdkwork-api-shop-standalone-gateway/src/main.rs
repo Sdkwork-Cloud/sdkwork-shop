@@ -1,4 +1,4 @@
-use sdkwork_shop_gateway_assembly::assemble_application_router;
+use sdkwork_api_shop_assembly::assemble_api_router;
 use sdkwork_shop_service_host::ShopServiceHost;
 use sdkwork_web_bootstrap::{service_router, ServiceRouterConfig};
 use std::sync::Arc;
@@ -9,7 +9,7 @@ async fn main() {
     tracing::info!("Starting SDKWork Shop API Server...");
 
     let host = Arc::new(ShopServiceHost::new().await);
-    let business = assemble_application_router(host)
+    let business = assemble_api_router(host)
         .await
         .router
         .layer(sdkwork_web_bootstrap::application_cors_layer_from_env(

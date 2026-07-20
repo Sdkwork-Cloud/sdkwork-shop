@@ -7,7 +7,7 @@ SDKWork commerce **shop** capability building-block repository (domain `commerce
 - Domain service: `crates/sdkwork-shop-service/`
 - Repository SQL: `crates/sdkwork-shop-repository-sqlx/`
 - PC app: `apps/sdkwork-shop-pc/`
-- HTTP API server: `crates/sdkwork-shop-standalone-gateway/`
+- HTTP API server: `crates/sdkwork-api-shop-standalone-gateway/`
 
 ## Quick start
 
