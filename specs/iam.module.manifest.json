@@ -22,6 +22,24 @@
         "status": "active",
         "since": "1.0.0",
         "replacementCode": null
+      },
+      {
+        "code": "commerce.catalog.read",
+        "name": "Read merchandise catalog",
+        "resource": "commerce.catalog",
+        "action": "read",
+        "status": "active",
+        "since": "1.0.0",
+        "replacementCode": null
+      },
+      {
+        "code": "commerce.catalog.manage",
+        "name": "Manage merchandise catalog",
+        "resource": "commerce.catalog",
+        "action": "manage",
+        "status": "active",
+        "since": "1.0.0",
+        "replacementCode": null
       }
     ]
   }

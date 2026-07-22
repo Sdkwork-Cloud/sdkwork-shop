@@ -3,15 +3,19 @@ import type { SdkworkBackendConfig } from './types/common';
 import type { AuthTokenManager } from '@sdkwork/sdk-common';
 
 import { ShopsApi, createShopsApi } from './api/shops';
+import { CatalogApi, createCatalogApi } from './api/catalog';
 
 export class SdkworkBackendClient {
   private httpClient: HttpClient;
 
   public readonly shops: ShopsApi;
+  public readonly catalog: CatalogApi;
 
   constructor(config: SdkworkBackendConfig) {
     this.httpClient = createHttpClient(config);
     this.shops = createShopsApi(this.httpClient);
+
+    this.catalog = createCatalogApi(this.httpClient);
   }
   setAuthToken(token: string): this {
     this.httpClient.setAuthToken(token);

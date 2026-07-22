@@ -2,8 +2,8 @@ import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { getShopPcHost } from '@sdkwork/shop-pc-core';
 
-import zhCN from './locales/zh-CN/orders.json';
-import enUS from './locales/en-US/orders.json';
+import zhCN from './zh-CN/commerce/orders/orders.json';
+import enUS from './en-US/commerce/orders/orders.json';
 
 const SUPPORTED_LANGUAGES = ['zh-CN', 'en-US'] as const;
 type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];

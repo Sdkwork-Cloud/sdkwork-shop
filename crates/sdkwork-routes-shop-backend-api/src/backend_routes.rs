@@ -8,8 +8,8 @@ use serde::Serialize;
 use sqlx::{postgres::PgRow, sqlite::SqliteRow, PgPool, Row, SqlitePool};
 
 use crate::http_envelope::{
-    not_found_response, shop_system_response, success_list, success_paged_list, success_resource,
-    unauthorized_response,
+    not_found_response, shop_system_response, success_created_resource, success_list,
+    success_paged_list, success_resource, unauthorized_response,
 };
 use crate::subject::app_runtime_subject_from_extension;
 use crate::web_bootstrap::with_backend_request_identity;
@@ -227,7 +227,7 @@ async fn create_shop(
     )
     .await
     {
-        Ok(item) => success_resource(item),
+        Ok(item) => success_created_resource(item),
         Err(error) => shop_system_response("shop create is unavailable", error),
     }
 }
@@ -284,7 +284,30 @@ macro_rules! upsert_table_handler {
             Path(shop_id): Path<String>,
             Json(payload): Json<serde_json::Value>,
         ) -> Response {
-            upsert_shop_table_response(state, runtime_context, shop_id, None, $table, payload).await
+            upsert_shop_table_response(
+                state,
+                runtime_context,
+                shop_id,
+                None,
+                false,
+                $table,
+                payload,
+            )
+            .await
+        }
+    };
+}
+
+macro_rules! create_table_handler {
+    ($name:ident, $table:literal) => {
+        async fn $name(
+            State(state): State<BackendShopAdminState>,
+            runtime_context: Option<Extension<IamAppContext>>,
+            Path(shop_id): Path<String>,
+            Json(payload): Json<serde_json::Value>,
+        ) -> Response {
+            upsert_shop_table_response(state, runtime_context, shop_id, None, true, $table, payload)
+                .await
         }
     };
 }
@@ -302,6 +325,7 @@ macro_rules! upsert_table_handler_with_id {
                 runtime_context,
                 shop_id,
                 Some(row_id.to_string()),
+                false,
                 $table,
                 payload,
             )
@@ -333,7 +357,7 @@ list_table_handler!(list_verifications, "commerce_shop_verification");
 upsert_table_handler_with_id!(update_verification, "commerce_shop_verification", String);
 list_table_handler!(list_status_events, "commerce_shop_status_event");
 list_table_handler!(list_channels, "commerce_shop_channel");
-upsert_table_handler!(create_channel, "commerce_shop_channel");
+create_table_handler!(create_channel, "commerce_shop_channel");
 upsert_table_handler_with_id!(update_channel, "commerce_shop_channel", String);
 list_table_handler!(
     retrieve_fulfillment_profile,
@@ -354,15 +378,15 @@ upsert_table_handler!(
 list_table_handler!(retrieve_business_hours, "commerce_shop_business_hour");
 upsert_table_handler!(update_business_hours, "commerce_shop_business_hour");
 list_table_handler!(list_service_areas, "commerce_shop_service_area");
-upsert_table_handler!(create_service_area, "commerce_shop_service_area");
+create_table_handler!(create_service_area, "commerce_shop_service_area");
 upsert_table_handler_with_id!(update_service_area, "commerce_shop_service_area", String);
 list_table_handler!(list_policies, "commerce_shop_policy");
-upsert_table_handler!(create_policy, "commerce_shop_policy");
+create_table_handler!(create_policy, "commerce_shop_policy");
 upsert_table_handler_with_id!(update_policy, "commerce_shop_policy", String);
 list_table_handler!(retrieve_deposit_account, "commerce_shop_deposit_account");
 upsert_table_handler!(update_deposit_account, "commerce_shop_deposit_account");
 list_table_handler!(list_risk_signals, "commerce_shop_risk_signal");
-upsert_table_handler!(create_risk_signal, "commerce_shop_risk_signal");
+create_table_handler!(create_risk_signal, "commerce_shop_risk_signal");
 
 async fn resolve_risk_signal(
     State(state): State<BackendShopAdminState>,
@@ -396,6 +420,7 @@ async fn approve_settlement_profile(
         runtime_context,
         shop_id,
         None,
+        false,
         "commerce_shop_settlement_profile",
         serde_json::json!({ "settlementStatus": "approved" }),
     )
@@ -412,6 +437,7 @@ async fn reject_settlement_profile(
         runtime_context,
         shop_id,
         None,
+        false,
         "commerce_shop_settlement_profile",
         serde_json::json!({ "settlementStatus": "rejected" }),
     )
@@ -429,6 +455,7 @@ async fn review_deposit_account(
         runtime_context,
         shop_id,
         None,
+        false,
         "commerce_shop_deposit_account",
         payload,
     )
@@ -552,6 +579,7 @@ async fn upsert_shop_table_response(
     runtime_context: Option<Extension<IamAppContext>>,
     shop_id: String,
     explicit_id: Option<String>,
+    created: bool,
     table: &'static str,
     payload: serde_json::Value,
 ) -> Response {
@@ -570,6 +598,7 @@ async fn upsert_shop_table_response(
     )
     .await
     {
+        Ok(item) if created => success_created_resource(item),
         Ok(item) => success_resource(item),
         Err(error) => shop_system_response("shop resource upsert is unavailable", error),
     }

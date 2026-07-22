@@ -1,0 +1,1096 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.route.manifest",
+  "packageName": "sdkwork-routes-shop-backend-api",
+  "surface": "backend-api",
+  "owner": "sdkwork-shop",
+  "domain": "commerce",
+  "capability": "shop",
+  "apiAuthority": "sdkwork-shop-backend-api",
+  "sdkFamily": "sdkwork-shop-backend-sdk",
+  "prefix": "/backend/v3/api",
+  "source": {
+    "crateRoot": "crates/sdkwork-routes-shop-backend-api",
+    "crateImport": "sdkwork_routes_shop_backend_api"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops",
+      "operationId": "shops.management.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops",
+      "operationId": "shops.create",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}",
+      "operationId": "shops.management.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/shops/{shopId}",
+      "operationId": "shops.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/category_bindings",
+      "operationId": "shops.categoryBindings.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/category_bindings"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/backend/v3/api/shops/{shopId}/category_bindings",
+      "operationId": "shops.categoryBindings.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/category_bindings"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/brand_authorizations",
+      "operationId": "shops.brandAuthorizations.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/brand_authorizations"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/backend/v3/api/shops/{shopId}/brand_authorizations",
+      "operationId": "shops.brandAuthorizations.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/brand_authorizations"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/qualifications",
+      "operationId": "shops.qualifications.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/qualifications"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/backend/v3/api/shops/{shopId}/qualifications",
+      "operationId": "shops.qualifications.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/qualifications"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/customer_services",
+      "operationId": "shops.customerServices.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/customer_services"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/backend/v3/api/shops/{shopId}/customer_services",
+      "operationId": "shops.customerServices.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/customer_services"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/return_addresses",
+      "operationId": "shops.returnAddresses.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/return_addresses"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/backend/v3/api/shops/{shopId}/return_addresses",
+      "operationId": "shops.returnAddresses.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/return_addresses"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/shipping_templates",
+      "operationId": "shops.shippingTemplates.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/shipping_templates"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/backend/v3/api/shops/{shopId}/shipping_templates",
+      "operationId": "shops.shippingTemplates.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/shipping_templates"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/verifications",
+      "operationId": "shops.verifications.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.review"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/verifications"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/shops/{shopId}/verifications/{verificationId}",
+      "operationId": "shops.verifications.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.review"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/verifications/{verificationId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/status_events",
+      "operationId": "shops.statusEvents.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.audit.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/status_events"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/channels",
+      "operationId": "shops.channels.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/channels"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/channels",
+      "operationId": "shops.channels.create",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/channels"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/shops/{shopId}/channels/{channelId}",
+      "operationId": "shops.channels.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/channels/{channelId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/fulfillment_profile",
+      "operationId": "shops.fulfillmentProfile.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/fulfillment_profile"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/shops/{shopId}/fulfillment_profile",
+      "operationId": "shops.fulfillmentProfile.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/fulfillment_profile"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/settlement_profile",
+      "operationId": "shops.settlementProfile.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.settlement.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/settlement_profile"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/shops/{shopId}/settlement_profile",
+      "operationId": "shops.settlementProfile.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.settlement.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/settlement_profile"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/settlement_profile/approve",
+      "operationId": "shops.settlementProfile.approve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.settlement.review"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/settlement_profile/approve"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/settlement_profile/reject",
+      "operationId": "shops.settlementProfile.reject",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.settlement.review"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/settlement_profile/reject"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/business_hours",
+      "operationId": "shops.businessHours.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/business_hours"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/shops/{shopId}/business_hours",
+      "operationId": "shops.businessHours.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/business_hours"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/service_areas",
+      "operationId": "shops.serviceAreas.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/service_areas"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/service_areas",
+      "operationId": "shops.serviceAreas.create",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/service_areas"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/shops/{shopId}/service_areas/{serviceAreaId}",
+      "operationId": "shops.serviceAreas.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/service_areas/{serviceAreaId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/policies",
+      "operationId": "shops.policies.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/policies"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/policies",
+      "operationId": "shops.policies.create",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/policies"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/shops/{shopId}/policies/{policyId}",
+      "operationId": "shops.policies.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/policies/{policyId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/deposit_account",
+      "operationId": "shops.depositAccount.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.deposit.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/deposit_account"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/shops/{shopId}/deposit_account",
+      "operationId": "shops.depositAccount.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.deposit.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/deposit_account"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/deposit_account/review",
+      "operationId": "shops.depositAccount.review",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.deposit.review"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/deposit_account/review"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/risk_signals",
+      "operationId": "shops.riskSignals.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.risk.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/risk_signals"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/risk_signals",
+      "operationId": "shops.riskSignals.create",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.risk.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/risk_signals"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/risk_signals/{riskSignalId}/resolve",
+      "operationId": "shops.riskSignals.resolve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.risk.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/risk_signals/{riskSignalId}/resolve"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/shops/{shopId}/readiness",
+      "operationId": "shops.readiness.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/readiness"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/submit_review",
+      "operationId": "shops.submitReview",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.review"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/submit_review"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/approve",
+      "operationId": "shops.approve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.review"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/approve"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/reject",
+      "operationId": "shops.reject",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.review"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/reject"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/suspend",
+      "operationId": "shops.suspend",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.status.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/suspend"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/resume",
+      "operationId": "shops.resume",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.status.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/resume"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/shops/{shopId}/close",
+      "operationId": "shops.close",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.status.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-backend-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-backend-api:/backend/v3/api/shops/{shopId}/close"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "backend-api"
+    }
+  ]
+}

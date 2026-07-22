@@ -75,62 +75,6 @@ export class ShopsCurrentOrdersApi {
   }
 }
 
-export class ShopsCurrentInventoryStocksAdjustmentsApi {
-  private client: HttpClient;
-
-  constructor(client: HttpClient) {
-    this.client = client;
-  }
-
-
-/** Shops current inventory stocks adjustments create. */
-  async create(stockId: string, body: CommerceOperationCommand): Promise<Record<string, unknown>> {
-    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/inventory/stocks/${serializePathParameter(stockId, { name: 'stockId', style: 'simple', explode: false })}/adjustments`), body, undefined, undefined, 'application/json');
-  }
-}
-
-export interface ShopsCurrentInventoryStocksListParams {
-  skuId?: string;
-  warehouseId?: string;
-  status?: string;
-  page?: number;
-  pageSize?: number;
-}
-
-export class ShopsCurrentInventoryStocksApi {
-  private client: HttpClient;
-  public readonly adjustments: ShopsCurrentInventoryStocksAdjustmentsApi;
-
-  constructor(client: HttpClient) {
-    this.client = client;
-    this.adjustments = new ShopsCurrentInventoryStocksAdjustmentsApi(client);
-  }
-
-
-/** Shops current inventory stocks list. */
-  async list(params?: ShopsCurrentInventoryStocksListParams): Promise<SdkWorkPageData> {
-    const query = buildQueryString([
-      { name: 'sku_id', value: params?.skuId, style: 'form', explode: true, allowReserved: false },
-      { name: 'warehouse_id', value: params?.warehouseId, style: 'form', explode: true, allowReserved: false },
-      { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
-      { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
-      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
-    ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/inventory/stocks`), query));
-  }
-}
-
-export class ShopsCurrentInventoryApi {
-  private client: HttpClient;
-  public readonly stocks: ShopsCurrentInventoryStocksApi;
-
-  constructor(client: HttpClient) {
-    this.client = client;
-    this.stocks = new ShopsCurrentInventoryStocksApi(client);
-  }
-
-}
-
 export interface ShopsCurrentProductsListParams {
   q?: string;
   status?: string;
@@ -859,7 +803,6 @@ export class ShopsCurrentApi {
   public readonly depositAccount: ShopsCurrentDepositAccountApi;
   public readonly riskSignals: ShopsCurrentRiskSignalsApi;
   public readonly products: ShopsCurrentProductsApi;
-  public readonly inventory: ShopsCurrentInventoryApi;
   public readonly orders: ShopsCurrentOrdersApi;
   public readonly settlements: ShopsCurrentSettlementsApi;
 
@@ -885,7 +828,6 @@ export class ShopsCurrentApi {
     this.depositAccount = new ShopsCurrentDepositAccountApi(client);
     this.riskSignals = new ShopsCurrentRiskSignalsApi(client);
     this.products = new ShopsCurrentProductsApi(client);
-    this.inventory = new ShopsCurrentInventoryApi(client);
     this.orders = new ShopsCurrentOrdersApi(client);
     this.settlements = new ShopsCurrentSettlementsApi(client);
   }

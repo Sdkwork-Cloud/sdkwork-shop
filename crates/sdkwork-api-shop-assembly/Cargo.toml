@@ -13,5 +13,6 @@ path = "src/lib.rs"
 axum.workspace = true
 tokio.workspace = true
 sdkwork_shop_service_host.workspace = true
-sdkwork-routes-shop-app-api = { path = "../sdkwork-routes-shop-app-api" }
-sdkwork-routes-shop-backend-api = { path = "../sdkwork-routes-shop-backend-api" }
+sdkwork_api_merchandise_assembly.workspace = true
+sdkwork-routes-shop-app-api.workspace = true
+sdkwork-routes-shop-backend-api.workspace = true

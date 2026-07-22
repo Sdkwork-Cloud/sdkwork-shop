@@ -1,16 +1,14 @@
-use sdkwork_api_shop_assembly::assemble_api_router;
-use sdkwork_shop_service_host::ShopServiceHost;
+use sdkwork_api_shop_assembly::assemble_api_router_from_env;
 use sdkwork_web_bootstrap::{service_router, ServiceRouterConfig};
-use std::sync::Arc;
 
 #[tokio::main]
 async fn main() {
     tracing_subscriber::fmt::init();
     tracing::info!("Starting SDKWork Shop API Server...");
 
-    let host = Arc::new(ShopServiceHost::new().await);
-    let business = assemble_api_router(host)
+    let business = assemble_api_router_from_env()
         .await
+        .expect("assemble shop API authority")
         .router
         .layer(sdkwork_web_bootstrap::application_cors_layer_from_env(
             &["SDKWORK_SHOP_ENVIRONMENT"],

@@ -1,0 +1,1008 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.route.manifest",
+  "packageName": "sdkwork-routes-shop-app-api",
+  "surface": "app-api",
+  "owner": "sdkwork-shop",
+  "domain": "commerce",
+  "capability": "shop",
+  "apiAuthority": "sdkwork-shop-app-api",
+  "sdkFamily": "sdkwork-shop-app-sdk",
+  "prefix": "/app/v3/api",
+  "source": {
+    "crateRoot": "crates/sdkwork-routes-shop-app-api",
+    "crateImport": "sdkwork_routes_shop_app_api"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops",
+      "operationId": "shops.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/{shopId}",
+      "operationId": "shops.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/{shopId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current",
+      "operationId": "shops.current.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/dashboard",
+      "operationId": "shops.current.dashboard.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/dashboard"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/readiness",
+      "operationId": "shops.current.readiness.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/readiness"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/category_bindings",
+      "operationId": "shops.current.categoryBindings.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/category_bindings"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/app/v3/api/shops/current/category_bindings",
+      "operationId": "shops.current.categoryBindings.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/category_bindings"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/brand_authorizations",
+      "operationId": "shops.current.brandAuthorizations.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/brand_authorizations"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/app/v3/api/shops/current/brand_authorizations",
+      "operationId": "shops.current.brandAuthorizations.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/brand_authorizations"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/qualifications",
+      "operationId": "shops.current.qualifications.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/qualifications"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/app/v3/api/shops/current/qualifications",
+      "operationId": "shops.current.qualifications.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/qualifications"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/customer_services",
+      "operationId": "shops.current.customerServices.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/customer_services"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/app/v3/api/shops/current/customer_services",
+      "operationId": "shops.current.customerServices.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/customer_services"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/return_addresses",
+      "operationId": "shops.current.returnAddresses.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/return_addresses"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/app/v3/api/shops/current/return_addresses",
+      "operationId": "shops.current.returnAddresses.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/return_addresses"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/shipping_templates",
+      "operationId": "shops.current.shippingTemplates.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/shipping_templates"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PUT",
+      "path": "/app/v3/api/shops/current/shipping_templates",
+      "operationId": "shops.current.shippingTemplates.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/shipping_templates"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/applications",
+      "operationId": "shops.current.applications.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/applications"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "POST",
+      "path": "/app/v3/api/shops/current/applications",
+      "operationId": "shops.current.applications.create",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/applications"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/verifications",
+      "operationId": "shops.current.verifications.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/verifications"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/status_events",
+      "operationId": "shops.current.statusEvents.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/status_events"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/channels",
+      "operationId": "shops.current.channels.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/channels"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/app/v3/api/shops/current/channels/{channelId}",
+      "operationId": "shops.current.channels.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/channels/{channelId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/fulfillment_profile",
+      "operationId": "shops.current.fulfillmentProfile.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/fulfillment_profile"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/app/v3/api/shops/current/fulfillment_profile",
+      "operationId": "shops.current.fulfillmentProfile.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/fulfillment_profile"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/settlement_profile",
+      "operationId": "shops.current.settlementProfile.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/settlement_profile"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/app/v3/api/shops/current/settlement_profile",
+      "operationId": "shops.current.settlementProfile.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/settlement_profile"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/business_hours",
+      "operationId": "shops.current.businessHours.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/business_hours"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/app/v3/api/shops/current/business_hours",
+      "operationId": "shops.current.businessHours.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/business_hours"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/service_areas",
+      "operationId": "shops.current.serviceAreas.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/service_areas"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "POST",
+      "path": "/app/v3/api/shops/current/service_areas",
+      "operationId": "shops.current.serviceAreas.create",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/service_areas"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/app/v3/api/shops/current/service_areas/{serviceAreaId}",
+      "operationId": "shops.current.serviceAreas.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/service_areas/{serviceAreaId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/policies",
+      "operationId": "shops.current.policies.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/policies"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/app/v3/api/shops/current/policies/{policyId}",
+      "operationId": "shops.current.policies.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.write"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/policies/{policyId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/deposit_account",
+      "operationId": "shops.current.depositAccount.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/deposit_account"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/risk_signals",
+      "operationId": "shops.current.riskSignals.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.self.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/risk_signals"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/products",
+      "operationId": "shops.current.products.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "POST",
+      "path": "/app/v3/api/shops/current/products",
+      "operationId": "shops.current.products.create",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.manage"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "PATCH",
+      "path": "/app/v3/api/shops/current/products/{productId}",
+      "operationId": "shops.current.products.update",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.manage"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products/{productId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "POST",
+      "path": "/app/v3/api/shops/current/products/{productId}/publish",
+      "operationId": "shops.current.products.publish",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.manage"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products/{productId}/publish"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "POST",
+      "path": "/app/v3/api/shops/current/products/{productId}/unpublish",
+      "operationId": "shops.current.products.unpublish",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.manage"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products/{productId}/unpublish"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/orders",
+      "operationId": "shops.current.orders.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/orders"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/orders/{orderId}",
+      "operationId": "shops.current.orders.retrieve",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/orders/{orderId}"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "POST",
+      "path": "/app/v3/api/shops/current/orders/{orderId}/fulfillments",
+      "operationId": "shops.current.orders.fulfillments.create",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.manage"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/orders/{orderId}/fulfillments"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    },
+    {
+      "method": "GET",
+      "path": "/app/v3/api/shops/current/settlements",
+      "operationId": "shops.current.settlements.list",
+      "tags": [
+        "shops"
+      ],
+      "auth": {
+        "mode": "dual-token",
+        "required": true,
+        "permission": "commerce.shops.read"
+      },
+      "ownership": {
+        "owner": "sdkwork-shop",
+        "apiAuthority": "sdkwork-shop-app-api"
+      },
+      "source": {
+        "file": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/settlements"
+      },
+      "requestContext": "WebRequestContext",
+      "apiSurface": "app-api"
+    }
+  ]
+}

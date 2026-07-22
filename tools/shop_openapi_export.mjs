@@ -1,44 +1,38 @@
 #!/usr/bin/env node
-import { copyFileSync, mkdirSync, readFileSync } from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const checkMode = process.argv.includes("--check");
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const pairs = [
+import { loadAuthority, stableJson } from './shop_openapi_authority.mjs';
+
+const checkMode = process.argv.includes('--check');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const targets = [
   {
-    source: "apis/app-api/shop/shop-app-api.openapi.json",
-    target: "sdks/sdkwork-shop-app-sdk/openapi/sdkwork-shop-app-api.openapi.json",
+    sources: ['apis/app-api/shop/shop-app-api.openapi.json'],
+    target: 'sdks/sdkwork-shop-app-sdk/openapi/sdkwork-shop-app-api.openapi.json',
+  },
+  {
+    sources: [
+      'apis/backend-api/shop/shop-backend-api.openapi.json',
+      '../sdkwork-merchandise/apis/backend-api/merchandise/shop-backend-api.merchandise.openapi.json',
+    ],
+    target: 'sdks/sdkwork-shop-backend-sdk/openapi/sdkwork-shop-backend-api.openapi.json',
   },
 ];
 
-function normalizeJson(filePath) {
-  return `${JSON.stringify(JSON.parse(readFileSync(filePath, "utf8")), null, 2)}\n`;
-}
-
-let ok = true;
-for (const { source, target } of pairs) {
-  const sourcePath = path.join(root, source);
-  const targetPath = path.join(root, target);
-  if (checkMode) {
-    try {
-      if (normalizeJson(sourcePath) !== normalizeJson(targetPath)) {
-        console.error(`[shop_openapi_export] drift: ${source} != ${target}`);
-        ok = false;
-      }
-    } catch (error) {
-      console.error(`[shop_openapi_export] check failed for ${source}: ${error.message}`);
-      ok = false;
-    }
-    continue;
+for (const target of targets) {
+  const content = stableJson(loadAuthority(root, target.sources));
+  const targetPath = path.join(root, target.target);
+  const current = existsSync(targetPath) ? readFileSync(targetPath, 'utf8') : '';
+  if (checkMode && current !== content) throw new Error(`${target.target} is not synchronized`);
+  if (!checkMode && current !== content) {
+    mkdirSync(path.dirname(targetPath), { recursive: true });
+    writeFileSync(targetPath, content, 'utf8');
   }
-  mkdirSync(path.dirname(targetPath), { recursive: true });
-  copyFileSync(sourcePath, targetPath);
-  console.log(`[shop_openapi_export] copied ${source} -> ${target}`);
 }
 
-if (checkMode) {
-  if (!ok) process.exit(1);
-  console.log(`[shop_openapi_export] check ok (${pairs.length} authorities)`);
-}
+process.stdout.write(
+  `[shop_openapi_export] ${checkMode ? 'check passed' : 'materialized'} (${targets.length} authorities)\n`,
+);

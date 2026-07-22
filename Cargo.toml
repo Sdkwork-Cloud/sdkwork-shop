@@ -1,8 +1,7 @@
 ﻿[workspace]
 resolver = "2"
 members = [
-    "crates/sdkwork-api-shop-assembly",
-    "crates/sdkwork-api-shop-assembly",
+  "crates/sdkwork-api-shop-assembly",
   "crates/sdkwork-shop-service",
   "crates/sdkwork-shop-repository-sqlx",
   "crates/sdkwork-routes-shop-app-api",
@@ -47,11 +46,13 @@ sdkwork-database-sqlx = { path = "../sdkwork-database/crates/sdkwork-database-sq
 sdkwork-database-ops-http = { path = "../sdkwork-database/crates/sdkwork-database-ops-http" }
 sdkwork_shop_service = { path = "crates/sdkwork-shop-service", package = "sdkwork-shop-service" }
 sdkwork_shop_repository_sqlx = { path = "crates/sdkwork-shop-repository-sqlx", package = "sdkwork-shop-repository-sqlx" }
-sdkwork_routes_shop_app_api = { path = "crates/sdkwork-routes-shop-app-api", package = "sdkwork-routes-shop-app-api" }
-sdkwork_routes_shop_backend_api = { path = "crates/sdkwork-routes-shop-backend-api", package = "sdkwork-routes-shop-backend-api" }
+sdkwork-routes-shop-app-api = { path = "crates/sdkwork-routes-shop-app-api" }
+sdkwork-routes-shop-backend-api = { path = "crates/sdkwork-routes-shop-backend-api" }
+sdkwork-api-shop-assembly = { path = "crates/sdkwork-api-shop-assembly" }
 sdkwork_shop_database_host = { path = "crates/sdkwork-shop-database-host", package = "sdkwork-shop-database-host" }
 sdkwork_shop_service_host = { path = "crates/sdkwork-shop-service-host", package = "sdkwork-shop-service-host" }
+sdkwork_api_merchandise_assembly = { path = "../sdkwork-merchandise/crates/sdkwork-api-merchandise-assembly", package = "sdkwork-api-merchandise-assembly" }
 sdkwork_merchandise_service = { path = "../sdkwork-merchandise/crates/sdkwork-merchandise-service", package = "sdkwork-merchandise-service" }
 sdkwork_merchandise_repository_sqlx = { path = "../sdkwork-merchandise/crates/sdkwork-merchandise-repository-sqlx", package = "sdkwork-merchandise-repository-sqlx" }
-sdkwork_routes_merchandise_app_api = { path = "../sdkwork-merchandise/crates/sdkwork-routes-merchandise-app-api", package = "sdkwork-routes-merchandise-app-api" }
+sdkwork_merchandise_web_support = { path = "../sdkwork-merchandise/crates/sdkwork-merchandise-web-support", package = "sdkwork-merchandise-web-support" }
 sdkwork-utils-rust = { path = "../sdkwork-utils/packages/sdkwork-utils-rust" }

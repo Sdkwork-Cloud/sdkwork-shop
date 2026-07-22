@@ -23,11 +23,11 @@ use serde::{Deserialize, Serialize};
 use sqlx::{PgPool, SqlitePool};
 
 use crate::http_envelope::{
-    not_found_response, shop_system_response, success_list, success_paged_list, success_resource,
-    unauthorized_response, validation_response,
+    not_found_response, shop_system_response, success_created_resource, success_list,
+    success_paged_list, success_resource, unauthorized_response, validation_response,
 };
 use crate::subject::app_runtime_subject_from_extension;
-use sdkwork_routes_merchandise_app_api::{
+use sdkwork_merchandise_web_support::{
     map_spu, CommerceCatalogStore, CreateSpuBody, UpdateSpuBody,
 };
 
@@ -736,6 +736,26 @@ where
     }
 }
 
+async fn current_create_handler<F, Fut>(
+    state: AppShopState,
+    runtime_context: Option<Extension<IamAppContext>>,
+    body: serde_json::Value,
+    create: F,
+) -> Response
+where
+    F: FnOnce(Arc<dyn CommerceShopStore>, ShopScopeQuery, serde_json::Value) -> Fut,
+    Fut: Future<Output = Result<serde_json::Value, CommerceServiceError>>,
+{
+    let scope = match current_scope(runtime_context).await {
+        Ok(scope) => scope,
+        Err(resp) => return resp,
+    };
+    match create(state.shop.clone(), scope, body).await {
+        Ok(item) => success_created_resource(item),
+        Err(error) => shop_system_response("shop create model is unavailable", error),
+    }
+}
+
 async fn list_current_category_bindings(
     State(state): State<AppShopState>,
     runtime_context: Option<Extension<IamAppContext>>,
@@ -1036,20 +1056,6 @@ async fn upsert_current_channels(
     .await
 }
 
-async fn upsert_current_applications(
-    State(state): State<AppShopState>,
-    runtime_context: Option<Extension<IamAppContext>>,
-    Json(body): Json<serde_json::Value>,
-) -> Response {
-    current_write_handler(
-        state,
-        runtime_context,
-        body,
-        |store, scope, body| async move { store.upsert_applications(scope, body).await },
-    )
-    .await
-}
-
 async fn upsert_current_service_areas(
     State(state): State<AppShopState>,
     runtime_context: Option<Extension<IamAppContext>>,
@@ -1198,7 +1204,13 @@ async fn create_current_service_area(
     runtime_context: Option<Extension<IamAppContext>>,
     Json(body): Json<serde_json::Value>,
 ) -> Response {
-    upsert_current_service_areas(State(state), runtime_context, Json(body)).await
+    current_create_handler(
+        state,
+        runtime_context,
+        body,
+        |store, scope, body| async move { store.upsert_service_areas(scope, body).await },
+    )
+    .await
 }
 
 async fn patch_current_service_area(
@@ -1232,7 +1244,13 @@ async fn create_current_application(
     runtime_context: Option<Extension<IamAppContext>>,
     Json(body): Json<serde_json::Value>,
 ) -> Response {
-    upsert_current_applications(State(state), runtime_context, Json(body)).await
+    current_create_handler(
+        state,
+        runtime_context,
+        body,
+        |store, scope, body| async move { store.upsert_applications(scope, body).await },
+    )
+    .await
 }
 
 async fn list_current_products(
@@ -1289,7 +1307,7 @@ async fn create_current_product(
         return validation_response(error.message());
     }
     match state.catalog.create_spu(command).await {
-        Ok(spu) => success_resource(map_spu(spu)),
+        Ok(spu) => success_created_resource(map_spu(spu)),
         Err(error) => shop_system_response("shop product create is unavailable", error),
     }
 }
@@ -1408,7 +1426,7 @@ async fn create_current_order_fulfillment(
     Path(order_id): Path<String>,
     Json(body): Json<serde_json::Value>,
 ) -> Response {
-    current_write_handler(
+    current_create_handler(
         state,
         runtime_context,
         body,

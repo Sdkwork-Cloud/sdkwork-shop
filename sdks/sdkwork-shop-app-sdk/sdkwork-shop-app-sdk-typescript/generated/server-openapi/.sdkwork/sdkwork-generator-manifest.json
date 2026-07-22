@@ -64,7 +64,7 @@
     },
     {
       "path": "src/api/shops.ts",
-      "sha256": "75f94bb7323f735a22f00fb03837a7ba9eae050eb500f7c032ccfad919c4e53b"
+      "sha256": "015ba0965d39b3763c34feb5f6af23574e78b82d0d2065b30a6767cf970486b9"
     },
     {
       "path": "src/auth/index.ts",
@@ -87,40 +87,12 @@
       "sha256": "268fbd8d8cbb527a4203d83e214407821556f3861827f589731c174fa55af971"
     },
     {
-      "path": "src/types/after-sales-event.ts",
-      "sha256": "f8f269dd029f46471eb983f25681e624f301213a8d17ed63ba990e89b8b91a9f"
-    },
-    {
-      "path": "src/types/after-sales-item.ts",
-      "sha256": "947addc3816ca11cb3561bd899d39c35f0ae4a2968d086a83a012d3ef568e44b"
-    },
-    {
-      "path": "src/types/after-sales-request.ts",
-      "sha256": "7af797896337bca1a3f0c5e2d78f70ea25d0cb505583239d7686cea53e2f2e26"
-    },
-    {
-      "path": "src/types/after-sales-return-shipment.ts",
-      "sha256": "e65e8ae0d7cdb5a6c07f866c7858f44d961825670f6f8da3c1a866337a41682e"
-    },
-    {
       "path": "src/types/commerce-operation-command.ts",
       "sha256": "f0a4310b8460b20f8387188f56641f8f570af04e57c69169e53b26e17bb00eab"
     },
     {
       "path": "src/types/common.ts",
       "sha256": "d2506be8c4bdbe8e7059393467e6e71d75ef1d8c018dbf997bb0ab2a77b6c7b6"
-    },
-    {
-      "path": "src/types/create-after-sales-request-item.ts",
-      "sha256": "46ed23ea8c80c794dfd7aee064fe5cd48e506024631d59faa46174b08d8f6424"
-    },
-    {
-      "path": "src/types/create-after-sales-request.ts",
-      "sha256": "091bce580913518633c1a4644f89f3f2e01f12b38dbaa5b6e8dfae8b24756e65"
-    },
-    {
-      "path": "src/types/create-after-sales-return-shipment-request.ts",
-      "sha256": "ba226aa759e7cecd427afd56af660d7e4e2e75f2211098a05275e81e2a6f9f52"
     },
     {
       "path": "src/types/create-shop-service-area-request.ts",
@@ -136,7 +108,7 @@
     },
     {
       "path": "src/types/index.ts",
-      "sha256": "7ea7dde2322dffd1530f04733e701d11625aa36d577ce4d85162fb4269c83d09"
+      "sha256": "e6ee3cfa9866ce1327e4a86b9b43b1473978f999c5121707997ac7e607b44eb7"
     },
     {
       "path": "src/types/page-info.ts",
@@ -149,14 +121,6 @@
     {
       "path": "src/types/sdk-work-api-response.ts",
       "sha256": "79cef2c8e584ba8b8e96c6c77ccf6bda087b0c68cbed63cb97d5fb1ff3e47e1a"
-    },
-    {
-      "path": "src/types/sdk-work-command-data.ts",
-      "sha256": "a875c230e70650e636ac09c1af57ae8ea0f512a89dd21482bb9e6292bb6bad5a"
-    },
-    {
-      "path": "src/types/sdk-work-command-response.ts",
-      "sha256": "36f82aede9b7b352a9b57545705da4003816785c7913fb2436df633f5c2e8447"
     },
     {
       "path": "src/types/sdk-work-list-response.ts",
@@ -295,10 +259,6 @@
       "sha256": "0a181c74f5d4a4311312f487a5fc8bf7dd553f13eacba19409774383b485bc81"
     },
     {
-      "path": "src/types/shop-risk-signal.ts",
-      "sha256": "20743d50d64081bf776d1e6b2b07505c741e40196ca6f3793cbf0000b7d8c412"
-    },
-    {
       "path": "src/types/shop-service-area-response.ts",
       "sha256": "676b2033882beac30f6305a8309aa52beb308a2d83e37a0af18823a61bf343b0"
     },
@@ -323,16 +283,8 @@
       "sha256": "2d97471a6220cb1bd91e7d20cb6b134aa35c41eefa9709dded996c57b46c8a04"
     },
     {
-      "path": "src/types/shop-status-event.ts",
-      "sha256": "9865237f5152ace3dae9457a957da58874e890e0be11149ef8650049d021f1a6"
-    },
-    {
       "path": "src/types/shop-summary.ts",
       "sha256": "be94499b9ff3ecfb073b1b1734b1eaf7530267c28af64f8f8142c3816e7a6886"
-    },
-    {
-      "path": "src/types/shop-verification.ts",
-      "sha256": "1d5ad526e4bd3ab5d12f68b6276b27962f87da0123d94b50002eac0125f76d19"
     },
     {
       "path": "src/types/shops-current-applications-create-response201.ts",
@@ -425,10 +377,6 @@
     {
       "path": "src/types/submit-shop-application-request.ts",
       "sha256": "f8c346976036cb22f355a88a988ebf4b791ceda69d585ca9c7721b19abd41e88"
-    },
-    {
-      "path": "src/types/update-after-sales-request.ts",
-      "sha256": "bdaa156d7bfe3bb4fe049929e7af36d13278dbecf1b7cdb37f86860fc7d25758"
     },
     {
       "path": "src/types/update-shop-business-hour-request.ts",

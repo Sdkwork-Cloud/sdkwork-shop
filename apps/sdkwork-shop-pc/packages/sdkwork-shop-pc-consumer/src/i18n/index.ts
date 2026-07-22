@@ -2,17 +2,17 @@ import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { getShopPcHost } from '@sdkwork/shop-pc-core';
 
-import zhCNCommon from './locales/zh-CN/common.json';
-import zhCNShop from './locales/zh-CN/shop.json';
-import zhCNProduct from './locales/zh-CN/product.json';
-import zhCNCart from './locales/zh-CN/cart.json';
-import zhCNCheckout from './locales/zh-CN/checkout.json';
+import zhCNCommon from './zh-CN/commerce/consumer/common.json';
+import zhCNShop from './zh-CN/commerce/consumer/shop.json';
+import zhCNProduct from './zh-CN/commerce/consumer/product.json';
+import zhCNCart from './zh-CN/commerce/consumer/cart.json';
+import zhCNCheckout from './zh-CN/commerce/consumer/checkout.json';
 
-import enUSCommon from './locales/en-US/common.json';
-import enUSShop from './locales/en-US/shop.json';
-import enUSProduct from './locales/en-US/product.json';
-import enUSCart from './locales/en-US/cart.json';
-import enUSCheckout from './locales/en-US/checkout.json';
+import enUSCommon from './en-US/commerce/consumer/common.json';
+import enUSShop from './en-US/commerce/consumer/shop.json';
+import enUSProduct from './en-US/commerce/consumer/product.json';
+import enUSCart from './en-US/commerce/consumer/cart.json';
+import enUSCheckout from './en-US/commerce/consumer/checkout.json';
 
 const SUPPORTED_LANGUAGES = ['zh-CN', 'en-US'] as const;
 type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];

@@ -1,3 +1,4 @@
+use axum::http::StatusCode;
 use axum::response::{IntoResponse, Response};
 use axum::Json;
 use sdkwork_contract_service::CommerceServiceError;
@@ -71,6 +72,14 @@ pub fn success_command(trace_id: impl Into<String>) -> Json<Value> {
 
 pub fn success_resource<T: Serialize>(item: T) -> Response {
     success_item(resolve_trace_id(), item).into_response()
+}
+
+pub fn success_created_resource<T: Serialize>(item: T) -> Response {
+    (StatusCode::CREATED, success_item(resolve_trace_id(), item)).into_response()
+}
+
+pub fn success_no_content() -> Response {
+    StatusCode::NO_CONTENT.into_response()
 }
 
 pub fn success_list<T: Serialize>(items: Vec<T>) -> Response {

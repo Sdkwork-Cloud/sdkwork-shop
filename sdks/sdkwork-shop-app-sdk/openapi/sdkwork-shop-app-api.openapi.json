@@ -247,7 +247,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.read"
+        "x-sdkwork-permission": "commerce.shops.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops"
       }
     },
     "/app/v3/api/shops/{shopId}": {
@@ -375,7 +377,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.read"
+        "x-sdkwork-permission": "commerce.shops.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/{shopId}"
       }
     },
     "/app/v3/api/shops/current": {
@@ -494,7 +498,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current"
       }
     },
     "/app/v3/api/shops/current/dashboard": {
@@ -613,7 +619,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/dashboard"
       }
     },
     "/app/v3/api/shops/current/readiness": {
@@ -732,7 +740,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/readiness"
       }
     },
     "/app/v3/api/shops/current/category_bindings": {
@@ -882,7 +892,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/category_bindings"
       },
       "put": {
         "tags": [
@@ -1023,7 +1035,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/category_bindings"
       }
     },
     "/app/v3/api/shops/current/brand_authorizations": {
@@ -1157,7 +1171,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/brand_authorizations"
       },
       "put": {
         "tags": [
@@ -1298,7 +1314,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/brand_authorizations"
       }
     },
     "/app/v3/api/shops/current/qualifications": {
@@ -1448,7 +1466,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/qualifications"
       },
       "put": {
         "tags": [
@@ -1589,7 +1609,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/qualifications"
       }
     },
     "/app/v3/api/shops/current/customer_services": {
@@ -1731,7 +1753,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/customer_services"
       },
       "put": {
         "tags": [
@@ -1872,7 +1896,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/customer_services"
       }
     },
     "/app/v3/api/shops/current/return_addresses": {
@@ -2014,7 +2040,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/return_addresses"
       },
       "put": {
         "tags": [
@@ -2155,7 +2183,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/return_addresses"
       }
     },
     "/app/v3/api/shops/current/shipping_templates": {
@@ -2297,7 +2327,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/shipping_templates"
       },
       "put": {
         "tags": [
@@ -2438,7 +2470,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/shipping_templates"
       }
     },
     "/app/v3/api/shops/current/applications": {
@@ -2564,7 +2598,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/applications"
       },
       "post": {
         "tags": [
@@ -2705,7 +2741,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/applications"
       }
     },
     "/app/v3/api/shops/current/verifications": {
@@ -2839,7 +2877,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/verifications"
       }
     },
     "/app/v3/api/shops/current/status_events": {
@@ -2965,7 +3005,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/status_events"
       }
     },
     "/app/v3/api/shops/current/channels": {
@@ -3099,7 +3141,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/channels"
       }
     },
     "/app/v3/api/shops/current/channels/{channelId}": {
@@ -3250,7 +3294,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/channels/{channelId}"
       }
     },
     "/app/v3/api/shops/current/fulfillment_profile": {
@@ -3369,7 +3415,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/fulfillment_profile"
       },
       "patch": {
         "tags": [
@@ -3510,7 +3558,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/fulfillment_profile"
       }
     },
     "/app/v3/api/shops/current/settlement_profile": {
@@ -3629,7 +3679,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/settlement_profile"
       },
       "patch": {
         "tags": [
@@ -3770,7 +3822,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/settlement_profile"
       }
     },
     "/app/v3/api/shops/current/business_hours": {
@@ -3889,7 +3943,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/business_hours"
       },
       "patch": {
         "tags": [
@@ -4030,7 +4086,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/business_hours"
       }
     },
     "/app/v3/api/shops/current/service_areas": {
@@ -4172,7 +4230,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/service_areas"
       },
       "post": {
         "tags": [
@@ -4313,7 +4373,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/service_areas"
       }
     },
     "/app/v3/api/shops/current/service_areas/{serviceAreaId}": {
@@ -4464,7 +4526,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/service_areas/{serviceAreaId}"
       }
     },
     "/app/v3/api/shops/current/policies": {
@@ -4598,7 +4662,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/policies"
       }
     },
     "/app/v3/api/shops/current/policies/{policyId}": {
@@ -4749,7 +4815,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/policies/{policyId}"
       }
     },
     "/app/v3/api/shops/current/deposit_account": {
@@ -4868,7 +4936,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/deposit_account"
       }
     },
     "/app/v3/api/shops/current/risk_signals": {
@@ -5010,7 +5080,9 @@
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
         "x-sdkwork-server-request-id": true,
-        "x-sdkwork-permission": "commerce.shops.self.read"
+        "x-sdkwork-permission": "commerce.shops.self.read",
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/risk_signals"
       }
     },
     "/app/v3/api/shops/current/products": {
@@ -5144,7 +5216,9 @@
         "x-sdkwork-resource": "shops.current.products",
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
-        "x-sdkwork-server-request-id": true
+        "x-sdkwork-server-request-id": true,
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products"
       },
       "post": {
         "tags": [
@@ -5248,7 +5322,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products"
       }
     },
     "/app/v3/api/shops/current/products/{productId}": {
@@ -5363,7 +5439,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products/{productId}"
       }
     },
     "/app/v3/api/shops/current/products/{productId}/publish": {
@@ -5478,7 +5556,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products/{productId}/publish"
       }
     },
     "/app/v3/api/shops/current/products/{productId}/unpublish": {
@@ -5593,264 +5673,9 @@
               }
             }
           }
-        }
-      }
-    },
-    "/app/v3/api/shops/current/inventory/stocks": {
-      "get": {
-        "tags": [
-          "shops"
-        ],
-        "summary": "Shops current inventory stocks list.",
-        "operationId": "shops.current.inventory.stocks.list",
-        "x-sdkwork-permission": "commerce.shops.read",
-        "parameters": [
-          {
-            "name": "sku_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "warehouse_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "default": 1
-            }
-          },
-          {
-            "name": "page_size",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SdkWorkListResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          }
         },
-        "security": [
-          {
-            "AuthToken": [],
-            "AccessToken": []
-          }
-        ],
-        "x-sdkwork-owner": "sdkwork-shop",
-        "x-sdkwork-api-authority": "sdkwork-shop-app-api",
-        "x-sdkwork-domain": "commerce",
-        "x-sdkwork-resource": "shops.current.inventory.stocks",
-        "x-sdkwork-request-context": "WebRequestContext",
-        "x-sdkwork-api-surface": "app-api",
-        "x-sdkwork-server-request-id": true
-      }
-    },
-    "/app/v3/api/shops/current/inventory/stocks/{stockId}/adjustments": {
-      "post": {
-        "tags": [
-          "shops"
-        ],
-        "summary": "Shops current inventory stocks adjustments create.",
-        "operationId": "shops.current.inventory.stocks.adjustments.create",
-        "x-sdkwork-permission": "commerce.shops.manage",
-        "parameters": [
-          {
-            "name": "stockId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SdkWorkResourceResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "AuthToken": [],
-            "AccessToken": []
-          }
-        ],
-        "x-sdkwork-owner": "sdkwork-shop",
-        "x-sdkwork-api-authority": "sdkwork-shop-app-api",
-        "x-sdkwork-domain": "commerce",
-        "x-sdkwork-resource": "shops.current.inventory.stocks.adjustments",
-        "x-sdkwork-request-context": "WebRequestContext",
-        "x-sdkwork-api-surface": "app-api",
-        "x-sdkwork-server-request-id": true,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CommerceOperationCommand"
-              }
-            }
-          }
-        }
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/products/{productId}/unpublish"
       }
     },
     "/app/v3/api/shops/current/orders": {
@@ -5976,7 +5801,9 @@
         "x-sdkwork-resource": "shops.current.orders",
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
-        "x-sdkwork-server-request-id": true
+        "x-sdkwork-server-request-id": true,
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/orders"
       }
     },
     "/app/v3/api/shops/current/orders/{orderId}": {
@@ -6081,7 +5908,9 @@
         "x-sdkwork-resource": "shops.current.orders",
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
-        "x-sdkwork-server-request-id": true
+        "x-sdkwork-server-request-id": true,
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/orders/{orderId}"
       }
     },
     "/app/v3/api/shops/current/orders/{orderId}/fulfillments": {
@@ -6196,7 +6025,9 @@
               }
             }
           }
-        }
+        },
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/orders/{orderId}/fulfillments"
       }
     },
     "/app/v3/api/shops/current/settlements": {
@@ -6322,369 +6153,194 @@
         "x-sdkwork-resource": "shops.current.settlements",
         "x-sdkwork-request-context": "WebRequestContext",
         "x-sdkwork-api-surface": "app-api",
-        "x-sdkwork-server-request-id": true
+        "x-sdkwork-server-request-id": true,
+        "x-sdkwork-source-route-crate": "sdkwork-routes-shop-app-api",
+        "x-sdkwork-source": "sdkwork-routes-shop-app-api:/app/v3/api/shops/current/settlements"
       }
     }
   },
   "components": {
-    "securitySchemes": {
-      "AuthToken": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT",
-        "description": "SDKWork auth token carried as Authorization: Bearer <auth_token>."
-      },
-      "AccessToken": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "Access-Token",
-        "description": "SDKWork access isolation token."
-      }
-    },
     "schemas": {
-      "AfterSalesEvent": {
+      "ProblemDetail": {
         "type": "object",
-        "additionalProperties": false,
+        "additionalProperties": true,
         "required": [
-          "id",
-          "tenantId",
-          "afterSalesId",
-          "eventNo",
-          "eventType",
-          "toStatus",
-          "actorType",
-          "payload",
-          "idempotencyKey",
-          "createdAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "afterSalesId": {
-            "type": "string"
-          },
-          "eventNo": {
-            "type": "string"
-          },
-          "eventType": {
-            "type": "string"
-          },
-          "fromStatus": {
-            "type": "string"
-          },
-          "toStatus": {
-            "type": "string"
-          },
-          "actorType": {
-            "type": "string"
-          },
-          "actorId": {
-            "type": "string"
-          },
-          "reasonCode": {
-            "type": "string"
-          },
-          "payload": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "idempotencyKey": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          }
-        }
-      },
-      "AfterSalesItem": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "afterSalesId",
-          "orderItemId",
-          "skuSnapshot",
-          "requestedQuantity",
-          "approvedQuantity",
-          "receivedQuantity",
-          "refundedQuantity",
-          "refundAmount",
-          "itemStatus",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "afterSalesId": {
-            "type": "string"
-          },
-          "orderItemId": {
-            "type": "string"
-          },
-          "skuId": {
-            "type": "string"
-          },
-          "skuSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "requestedQuantity": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "approvedQuantity": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "receivedQuantity": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "refundedQuantity": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "refundAmount": {
-            "type": "string"
-          },
-          "replacementSkuId": {
-            "type": "string"
-          },
-          "itemStatus": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "AfterSalesRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "afterSalesNo",
-          "orderId",
-          "afterSalesType",
+          "type",
+          "title",
           "status",
-          "refundStatus",
-          "returnStatus",
-          "exchangeStatus",
-          "evidenceSnapshot",
-          "requestedAmount",
-          "approvedAmount",
-          "currencyCode",
-          "requestedByType",
-          "requestNo",
-          "idempotencyKey",
-          "items",
-          "createdAt",
-          "updatedAt"
+          "code",
+          "traceId"
         ],
         "properties": {
-          "id": {
-            "type": "string"
+          "type": {
+            "type": "string",
+            "format": "uri-reference"
           },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "afterSalesNo": {
-            "type": "string"
-          },
-          "orderId": {
-            "type": "string"
-          },
-          "ownerUserId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "refundId": {
-            "type": "string"
-          },
-          "replacementOrderId": {
-            "type": "string"
-          },
-          "afterSalesType": {
+          "title": {
             "type": "string"
           },
           "status": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 599
+          },
+          "detail": {
             "type": "string"
           },
-          "refundStatus": {
+          "instance": {
             "type": "string"
           },
-          "returnStatus": {
-            "type": "string"
+          "code": {
+            "$ref": "#/components/schemas/SdkWorkPlatformErrorCode"
           },
-          "exchangeStatus": {
-            "type": "string"
+          "traceId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Server-owned request correlation id."
           },
-          "reasonCode": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "evidenceSnapshot": {
+          "errors": {
             "type": "array",
             "items": {
-              "type": "object",
-              "additionalProperties": true
+              "$ref": "#/components/schemas/FieldError"
             }
-          },
-          "requestedAmount": {
+          }
+        }
+      },
+      "FieldError": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "message"
+        ],
+        "properties": {
+          "field": {
             "type": "string"
           },
-          "approvedAmount": {
+          "message": {
             "type": "string"
           },
-          "currencyCode": {
-            "type": "string"
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 40011,
+            "maximum": 40099
+          }
+        }
+      },
+      "SdkWorkPlatformErrorCode": {
+        "type": "integer",
+        "format": "int32",
+        "minimum": 40001,
+        "maximum": 79999,
+        "description": "Platform or domain error code per API_SPEC.md §15.3."
+      },
+      "SdkWorkListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SdkWorkApiResponse"
           },
-          "requestedByType": {
-            "type": "string"
-          },
-          "requestedBy": {
-            "type": "string"
-          },
-          "reviewerType": {
-            "type": "string"
-          },
-          "reviewerId": {
-            "type": "string"
-          },
-          "reviewedAt": {
-            "type": "string"
-          },
-          "closedAt": {
-            "type": "string"
-          },
-          "requestNo": {
-            "type": "string"
-          },
-          "idempotencyKey": {
-            "type": "string"
-          },
+          {
+            "type": "object",
+            "required": [
+              "data"
+            ],
+            "properties": {
+              "data": {
+                "$ref": "#/components/schemas/SdkWorkPageData"
+              }
+            }
+          }
+        ]
+      },
+      "SdkWorkPageData": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "items",
+          "pageInfo"
+        ],
+        "properties": {
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AfterSalesItem"
-            }
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "AfterSalesReturnShipment": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "afterSalesId",
-          "returnShipmentNo",
-          "shipmentDirection",
-          "packageSnapshot",
-          "shipFromAddressSnapshot",
-          "shipToAddressSnapshot",
-          "status",
-          "requestNo",
-          "idempotencyKey",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "afterSalesId": {
-            "type": "string"
-          },
-          "returnShipmentNo": {
-            "type": "string"
-          },
-          "shipmentDirection": {
-            "type": "string"
-          },
-          "carrierCode": {
-            "type": "string"
-          },
-          "carrierName": {
-            "type": "string"
-          },
-          "trackingNo": {
-            "type": "string"
-          },
-          "packageSnapshot": {
-            "type": "array",
-            "items": {
               "type": "object",
               "additionalProperties": true
             }
           },
-          "shipFromAddressSnapshot": {
-            "type": "object",
-            "additionalProperties": true
+          "pageInfo": {
+            "$ref": "#/components/schemas/PageInfo"
+          }
+        }
+      },
+      "PageInfo": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "offset",
+              "cursor"
+            ]
           },
-          "shipToAddressSnapshot": {
-            "type": "object",
-            "additionalProperties": true
+          "page": {
+            "type": "integer",
+            "minimum": 1
           },
-          "status": {
-            "type": "string"
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200
           },
-          "shippedAt": {
-            "type": "string"
+          "totalItems": {
+            "type": "string",
+            "pattern": "^[0-9]+$"
           },
-          "receivedAt": {
-            "type": "string"
+          "totalPages": {
+            "type": "integer",
+            "minimum": 0
           },
-          "requestNo": {
-            "type": "string"
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
           },
-          "idempotencyKey": {
-            "type": "string"
+          "hasMore": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SdkWorkApiResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "data",
+          "traceId"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              0
+            ],
+            "default": 0,
+            "minimum": 0,
+            "maximum": 0
           },
-          "createdAt": {
-            "type": "string"
+          "data": {
+            "description": "Operation-specific payload typed per response schema."
           },
-          "updatedAt": {
-            "type": "string"
+          "traceId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Server-owned request correlation id."
           }
         }
       },
@@ -6693,124 +6349,339 @@
         "additionalProperties": true,
         "description": "Operation-specific command payload defined by the owning commerce Rust module."
       },
-      "CreateAfterSalesRequest": {
+      "SdkWorkResourceResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SdkWorkApiResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "data"
+            ],
+            "properties": {
+              "data": {
+                "$ref": "#/components/schemas/SdkWorkResourceData"
+              }
+            }
+          }
+        ]
+      },
+      "SdkWorkResourceData": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "orderId",
-          "afterSalesType",
-          "reasonCode",
-          "requestedAmount",
-          "currencyCode",
-          "items"
+          "item"
         ],
         "properties": {
-          "orderId": {
+          "item": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Typed domain resource for the operation."
+          }
+        }
+      },
+      "ShopDepositAccountResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message",
+          "data"
+        ],
+        "properties": {
+          "code": {
             "type": "string"
           },
-          "afterSalesType": {
+          "message": {
             "type": "string"
           },
-          "reasonCode": {
+          "data": {
+            "$ref": "#/components/schemas/ShopDepositAccount"
+          }
+        }
+      },
+      "ShopDepositAccount": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "depositStatus",
+          "currencyCode",
+          "requiredAmount",
+          "paidAmount",
+          "frozenAmount",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
             "type": "string"
           },
-          "description": {
+          "tenantId": {
             "type": "string"
           },
-          "evidenceSnapshot": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": true
-            }
+          "organizationId": {
+            "type": "string"
           },
-          "requestedAmount": {
+          "shopId": {
+            "type": "string"
+          },
+          "depositStatus": {
             "type": "string"
           },
           "currencyCode": {
             "type": "string"
           },
-          "items": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-              "$ref": "#/components/schemas/CreateAfterSalesRequestItem"
-            }
+          "requiredAmount": {
+            "type": "string"
+          },
+          "paidAmount": {
+            "type": "string"
+          },
+          "frozenAmount": {
+            "type": "string"
+          },
+          "accountRef": {
+            "type": "string"
+          },
+          "dueAt": {
+            "type": "string"
+          },
+          "reviewedBy": {
+            "type": "string"
+          },
+          "reviewedAt": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
           }
         }
       },
-      "CreateAfterSalesRequestItem": {
+      "UpdateShopPolicyRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "policyStatus": {
+            "type": "string"
+          },
+          "policyVersion": {
+            "type": "integer"
+          },
+          "policy": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "publishedAt": {
+            "type": "string"
+          },
+          "reviewComment": {
+            "type": "string"
+          }
+        }
+      },
+      "ShopPolicyResponse": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "orderItemId",
-          "requestedQuantity"
+          "code",
+          "message",
+          "data"
         ],
         "properties": {
-          "orderItemId": {
+          "code": {
             "type": "string"
           },
-          "skuId": {
+          "message": {
             "type": "string"
           },
-          "requestedQuantity": {
+          "data": {
+            "$ref": "#/components/schemas/ShopPolicy"
+          }
+        }
+      },
+      "ShopPolicy": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "policyType",
+          "policyStatus",
+          "policyVersion",
+          "policy",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "shopId": {
+            "type": "string"
+          },
+          "policyType": {
+            "type": "string"
+          },
+          "policyStatus": {
+            "type": "string"
+          },
+          "policyVersion": {
+            "type": "integer"
+          },
+          "policy": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "publishedAt": {
+            "type": "string"
+          },
+          "reviewedBy": {
+            "type": "string"
+          },
+          "reviewedAt": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateShopServiceAreaRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "areaType": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "regionCode": {
+            "type": "string"
+          },
+          "cityCode": {
+            "type": "string"
+          },
+          "postalCodePattern": {
+            "type": "string"
+          },
+          "deliveryRadiusMeters": {
             "type": "integer",
-            "minimum": 1
+            "minimum": 0
           },
-          "refundAmount": {
+          "serviceStatus": {
             "type": "string"
           },
-          "replacementSkuId": {
-            "type": "string"
+          "serviceConfig": {
+            "type": "object",
+            "additionalProperties": true
           },
-          "reasonCode": {
-            "type": "string"
-          },
-          "evidenceSnapshot": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": true
-            }
+          "sortOrder": {
+            "type": "integer"
           }
         }
       },
-      "CreateAfterSalesReturnShipmentRequest": {
+      "ShopServiceAreaResponse": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "carrierCode",
-          "trackingNo"
+          "code",
+          "message",
+          "data"
         ],
         "properties": {
-          "shipmentDirection": {
+          "code": {
             "type": "string"
           },
-          "carrierCode": {
+          "message": {
             "type": "string"
           },
-          "carrierName": {
+          "data": {
+            "$ref": "#/components/schemas/ShopServiceArea"
+          }
+        }
+      },
+      "ShopServiceArea": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "areaType",
+          "countryCode",
+          "serviceStatus",
+          "serviceConfig",
+          "sortOrder",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
             "type": "string"
           },
-          "trackingNo": {
+          "tenantId": {
             "type": "string"
           },
-          "packageSnapshot": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": true
-            }
+          "organizationId": {
+            "type": "string"
           },
-          "shipFromAddressSnapshot": {
+          "shopId": {
+            "type": "string"
+          },
+          "areaType": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "regionCode": {
+            "type": "string"
+          },
+          "cityCode": {
+            "type": "string"
+          },
+          "postalCodePattern": {
+            "type": "string"
+          },
+          "deliveryRadiusMeters": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "serviceStatus": {
+            "type": "string"
+          },
+          "serviceConfig": {
             "type": "object",
             "additionalProperties": true
           },
-          "shipToAddressSnapshot": {
-            "type": "object",
-            "additionalProperties": true
+          "sortOrder": {
+            "type": "integer"
           },
-          "shippedAt": {
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
             "type": "string"
           }
         }
@@ -6855,7 +6726,39 @@
           }
         }
       },
-      "CurrentShopResponse": {
+      "UpdateShopBusinessHourRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "scheduleType": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "weeklySchedule": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "holidaySchedule": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "effectiveFrom": {
+            "type": "string"
+          },
+          "effectiveTo": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          }
+        }
+      },
+      "ShopBusinessHourResponse": {
         "type": "object",
         "additionalProperties": false,
         "required": [
@@ -6871,74 +6774,426 @@
             "type": "string"
           },
           "data": {
-            "$ref": "#/components/schemas/ShopDetail"
+            "$ref": "#/components/schemas/ShopBusinessHour"
           }
         }
       },
-      "FieldError": {
+      "ShopBusinessHour": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "field",
-          "message"
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "scheduleType",
+          "timezone",
+          "weeklySchedule",
+          "holidaySchedule",
+          "status",
+          "version",
+          "createdAt",
+          "updatedAt"
         ],
         "properties": {
-          "field": {
+          "id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "shopId": {
+            "type": "string"
+          },
+          "scheduleType": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "weeklySchedule": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "holidaySchedule": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "effectiveFrom": {
+            "type": "string"
+          },
+          "effectiveTo": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateShopSettlementProfileRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "settlementStatus": {
+            "type": "string"
+          },
+          "settlementCycle": {
+            "type": "string"
+          },
+          "settlementCurrencyCode": {
+            "type": "string"
+          },
+          "accountRef": {
+            "type": "string"
+          },
+          "riskHoldDays": {
+            "type": "integer"
+          },
+          "settlementConfig": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ShopSettlementProfileResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message",
+          "data"
+        ],
+        "properties": {
+          "code": {
             "type": "string"
           },
           "message": {
             "type": "string"
           },
-          "code": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 40011,
-            "maximum": 40099
+          "data": {
+            "$ref": "#/components/schemas/ShopSettlementProfile"
           }
         }
       },
-      "ProblemDetail": {
+      "ShopSettlementProfile": {
         "type": "object",
-        "additionalProperties": true,
+        "additionalProperties": false,
         "required": [
-          "type",
-          "title",
-          "status",
-          "code",
-          "traceId"
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "settlementStatus",
+          "settlementCycle",
+          "settlementCurrencyCode",
+          "riskHoldDays",
+          "settlementConfig",
+          "createdAt",
+          "updatedAt"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "format": "uri-reference"
-          },
-          "title": {
+          "id": {
             "type": "string"
           },
-          "status": {
-            "type": "integer",
-            "minimum": 100,
-            "maximum": 599
-          },
-          "detail": {
+          "tenantId": {
             "type": "string"
           },
-          "instance": {
+          "organizationId": {
             "type": "string"
           },
+          "shopId": {
+            "type": "string"
+          },
+          "settlementStatus": {
+            "type": "string"
+          },
+          "settlementCycle": {
+            "type": "string"
+          },
+          "settlementCurrencyCode": {
+            "type": "string"
+          },
+          "accountRef": {
+            "type": "string"
+          },
+          "riskHoldDays": {
+            "type": "integer"
+          },
+          "settlementConfig": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "reviewedBy": {
+            "type": "string"
+          },
+          "reviewedAt": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateShopFulfillmentProfileRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fulfillmentMode": {
+            "type": "string"
+          },
+          "shippingOriginRegionCode": {
+            "type": "string"
+          },
+          "serviceLevelCode": {
+            "type": "string"
+          },
+          "afterSalesPolicy": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "serviceConfig": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ShopFulfillmentProfileResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message",
+          "data"
+        ],
+        "properties": {
           "code": {
-            "$ref": "#/components/schemas/SdkWorkPlatformErrorCode"
+            "type": "string"
           },
-          "traceId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Server-owned request correlation id."
+          "message": {
+            "type": "string"
           },
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FieldError"
-            }
+          "data": {
+            "$ref": "#/components/schemas/ShopFulfillmentProfile"
+          }
+        }
+      },
+      "ShopFulfillmentProfile": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "fulfillmentMode",
+          "afterSalesPolicy",
+          "serviceConfig",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "shopId": {
+            "type": "string"
+          },
+          "fulfillmentMode": {
+            "type": "string"
+          },
+          "shippingOriginRegionCode": {
+            "type": "string"
+          },
+          "serviceLevelCode": {
+            "type": "string"
+          },
+          "afterSalesPolicy": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "serviceConfig": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateShopChannelRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "channelCode": {
+            "type": "string"
+          },
+          "storefrontStatus": {
+            "type": "string"
+          },
+          "domainName": {
+            "type": "string"
+          },
+          "pathPrefix": {
+            "type": "string"
+          },
+          "themeCode": {
+            "type": "string"
+          },
+          "channelConfig": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "sortOrder": {
+            "type": "integer"
+          }
+        }
+      },
+      "ShopChannelResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message",
+          "data"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ShopChannel"
+          }
+        }
+      },
+      "ShopChannel": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "channelCode",
+          "storefrontStatus",
+          "channelConfig",
+          "sortOrder",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "shopId": {
+            "type": "string"
+          },
+          "channelCode": {
+            "type": "string"
+          },
+          "storefrontStatus": {
+            "type": "string"
+          },
+          "domainName": {
+            "type": "string"
+          },
+          "pathPrefix": {
+            "type": "string"
+          },
+          "themeCode": {
+            "type": "string"
+          },
+          "channelConfig": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "sortOrder": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "SubmitShopApplicationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "applicationType",
+          "legalEntitySnapshot",
+          "contactSnapshot",
+          "qualificationSnapshot"
+        ],
+        "properties": {
+          "applicationType": {
+            "type": "string"
+          },
+          "legalEntitySnapshot": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "contactSnapshot": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "qualificationSnapshot": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ShopApplicationResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message",
+          "data"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ShopApplication"
           }
         }
       },
@@ -7018,7 +7273,65 @@
           }
         }
       },
-      "ShopApplicationResponse": {
+      "UpsertShopShippingTemplateRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "templateCode",
+          "templateName",
+          "templateStatus",
+          "pricingMode",
+          "deliveryMethod",
+          "baseQuantity",
+          "baseFeeAmount",
+          "currencyCode",
+          "isDefault",
+          "regionRule",
+          "freeShippingRule"
+        ],
+        "properties": {
+          "templateCode": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          },
+          "templateStatus": {
+            "type": "string"
+          },
+          "pricingMode": {
+            "type": "string"
+          },
+          "deliveryMethod": {
+            "type": "string"
+          },
+          "baseQuantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "baseFeeAmount": {
+            "type": "string"
+          },
+          "currencyCode": {
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "regionRule": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "freeShippingRule": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ShopShippingTemplateResponse": {
         "type": "object",
         "additionalProperties": false,
         "required": [
@@ -7034,7 +7347,575 @@
             "type": "string"
           },
           "data": {
-            "$ref": "#/components/schemas/ShopApplication"
+            "$ref": "#/components/schemas/ShopShippingTemplate"
+          }
+        }
+      },
+      "ShopShippingTemplate": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "templateCode",
+          "templateName",
+          "templateStatus",
+          "pricingMode",
+          "deliveryMethod",
+          "baseQuantity",
+          "baseFeeAmount",
+          "currencyCode",
+          "isDefault",
+          "regionRule",
+          "freeShippingRule",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "shopId": {
+            "type": "string"
+          },
+          "templateCode": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          },
+          "templateStatus": {
+            "type": "string"
+          },
+          "pricingMode": {
+            "type": "string"
+          },
+          "deliveryMethod": {
+            "type": "string"
+          },
+          "baseQuantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "baseFeeAmount": {
+            "type": "string"
+          },
+          "currencyCode": {
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "regionRule": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "freeShippingRule": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "UpsertShopReturnAddressRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "addressUsage",
+          "addressKey",
+          "receiverName",
+          "countryCode",
+          "addressLine1",
+          "isDefault",
+          "addressStatus",
+          "addressSnapshot"
+        ],
+        "properties": {
+          "addressUsage": {
+            "type": "string"
+          },
+          "addressKey": {
+            "type": "string"
+          },
+          "receiverName": {
+            "type": "string"
+          },
+          "phoneHash": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "regionCode": {
+            "type": "string"
+          },
+          "cityCode": {
+            "type": "string"
+          },
+          "districtCode": {
+            "type": "string"
+          },
+          "addressLine1": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "addressStatus": {
+            "type": "string"
+          },
+          "addressSnapshot": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ShopReturnAddressResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message",
+          "data"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ShopReturnAddress"
+          }
+        }
+      },
+      "ShopReturnAddress": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "addressUsage",
+          "addressKey",
+          "receiverName",
+          "countryCode",
+          "addressLine1",
+          "isDefault",
+          "addressStatus",
+          "addressSnapshot",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "shopId": {
+            "type": "string"
+          },
+          "addressUsage": {
+            "type": "string"
+          },
+          "addressKey": {
+            "type": "string"
+          },
+          "receiverName": {
+            "type": "string"
+          },
+          "phoneHash": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "regionCode": {
+            "type": "string"
+          },
+          "cityCode": {
+            "type": "string"
+          },
+          "districtCode": {
+            "type": "string"
+          },
+          "addressLine1": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "addressStatus": {
+            "type": "string"
+          },
+          "addressSnapshot": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "UpsertShopCustomerServiceRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "serviceChannel",
+          "serviceStatus",
+          "contactRef",
+          "serviceWindow",
+          "serviceConfig",
+          "isDefault"
+        ],
+        "properties": {
+          "serviceChannel": {
+            "type": "string"
+          },
+          "serviceStatus": {
+            "type": "string"
+          },
+          "contactRef": {
+            "type": "string"
+          },
+          "contactLabel": {
+            "type": "string"
+          },
+          "serviceWindow": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "serviceConfig": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "type": "integer"
+          }
+        }
+      },
+      "ShopCustomerServiceResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message",
+          "data"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ShopCustomerService"
+          }
+        }
+      },
+      "ShopCustomerService": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "serviceChannel",
+          "serviceStatus",
+          "contactRef",
+          "serviceWindow",
+          "serviceConfig",
+          "isDefault",
+          "sortOrder",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "shopId": {
+            "type": "string"
+          },
+          "serviceChannel": {
+            "type": "string"
+          },
+          "serviceStatus": {
+            "type": "string"
+          },
+          "contactRef": {
+            "type": "string"
+          },
+          "contactLabel": {
+            "type": "string"
+          },
+          "serviceWindow": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "serviceConfig": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "UpsertShopQualificationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "qualificationType",
+          "qualificationStatus",
+          "subjectType",
+          "subjectId",
+          "qualificationSnapshot"
+        ],
+        "properties": {
+          "qualificationType": {
+            "type": "string"
+          },
+          "qualificationStatus": {
+            "type": "string"
+          },
+          "subjectType": {
+            "type": "string"
+          },
+          "subjectId": {
+            "type": "string"
+          },
+          "credentialName": {
+            "type": "string"
+          },
+          "credentialHash": {
+            "type": "string"
+          },
+          "credentialMediaResourceId": {
+            "type": "string"
+          },
+          "qualificationSnapshot": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "issuedAt": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string"
+          }
+        }
+      },
+      "ShopQualificationResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message",
+          "data"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ShopQualification"
+          }
+        }
+      },
+      "ShopQualification": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopId",
+          "qualificationType",
+          "qualificationStatus",
+          "subjectType",
+          "subjectId",
+          "qualificationSnapshot",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "shopId": {
+            "type": "string"
+          },
+          "qualificationType": {
+            "type": "string"
+          },
+          "qualificationStatus": {
+            "type": "string"
+          },
+          "subjectType": {
+            "type": "string"
+          },
+          "subjectId": {
+            "type": "string"
+          },
+          "credentialName": {
+            "type": "string"
+          },
+          "credentialHash": {
+            "type": "string"
+          },
+          "credentialMediaResourceId": {
+            "type": "string"
+          },
+          "qualificationSnapshot": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "issuedAt": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string"
+          },
+          "reviewedBy": {
+            "type": "string"
+          },
+          "reviewedAt": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "UpsertShopBrandAuthorizationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "brandCode",
+          "brandName",
+          "authorizationType",
+          "authorizationStatus",
+          "authorizationSnapshot"
+        ],
+        "properties": {
+          "brandCode": {
+            "type": "string"
+          },
+          "brandName": {
+            "type": "string"
+          },
+          "authorizationType": {
+            "type": "string"
+          },
+          "authorizationStatus": {
+            "type": "string"
+          },
+          "brandOwnerName": {
+            "type": "string"
+          },
+          "trademarkHash": {
+            "type": "string"
+          },
+          "trademarkMediaResourceId": {
+            "type": "string"
+          },
+          "authorizationMediaResourceId": {
+            "type": "string"
+          },
+          "authorizationSnapshot": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "validFrom": {
+            "type": "string"
+          },
+          "validTo": {
+            "type": "string"
+          }
+        }
+      },
+      "ShopBrandAuthorizationResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message",
+          "data"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ShopBrandAuthorization"
           }
         }
       },
@@ -7115,91 +7996,55 @@
           }
         }
       },
-      "ShopBrandAuthorizationResponse": {
+      "UpsertShopCategoryBindingRequest": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "code",
-          "message",
-          "data"
+          "shopCategoryCode",
+          "categoryStatus",
+          "qualificationRequired",
+          "qualificationSnapshot",
+          "reviewStatus"
         ],
         "properties": {
-          "code": {
+          "shopCategoryCode": {
             "type": "string"
           },
-          "message": {
+          "platformCategoryCode": {
             "type": "string"
           },
-          "data": {
-            "$ref": "#/components/schemas/ShopBrandAuthorization"
-          }
-        }
-      },
-      "ShopBusinessHour": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "scheduleType",
-          "timezone",
-          "weeklySchedule",
-          "holidaySchedule",
-          "status",
-          "version",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
+          "platformCategoryName": {
             "type": "string"
           },
-          "tenantId": {
+          "categoryPath": {
             "type": "string"
           },
-          "organizationId": {
+          "categoryLevel": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "categoryStatus": {
             "type": "string"
           },
-          "shopId": {
-            "type": "string"
+          "qualificationRequired": {
+            "type": "boolean"
           },
-          "scheduleType": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "weeklySchedule": {
+          "qualificationSnapshot": {
             "type": "object",
             "additionalProperties": true
           },
-          "holidaySchedule": {
-            "type": "object",
-            "additionalProperties": true
+          "reviewStatus": {
+            "type": "string"
           },
           "effectiveFrom": {
             "type": "string"
           },
           "effectiveTo": {
             "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "version": {
-            "type": "integer"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
           }
         }
       },
-      "ShopBusinessHourResponse": {
+      "ShopCategoryBindingResponse": {
         "type": "object",
         "additionalProperties": false,
         "required": [
@@ -7215,7 +8060,7 @@
             "type": "string"
           },
           "data": {
-            "$ref": "#/components/schemas/ShopBusinessHour"
+            "$ref": "#/components/schemas/ShopCategoryBinding"
           }
         }
       },
@@ -7298,7 +8143,7 @@
           }
         }
       },
-      "ShopCategoryBindingResponse": {
+      "ShopReadinessResponse": {
         "type": "object",
         "additionalProperties": false,
         "required": [
@@ -7314,11 +8159,11 @@
             "type": "string"
           },
           "data": {
-            "$ref": "#/components/schemas/ShopCategoryBinding"
+            "$ref": "#/components/schemas/ShopReadiness"
           }
         }
       },
-      "ShopChannel": {
+      "ShopReadiness": {
         "type": "object",
         "additionalProperties": false,
         "required": [
@@ -7326,12 +8171,15 @@
           "tenantId",
           "organizationId",
           "shopId",
-          "channelCode",
-          "storefrontStatus",
-          "channelConfig",
-          "sortOrder",
+          "readinessScope",
+          "readinessStatus",
+          "blockingCount",
+          "warningCount",
+          "checklist",
+          "evaluatedAt",
           "createdAt",
-          "updatedAt"
+          "updatedAt",
+          "version"
         ],
         "properties": {
           "id": {
@@ -7346,138 +8194,81 @@
           "shopId": {
             "type": "string"
           },
-          "channelCode": {
+          "readinessScope": {
             "type": "string"
           },
-          "storefrontStatus": {
+          "readinessStatus": {
             "type": "string"
           },
-          "domainName": {
+          "blockingCount": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "warningCount": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "checklist": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShopReadinessItem"
+            }
+          },
+          "evaluatedAt": {
             "type": "string"
-          },
-          "pathPrefix": {
-            "type": "string"
-          },
-          "themeCode": {
-            "type": "string"
-          },
-          "channelConfig": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "sortOrder": {
-            "type": "integer"
           },
           "createdAt": {
             "type": "string"
           },
           "updatedAt": {
             "type": "string"
+          },
+          "version": {
+            "type": "integer"
           }
         }
       },
-      "ShopChannelResponse": {
+      "ShopReadinessItem": {
         "type": "object",
         "additionalProperties": false,
         "required": [
           "code",
-          "message",
-          "data"
+          "title",
+          "status",
+          "severity",
+          "blocking",
+          "evaluatedAt"
         ],
         "properties": {
           "code": {
             "type": "string"
           },
-          "message": {
+          "title": {
             "type": "string"
           },
-          "data": {
-            "$ref": "#/components/schemas/ShopChannel"
-          }
-        }
-      },
-      "ShopCustomerService": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "serviceChannel",
-          "serviceStatus",
-          "contactRef",
-          "serviceWindow",
-          "serviceConfig",
-          "isDefault",
-          "sortOrder",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
+          "status": {
             "type": "string"
           },
-          "tenantId": {
+          "severity": {
             "type": "string"
           },
-          "organizationId": {
+          "sourceType": {
             "type": "string"
           },
-          "shopId": {
+          "sourceId": {
             "type": "string"
           },
-          "serviceChannel": {
-            "type": "string"
-          },
-          "serviceStatus": {
-            "type": "string"
-          },
-          "contactRef": {
-            "type": "string"
-          },
-          "contactLabel": {
-            "type": "string"
-          },
-          "serviceWindow": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "serviceConfig": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "isDefault": {
+          "blocking": {
             "type": "boolean"
           },
-          "sortOrder": {
-            "type": "integer"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopCustomerServiceResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "message",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
           "message": {
             "type": "string"
           },
-          "data": {
-            "$ref": "#/components/schemas/ShopCustomerService"
+          "actionHint": {
+            "type": "string"
+          },
+          "evaluatedAt": {
+            "type": "string"
           }
         }
       },
@@ -7530,7 +8321,7 @@
           }
         }
       },
-      "ShopDepositAccount": {
+      "ShopMetricSnapshot": {
         "type": "object",
         "additionalProperties": false,
         "required": [
@@ -7538,13 +8329,14 @@
           "tenantId",
           "organizationId",
           "shopId",
-          "depositStatus",
+          "snapshotDate",
+          "grossSalesAmount",
           "currencyCode",
-          "requiredAmount",
-          "paidAmount",
-          "frozenAmount",
-          "createdAt",
-          "updatedAt"
+          "paidOrderCount",
+          "refundOrderCount",
+          "fulfillmentPendingCount",
+          "settlementPendingAmount",
+          "createdAt"
         ],
         "properties": {
           "id": {
@@ -7559,32 +8351,103 @@
           "shopId": {
             "type": "string"
           },
-          "depositStatus": {
+          "snapshotDate": {
+            "type": "string"
+          },
+          "grossSalesAmount": {
             "type": "string"
           },
           "currencyCode": {
             "type": "string"
           },
-          "requiredAmount": {
+          "paidOrderCount": {
+            "type": "integer"
+          },
+          "refundOrderCount": {
+            "type": "integer"
+          },
+          "fulfillmentPendingCount": {
+            "type": "integer"
+          },
+          "settlementPendingAmount": {
             "type": "string"
           },
-          "paidAmount": {
+          "createdAt": {
+            "type": "string"
+          }
+        }
+      },
+      "ShopSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "tenantId",
+          "organizationId",
+          "shopNo",
+          "shopName",
+          "shopType",
+          "businessModel",
+          "storefrontStatus",
+          "operationStatus",
+          "reviewStatus",
+          "dataScope",
+          "defaultCurrencyCode",
+          "version",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
             "type": "string"
           },
-          "frozenAmount": {
+          "tenantId": {
             "type": "string"
           },
-          "accountRef": {
+          "organizationId": {
             "type": "string"
           },
-          "dueAt": {
+          "shopNo": {
             "type": "string"
           },
-          "reviewedBy": {
+          "shopName": {
             "type": "string"
           },
-          "reviewedAt": {
+          "shopType": {
             "type": "string"
+          },
+          "businessModel": {
+            "type": "string"
+          },
+          "storefrontStatus": {
+            "type": "string"
+          },
+          "operationStatus": {
+            "type": "string"
+          },
+          "reviewStatus": {
+            "type": "string"
+          },
+          "dataScope": {
+            "type": "string"
+          },
+          "logoMediaResourceId": {
+            "type": "string"
+          },
+          "coverMediaResourceId": {
+            "type": "string"
+          },
+          "defaultCurrencyCode": {
+            "type": "string"
+          },
+          "defaultLocale": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
           },
           "createdAt": {
             "type": "string"
@@ -7594,7 +8457,7 @@
           }
         }
       },
-      "ShopDepositAccountResponse": {
+      "CurrentShopResponse": {
         "type": "object",
         "additionalProperties": false,
         "required": [
@@ -7610,7 +8473,7 @@
             "type": "string"
           },
           "data": {
-            "$ref": "#/components/schemas/ShopDepositAccount"
+            "$ref": "#/components/schemas/ShopDetail"
           }
         }
       },
@@ -7746,1779 +8609,20 @@
             "$ref": "#/components/schemas/ShopDetail"
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "AuthToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "SDKWork auth token carried as Authorization: Bearer <auth_token>."
       },
-      "ShopFulfillmentProfile": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "fulfillmentMode",
-          "afterSalesPolicy",
-          "serviceConfig",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "fulfillmentMode": {
-            "type": "string"
-          },
-          "shippingOriginRegionCode": {
-            "type": "string"
-          },
-          "serviceLevelCode": {
-            "type": "string"
-          },
-          "afterSalesPolicy": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "serviceConfig": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopFulfillmentProfileResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "message",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/ShopFulfillmentProfile"
-          }
-        }
-      },
-      "ShopMetricSnapshot": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "snapshotDate",
-          "grossSalesAmount",
-          "currencyCode",
-          "paidOrderCount",
-          "refundOrderCount",
-          "fulfillmentPendingCount",
-          "settlementPendingAmount",
-          "createdAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "snapshotDate": {
-            "type": "string"
-          },
-          "grossSalesAmount": {
-            "type": "string"
-          },
-          "currencyCode": {
-            "type": "string"
-          },
-          "paidOrderCount": {
-            "type": "integer"
-          },
-          "refundOrderCount": {
-            "type": "integer"
-          },
-          "fulfillmentPendingCount": {
-            "type": "integer"
-          },
-          "settlementPendingAmount": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopPolicy": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "policyType",
-          "policyStatus",
-          "policyVersion",
-          "policy",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "policyType": {
-            "type": "string"
-          },
-          "policyStatus": {
-            "type": "string"
-          },
-          "policyVersion": {
-            "type": "integer"
-          },
-          "policy": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "publishedAt": {
-            "type": "string"
-          },
-          "reviewedBy": {
-            "type": "string"
-          },
-          "reviewedAt": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopPolicyResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "message",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/ShopPolicy"
-          }
-        }
-      },
-      "ShopQualification": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "qualificationType",
-          "qualificationStatus",
-          "subjectType",
-          "subjectId",
-          "qualificationSnapshot",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "qualificationType": {
-            "type": "string"
-          },
-          "qualificationStatus": {
-            "type": "string"
-          },
-          "subjectType": {
-            "type": "string"
-          },
-          "subjectId": {
-            "type": "string"
-          },
-          "credentialName": {
-            "type": "string"
-          },
-          "credentialHash": {
-            "type": "string"
-          },
-          "credentialMediaResourceId": {
-            "type": "string"
-          },
-          "qualificationSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "issuedAt": {
-            "type": "string"
-          },
-          "expiresAt": {
-            "type": "string"
-          },
-          "reviewedBy": {
-            "type": "string"
-          },
-          "reviewedAt": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopQualificationResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "message",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/ShopQualification"
-          }
-        }
-      },
-      "ShopReadiness": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "readinessScope",
-          "readinessStatus",
-          "blockingCount",
-          "warningCount",
-          "checklist",
-          "evaluatedAt",
-          "createdAt",
-          "updatedAt",
-          "version"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "readinessScope": {
-            "type": "string"
-          },
-          "readinessStatus": {
-            "type": "string"
-          },
-          "blockingCount": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "warningCount": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "checklist": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShopReadinessItem"
-            }
-          },
-          "evaluatedAt": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          },
-          "version": {
-            "type": "integer"
-          }
-        }
-      },
-      "ShopReadinessItem": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "title",
-          "status",
-          "severity",
-          "blocking",
-          "evaluatedAt"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "severity": {
-            "type": "string"
-          },
-          "sourceType": {
-            "type": "string"
-          },
-          "sourceId": {
-            "type": "string"
-          },
-          "blocking": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "actionHint": {
-            "type": "string"
-          },
-          "evaluatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopReadinessResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "message",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/ShopReadiness"
-          }
-        }
-      },
-      "ShopReturnAddress": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "addressUsage",
-          "addressKey",
-          "receiverName",
-          "countryCode",
-          "addressLine1",
-          "isDefault",
-          "addressStatus",
-          "addressSnapshot",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "addressUsage": {
-            "type": "string"
-          },
-          "addressKey": {
-            "type": "string"
-          },
-          "receiverName": {
-            "type": "string"
-          },
-          "phoneHash": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string"
-          },
-          "regionCode": {
-            "type": "string"
-          },
-          "cityCode": {
-            "type": "string"
-          },
-          "districtCode": {
-            "type": "string"
-          },
-          "addressLine1": {
-            "type": "string"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "isDefault": {
-            "type": "boolean"
-          },
-          "addressStatus": {
-            "type": "string"
-          },
-          "addressSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopReturnAddressResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "message",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/ShopReturnAddress"
-          }
-        }
-      },
-      "ShopRiskSignal": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "signalNo",
-          "signalType",
-          "riskLevel",
-          "signalStatus",
-          "riskScore",
-          "payload",
-          "detectedAt",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "signalNo": {
-            "type": "string"
-          },
-          "signalType": {
-            "type": "string"
-          },
-          "riskLevel": {
-            "type": "string"
-          },
-          "signalStatus": {
-            "type": "string"
-          },
-          "sourceType": {
-            "type": "string"
-          },
-          "sourceId": {
-            "type": "string"
-          },
-          "riskScore": {
-            "type": "integer"
-          },
-          "payload": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "detectedAt": {
-            "type": "string"
-          },
-          "resolvedAt": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopServiceArea": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "areaType",
-          "countryCode",
-          "serviceStatus",
-          "serviceConfig",
-          "sortOrder",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "areaType": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string"
-          },
-          "regionCode": {
-            "type": "string"
-          },
-          "cityCode": {
-            "type": "string"
-          },
-          "postalCodePattern": {
-            "type": "string"
-          },
-          "deliveryRadiusMeters": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "serviceStatus": {
-            "type": "string"
-          },
-          "serviceConfig": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "sortOrder": {
-            "type": "integer"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopServiceAreaResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "message",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/ShopServiceArea"
-          }
-        }
-      },
-      "ShopSettlementProfile": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "settlementStatus",
-          "settlementCycle",
-          "settlementCurrencyCode",
-          "riskHoldDays",
-          "settlementConfig",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "settlementStatus": {
-            "type": "string"
-          },
-          "settlementCycle": {
-            "type": "string"
-          },
-          "settlementCurrencyCode": {
-            "type": "string"
-          },
-          "accountRef": {
-            "type": "string"
-          },
-          "riskHoldDays": {
-            "type": "integer"
-          },
-          "settlementConfig": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "reviewedBy": {
-            "type": "string"
-          },
-          "reviewedAt": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopSettlementProfileResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "message",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/ShopSettlementProfile"
-          }
-        }
-      },
-      "ShopShippingTemplate": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "templateCode",
-          "templateName",
-          "templateStatus",
-          "pricingMode",
-          "deliveryMethod",
-          "baseQuantity",
-          "baseFeeAmount",
-          "currencyCode",
-          "isDefault",
-          "regionRule",
-          "freeShippingRule",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "templateCode": {
-            "type": "string"
-          },
-          "templateName": {
-            "type": "string"
-          },
-          "templateStatus": {
-            "type": "string"
-          },
-          "pricingMode": {
-            "type": "string"
-          },
-          "deliveryMethod": {
-            "type": "string"
-          },
-          "baseQuantity": {
-            "type": "integer",
-            "minimum": 1
-          },
-          "baseFeeAmount": {
-            "type": "string"
-          },
-          "currencyCode": {
-            "type": "string"
-          },
-          "isDefault": {
-            "type": "boolean"
-          },
-          "regionRule": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": true
-            }
-          },
-          "freeShippingRule": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopShippingTemplateResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "message",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/ShopShippingTemplate"
-          }
-        }
-      },
-      "ShopStatusEvent": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "eventNo",
-          "eventType",
-          "toStatus",
-          "actorType",
-          "createdAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "eventNo": {
-            "type": "string"
-          },
-          "eventType": {
-            "type": "string"
-          },
-          "fromStatus": {
-            "type": "string"
-          },
-          "toStatus": {
-            "type": "string"
-          },
-          "reasonCode": {
-            "type": "string"
-          },
-          "reasonDetail": {
-            "type": "string"
-          },
-          "actorType": {
-            "type": "string"
-          },
-          "actorId": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopSummary": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopNo",
-          "shopName",
-          "shopType",
-          "businessModel",
-          "storefrontStatus",
-          "operationStatus",
-          "reviewStatus",
-          "dataScope",
-          "defaultCurrencyCode",
-          "version",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopNo": {
-            "type": "string"
-          },
-          "shopName": {
-            "type": "string"
-          },
-          "shopType": {
-            "type": "string"
-          },
-          "businessModel": {
-            "type": "string"
-          },
-          "storefrontStatus": {
-            "type": "string"
-          },
-          "operationStatus": {
-            "type": "string"
-          },
-          "reviewStatus": {
-            "type": "string"
-          },
-          "dataScope": {
-            "type": "string"
-          },
-          "logoMediaResourceId": {
-            "type": "string"
-          },
-          "coverMediaResourceId": {
-            "type": "string"
-          },
-          "defaultCurrencyCode": {
-            "type": "string"
-          },
-          "defaultLocale": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "version": {
-            "type": "integer"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "ShopVerification": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "tenantId",
-          "organizationId",
-          "shopId",
-          "verificationType",
-          "verificationStatus",
-          "verificationSnapshot",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "organizationId": {
-            "type": "string"
-          },
-          "shopId": {
-            "type": "string"
-          },
-          "verificationType": {
-            "type": "string"
-          },
-          "verificationStatus": {
-            "type": "string"
-          },
-          "legalEntityName": {
-            "type": "string"
-          },
-          "credentialNoHash": {
-            "type": "string"
-          },
-          "credentialMediaResourceId": {
-            "type": "string"
-          },
-          "verificationSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "expiresAt": {
-            "type": "string"
-          },
-          "reviewedBy": {
-            "type": "string"
-          },
-          "reviewedAt": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "SubmitShopApplicationRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "applicationType",
-          "legalEntitySnapshot",
-          "contactSnapshot",
-          "qualificationSnapshot"
-        ],
-        "properties": {
-          "applicationType": {
-            "type": "string"
-          },
-          "legalEntitySnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "contactSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "qualificationSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          }
-        }
-      },
-      "UpdateAfterSalesRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "status": {
-            "type": "string",
-            "description": "Target status for the after-sales request lifecycle transition."
-          },
-          "reasonCode": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "evidenceSnapshot": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": true
-            }
-          },
-          "requestedAmount": {
-            "type": "string"
-          },
-          "approvedAmount": {
-            "type": "string"
-          },
-          "currencyCode": {
-            "type": "string"
-          },
-          "reviewerNote": {
-            "type": "string"
-          }
-        }
-      },
-      "UpdateShopBusinessHourRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "scheduleType": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "weeklySchedule": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "holidaySchedule": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "effectiveFrom": {
-            "type": "string"
-          },
-          "effectiveTo": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "version": {
-            "type": "integer"
-          }
-        }
-      },
-      "UpdateShopChannelRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "channelCode": {
-            "type": "string"
-          },
-          "storefrontStatus": {
-            "type": "string"
-          },
-          "domainName": {
-            "type": "string"
-          },
-          "pathPrefix": {
-            "type": "string"
-          },
-          "themeCode": {
-            "type": "string"
-          },
-          "channelConfig": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "sortOrder": {
-            "type": "integer"
-          }
-        }
-      },
-      "UpdateShopFulfillmentProfileRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "fulfillmentMode": {
-            "type": "string"
-          },
-          "shippingOriginRegionCode": {
-            "type": "string"
-          },
-          "serviceLevelCode": {
-            "type": "string"
-          },
-          "afterSalesPolicy": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "serviceConfig": {
-            "type": "object",
-            "additionalProperties": true
-          }
-        }
-      },
-      "UpdateShopPolicyRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "policyStatus": {
-            "type": "string"
-          },
-          "policyVersion": {
-            "type": "integer"
-          },
-          "policy": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "publishedAt": {
-            "type": "string"
-          },
-          "reviewComment": {
-            "type": "string"
-          }
-        }
-      },
-      "UpdateShopServiceAreaRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "areaType": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string"
-          },
-          "regionCode": {
-            "type": "string"
-          },
-          "cityCode": {
-            "type": "string"
-          },
-          "postalCodePattern": {
-            "type": "string"
-          },
-          "deliveryRadiusMeters": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "serviceStatus": {
-            "type": "string"
-          },
-          "serviceConfig": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "sortOrder": {
-            "type": "integer"
-          }
-        }
-      },
-      "UpdateShopSettlementProfileRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "settlementStatus": {
-            "type": "string"
-          },
-          "settlementCycle": {
-            "type": "string"
-          },
-          "settlementCurrencyCode": {
-            "type": "string"
-          },
-          "accountRef": {
-            "type": "string"
-          },
-          "riskHoldDays": {
-            "type": "integer"
-          },
-          "settlementConfig": {
-            "type": "object",
-            "additionalProperties": true
-          }
-        }
-      },
-      "UpsertShopBrandAuthorizationRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "brandCode",
-          "brandName",
-          "authorizationType",
-          "authorizationStatus",
-          "authorizationSnapshot"
-        ],
-        "properties": {
-          "brandCode": {
-            "type": "string"
-          },
-          "brandName": {
-            "type": "string"
-          },
-          "authorizationType": {
-            "type": "string"
-          },
-          "authorizationStatus": {
-            "type": "string"
-          },
-          "brandOwnerName": {
-            "type": "string"
-          },
-          "trademarkHash": {
-            "type": "string"
-          },
-          "trademarkMediaResourceId": {
-            "type": "string"
-          },
-          "authorizationMediaResourceId": {
-            "type": "string"
-          },
-          "authorizationSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "validFrom": {
-            "type": "string"
-          },
-          "validTo": {
-            "type": "string"
-          }
-        }
-      },
-      "UpsertShopCategoryBindingRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "shopCategoryCode",
-          "categoryStatus",
-          "qualificationRequired",
-          "qualificationSnapshot",
-          "reviewStatus"
-        ],
-        "properties": {
-          "shopCategoryCode": {
-            "type": "string"
-          },
-          "platformCategoryCode": {
-            "type": "string"
-          },
-          "platformCategoryName": {
-            "type": "string"
-          },
-          "categoryPath": {
-            "type": "string"
-          },
-          "categoryLevel": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "categoryStatus": {
-            "type": "string"
-          },
-          "qualificationRequired": {
-            "type": "boolean"
-          },
-          "qualificationSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "reviewStatus": {
-            "type": "string"
-          },
-          "effectiveFrom": {
-            "type": "string"
-          },
-          "effectiveTo": {
-            "type": "string"
-          }
-        }
-      },
-      "UpsertShopCustomerServiceRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "serviceChannel",
-          "serviceStatus",
-          "contactRef",
-          "serviceWindow",
-          "serviceConfig",
-          "isDefault"
-        ],
-        "properties": {
-          "serviceChannel": {
-            "type": "string"
-          },
-          "serviceStatus": {
-            "type": "string"
-          },
-          "contactRef": {
-            "type": "string"
-          },
-          "contactLabel": {
-            "type": "string"
-          },
-          "serviceWindow": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "serviceConfig": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "isDefault": {
-            "type": "boolean"
-          },
-          "sortOrder": {
-            "type": "integer"
-          }
-        }
-      },
-      "UpsertShopQualificationRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "qualificationType",
-          "qualificationStatus",
-          "subjectType",
-          "subjectId",
-          "qualificationSnapshot"
-        ],
-        "properties": {
-          "qualificationType": {
-            "type": "string"
-          },
-          "qualificationStatus": {
-            "type": "string"
-          },
-          "subjectType": {
-            "type": "string"
-          },
-          "subjectId": {
-            "type": "string"
-          },
-          "credentialName": {
-            "type": "string"
-          },
-          "credentialHash": {
-            "type": "string"
-          },
-          "credentialMediaResourceId": {
-            "type": "string"
-          },
-          "qualificationSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "issuedAt": {
-            "type": "string"
-          },
-          "expiresAt": {
-            "type": "string"
-          }
-        }
-      },
-      "UpsertShopReturnAddressRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "addressUsage",
-          "addressKey",
-          "receiverName",
-          "countryCode",
-          "addressLine1",
-          "isDefault",
-          "addressStatus",
-          "addressSnapshot"
-        ],
-        "properties": {
-          "addressUsage": {
-            "type": "string"
-          },
-          "addressKey": {
-            "type": "string"
-          },
-          "receiverName": {
-            "type": "string"
-          },
-          "phoneHash": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string"
-          },
-          "regionCode": {
-            "type": "string"
-          },
-          "cityCode": {
-            "type": "string"
-          },
-          "districtCode": {
-            "type": "string"
-          },
-          "addressLine1": {
-            "type": "string"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "isDefault": {
-            "type": "boolean"
-          },
-          "addressStatus": {
-            "type": "string"
-          },
-          "addressSnapshot": {
-            "type": "object",
-            "additionalProperties": true
-          }
-        }
-      },
-      "UpsertShopShippingTemplateRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "templateCode",
-          "templateName",
-          "templateStatus",
-          "pricingMode",
-          "deliveryMethod",
-          "baseQuantity",
-          "baseFeeAmount",
-          "currencyCode",
-          "isDefault",
-          "regionRule",
-          "freeShippingRule"
-        ],
-        "properties": {
-          "templateCode": {
-            "type": "string"
-          },
-          "templateName": {
-            "type": "string"
-          },
-          "templateStatus": {
-            "type": "string"
-          },
-          "pricingMode": {
-            "type": "string"
-          },
-          "deliveryMethod": {
-            "type": "string"
-          },
-          "baseQuantity": {
-            "type": "integer",
-            "minimum": 1
-          },
-          "baseFeeAmount": {
-            "type": "string"
-          },
-          "currencyCode": {
-            "type": "string"
-          },
-          "isDefault": {
-            "type": "boolean"
-          },
-          "regionRule": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": true
-            }
-          },
-          "freeShippingRule": {
-            "type": "object",
-            "additionalProperties": true
-          }
-        }
-      },
-      "SdkWorkApiResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "data",
-          "traceId"
-        ],
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32",
-            "enum": [
-              0
-            ],
-            "default": 0,
-            "minimum": 0,
-            "maximum": 0
-          },
-          "data": {
-            "description": "Operation-specific payload typed per response schema."
-          },
-          "traceId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Server-owned request correlation id."
-          }
-        }
-      },
-      "SdkWorkResourceData": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "item"
-        ],
-        "properties": {
-          "item": {
-            "type": "object",
-            "additionalProperties": true,
-            "description": "Typed domain resource for the operation."
-          }
-        }
-      },
-      "SdkWorkPageData": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "items",
-          "pageInfo"
-        ],
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": true
-            }
-          },
-          "pageInfo": {
-            "$ref": "#/components/schemas/PageInfo"
-          }
-        }
-      },
-      "SdkWorkCommandData": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "accepted"
-        ],
-        "properties": {
-          "accepted": {
-            "type": "boolean",
-            "const": true
-          },
-          "resourceId": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          }
-        }
-      },
-      "PageInfo": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "mode"
-        ],
-        "properties": {
-          "mode": {
-            "type": "string",
-            "enum": [
-              "offset",
-              "cursor"
-            ]
-          },
-          "page": {
-            "type": "integer",
-            "minimum": 1
-          },
-          "pageSize": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 200
-          },
-          "totalItems": {
-            "type": "string",
-            "pattern": "^[0-9]+$"
-          },
-          "totalPages": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "nextCursor": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "hasMore": {
-            "type": "boolean"
-          }
-        }
-      },
-      "SdkWorkPlatformErrorCode": {
-        "type": "integer",
-        "format": "int32",
-        "minimum": 40001,
-        "maximum": 79999,
-        "description": "Platform or domain error code per API_SPEC.md §15.3."
-      },
-      "SdkWorkResourceResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/SdkWorkApiResponse"
-          },
-          {
-            "type": "object",
-            "required": [
-              "data"
-            ],
-            "properties": {
-              "data": {
-                "$ref": "#/components/schemas/SdkWorkResourceData"
-              }
-            }
-          }
-        ]
-      },
-      "SdkWorkListResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/SdkWorkApiResponse"
-          },
-          {
-            "type": "object",
-            "required": [
-              "data"
-            ],
-            "properties": {
-              "data": {
-                "$ref": "#/components/schemas/SdkWorkPageData"
-              }
-            }
-          }
-        ]
-      },
-      "SdkWorkCommandResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/SdkWorkApiResponse"
-          },
-          {
-            "type": "object",
-            "required": [
-              "data"
-            ],
-            "properties": {
-              "data": {
-                "$ref": "#/components/schemas/SdkWorkCommandData"
-              }
-            }
-          }
-        ]
+      "AccessToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Access-Token",
+        "description": "SDKWork access isolation token."
       }
     }
   },

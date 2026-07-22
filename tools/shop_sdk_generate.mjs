@@ -5,6 +5,8 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { loadAuthority, stableJson } from './shop_openapi_authority.mjs';
+
 const HTTP_METHODS = new Set(['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']);
 const SDK_OWNER = 'sdkwork-shop';
 const workspaceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -15,21 +17,20 @@ const TARGETS = [
     surface: 'app',
     family: 'sdkwork-shop-app-sdk',
     authority: 'sdkwork-shop-app-api',
-    source: 'apis/app-api/shop/shop-app-api.openapi.json',
+    sources: ['apis/app-api/shop/shop-app-api.openapi.json'],
     packageName: 'sdkwork-shop-app-sdk-generated-typescript',
   },
   {
     surface: 'backend',
     family: 'sdkwork-shop-backend-sdk',
     authority: 'sdkwork-shop-backend-api',
-    source: 'apis/backend-api/shop/shop-backend-api.openapi.json',
+    sources: [
+      'apis/backend-api/shop/shop-backend-api.openapi.json',
+      '../sdkwork-merchandise/apis/backend-api/merchandise/shop-backend-api.merchandise.openapi.json',
+    ],
     packageName: 'sdkwork-shop-backend-sdk-generated-typescript',
   },
 ];
-
-function stableJson(value) {
-  return `${JSON.stringify(value, null, 2)}\n`;
-}
 
 function collectOperations(openapi) {
   return Object.entries(openapi.paths ?? {}).flatMap(([operationPath, pathItem]) =>
@@ -73,7 +74,7 @@ function synchronize(targetPath, content) {
 
 function generateTarget(target) {
   const familyRoot = path.join(workspaceRoot, 'sdks', target.family);
-  const openapi = JSON.parse(readFileSync(path.join(workspaceRoot, target.source), 'utf8'));
+  const openapi = loadAuthority(workspaceRoot, target.sources);
   const { apiPrefix, operationCount } = validate(openapi, target);
   const content = stableJson(openapi);
   const authorityPath = path.join(familyRoot, 'openapi', `${target.authority}.openapi.json`);

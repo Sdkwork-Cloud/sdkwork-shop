@@ -11,7 +11,7 @@ name = "sdkwork-api-shop-standalone-gateway"
 path = "src/main.rs"
 
 [dependencies]
-sdkwork_api_shop_assembly = { package = "sdkwork-api-shop-assembly", path = "../sdkwork-api-shop-assembly" }
+sdkwork-api-shop-assembly.workspace = true
 axum = { workspace = true }
 serde_json = { workspace = true }
 sdkwork_shop_service_host.workspace = true
@@ -20,5 +20,4 @@ tower-http = { workspace = true }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 sdkwork-web-bootstrap = { workspace = true }
-
 

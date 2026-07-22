@@ -45,12 +45,26 @@
     "publicExports": [
       "."
     ],
-    "runtimeEntrypoints": [],
+    "runtimeEntrypoints": [
+      "sdkwork_api_shop_assembly::assemble_api_router",
+      "sdkwork_api_shop_assembly::assemble_api_router_from_env"
+    ],
     "routeManifest": "assembly-manifest.json",
     "sdkClients": [],
     "sdkDependencies": [],
     "dependencyApiExports": [],
-    "dependencyApiSurfaces": [],
+    "dependencyApiSurfaces": [
+      {
+        "workspace": "sdkwork-merchandise",
+        "sdkFamily": "sdkwork-shop-backend-sdk",
+        "apiAuthority": "sdkwork-shop-backend-api",
+        "surface": "backend-api",
+        "apiPrefix": "/backend/v3/api/catalog",
+        "runtimeMode": "same-origin-mounted",
+        "cargoDependency": "sdkwork_api_merchandise_assembly",
+        "embeddedExecutableExport": "sdkwork_api_merchandise_assembly::assemble_api_router_from_env"
+      }
+    ],
     "events": [],
     "configKeys": [],
     "layerRole": "runtime-composition"

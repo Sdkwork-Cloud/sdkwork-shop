@@ -27,7 +27,13 @@ client.setAuthToken('your-auth-token');
 client.setAccessToken('your-access-token');
 
 // Use the SDK
-const result = await client.shops.shops.admin.list();
+const params = {
+  parent_id: 'parent_id',
+  status: 'status',
+  page: 3,
+  page_size: 4,
+};
+const result = await client.catalog.categories.management.list(params);
 ```
 
 ## Authentication
@@ -55,14 +61,36 @@ const client = new SdkworkBackendClient({
 ## API Modules
 
 - `client.shops` - shops API
+- `client.catalog` - catalog API
 
 ## Usage Examples
 
 ### shops
 
 ```typescript
-// List shops for operator review
-const result = await client.shops.shops.admin.list();
+// Shops management list.
+const params = {
+  q: 'q',
+  shop_type: 'shop_type',
+  operation_status: 'operation_status',
+  review_status: 'review_status',
+  page: 5,
+  page_size: 6,
+};
+const result = await client.shops.management.list(params);
+```
+
+### catalog
+
+```typescript
+// Catalog categories management list.
+const params = {
+  parent_id: 'parent_id',
+  status: 'status',
+  page: 3,
+  page_size: 4,
+};
+const result = await client.catalog.categories.management.list(params);
 ```
 
 ## Error Handling
@@ -71,7 +99,13 @@ const result = await client.shops.shops.admin.list();
 import { SdkworkBackendClient, NetworkError, TimeoutError, AuthenticationError } from 'sdkwork-shop-backend-sdk-generated-typescript';
 
 try {
-  const result = await client.shops.shops.admin.list();
+  const params = {
+    parent_id: 'parent_id',
+    status: 'status',
+    page: 3,
+    page_size: 4,
+  };
+  const result = await client.catalog.categories.management.list(params);
 } catch (error) {
   if (error instanceof AuthenticationError) {
     console.error('Authentication failed:', error.message);
