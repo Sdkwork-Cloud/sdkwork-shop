@@ -12,7 +12,8 @@ path = "src/lib.rs"
 [dependencies]
 axum.workspace = true
 tokio.workspace = true
+sdkwork-web-bootstrap.workspace = true
+sdkwork-web-core.workspace = true
 sdkwork_shop_service_host.workspace = true
-sdkwork_api_merchandise_assembly.workspace = true
 sdkwork-routes-shop-app-api.workspace = true
 sdkwork-routes-shop-backend-api.workspace = true

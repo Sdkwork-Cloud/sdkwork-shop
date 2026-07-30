@@ -1,3 +1,11 @@
 {
-  "prefixes": ["commerce_"]
+  "prefixes": [
+    {
+      "prefix": "commerce_",
+      "domain": "shop",
+      "owner": "shop-platform"
+    }
+  ],
+  "schemaVersion": 1,
+  "kind": "sdkwork.database.prefix-registry"
 }

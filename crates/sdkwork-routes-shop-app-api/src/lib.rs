@@ -29,3 +29,7 @@ pub fn gateway_route_manifest() -> HttpRouteManifest {
 pub async fn gateway_mount(host: Arc<ShopServiceHost>) -> Router {
     build_shop_app_router_with_framework(host).await
 }
+
+pub fn gateway_mount_business(host: Arc<ShopServiceHost>) -> Router {
+    build_shop_app_router(host)
+}

@@ -12,7 +12,10 @@ async fn main() {
         .router
         .layer(sdkwork_web_bootstrap::application_cors_layer_from_env(
             &["SDKWORK_SHOP_ENVIRONMENT"],
-            &["SDKWORK_SHOP_CORS_ALLOWED_ORIGINS", "SDKWORK_CORS_ALLOWED_ORIGINS"],
+            &[
+                "SDKWORK_SHOP_CORS_ALLOWED_ORIGINS",
+                "SDKWORK_CORS_ALLOWED_ORIGINS",
+            ],
         ));
     let app = service_router(business, ServiceRouterConfig::default().with_always_ready());
 
