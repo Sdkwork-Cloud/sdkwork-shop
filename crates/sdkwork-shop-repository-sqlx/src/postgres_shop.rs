@@ -118,7 +118,7 @@ impl PostgresCommerceShopStore {
             "{base_sql} {}",
             crate::shop_current_selection::CURRENT_SHOP_ORDER_BY
         );
-        let row = sqlx::query(&sql)
+        let row = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
             .bind(&scope.tenant_id)
             .bind(scope.organization_id.as_deref().unwrap_or(""))
             .fetch_optional(self.pool())
@@ -146,7 +146,7 @@ impl PostgresCommerceShopStore {
             "{base_sql} {}",
             crate::shop_current_selection::CURRENT_SHOP_ORDER_BY
         );
-        let shop_id: Option<String> = sqlx::query_scalar(&sql)
+        let shop_id: Option<String> = sqlx::query_scalar(sqlx::AssertSqlSafe(sql.as_str()))
             .bind(&scope.tenant_id)
             .bind(organization_id)
             .fetch_optional(self.pool())
@@ -673,7 +673,7 @@ impl PostgresCommerceShopStore {
         let sql = format!(
             "SELECT * FROM {table} WHERE tenant_id = CAST(? AS TEXT) AND shop_id = CAST(? AS TEXT) ORDER BY created_at DESC, id DESC"
         );
-        let rows = sqlx::query(&sql)
+        let rows = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
             .bind(tenant_id)
             .bind(shop_id)
             .fetch_all(self.pool())
@@ -696,7 +696,7 @@ impl PostgresCommerceShopStore {
         let sql = format!(
             "SELECT * FROM {table} WHERE tenant_id = CAST(? AS TEXT) AND shop_id = CAST(? AS TEXT) LIMIT 1"
         );
-        let row = sqlx::query(&sql)
+        let row = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
             .bind(tenant_id)
             .bind(shop_id)
             .fetch_optional(self.pool())
@@ -719,7 +719,7 @@ impl PostgresCommerceShopStore {
             table = table,
             key_column = key_column,
         );
-        let row = sqlx::query(&sql)
+        let row = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
             .bind(tenant_id)
             .bind(key_value)
             .fetch_optional(self.pool())

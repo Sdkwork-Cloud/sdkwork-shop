@@ -1005,7 +1005,7 @@ async fn list_shop_table_rows_db(
     match db {
         BackendShopDb::Sqlite(pool) => {
             let sql = format!("SELECT * FROM {table} WHERE tenant_id = CAST(? AS TEXT) AND shop_id = CAST(? AS TEXT) ORDER BY created_at DESC, id DESC");
-            let rows = sqlx::query(&sql)
+            let rows = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
                 .bind(tenant_id)
                 .bind(shop_id)
                 .fetch_all(pool)
@@ -1015,7 +1015,7 @@ async fn list_shop_table_rows_db(
         }
         BackendShopDb::Postgres(pool) => {
             let sql = format!("SELECT * FROM {table} WHERE tenant_id = CAST($1 AS TEXT) AND shop_id = CAST($2 AS TEXT) ORDER BY created_at DESC, id DESC");
-            let rows = sqlx::query(&sql)
+            let rows = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
                 .bind(tenant_id)
                 .bind(shop_id)
                 .fetch_all(pool)

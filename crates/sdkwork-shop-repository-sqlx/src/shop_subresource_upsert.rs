@@ -1766,7 +1766,7 @@ pub async fn retrieve_shop_table_row_by_id(
     match db {
         ShopWriteDb::Sqlite(pool) => {
             let sql = format!("SELECT * FROM {table} WHERE tenant_id = CAST(? AS TEXT) AND id = CAST(? AS TEXT) LIMIT 1");
-            let row = sqlx::query(&sql)
+            let row = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
                 .bind(tenant_id)
                 .bind(row_id)
                 .fetch_optional(pool)
@@ -1776,7 +1776,7 @@ pub async fn retrieve_shop_table_row_by_id(
         }
         ShopWriteDb::Postgres(pool) => {
             let sql = format!("SELECT * FROM {table} WHERE tenant_id = CAST($1 AS TEXT) AND id = CAST($2 AS TEXT) LIMIT 1");
-            let row = sqlx::query(&sql)
+            let row = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
                 .bind(tenant_id)
                 .bind(row_id)
                 .fetch_optional(pool)
