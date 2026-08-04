@@ -16,6 +16,7 @@ import {
 import { shopToast } from "./host/shopUiHost";
 import { ordersService, Order, OrderStats } from "./services/OrdersService";
 import { motion, AnimatePresence } from "framer-motion";
+import { formatMoney } from "@sdkwork/utils/money";
 
 const getStatusBadge = (status: Order["status"]) => {
   switch (status) {
@@ -278,7 +279,7 @@ export const OrdersView: React.FC = () => {
                         </div>
 
                         <div className="w-32 shrink-0 flex flex-col pt-1 items-center justify-start text-[14px] tracking-tight">
-                          <span className="font-bold text-gray-200"><span className="text-[12px] font-normal mr-0.5">¥</span>{item.price.toLocaleString("zh-CN", { minimumFractionDigits: 2 })}</span>
+                          <span className="font-bold text-gray-200"><span className="text-[12px] font-normal mr-0.5">¥</span>{formatMoney(item.price, { currency: "CNY", locale: "zh-CN", mode: "decimal", minFractionDigits: 2, maxFractionDigits: 2 }) ?? "--"}</span>
                         </div>
 
                         <div className="w-20 shrink-0 flex pt-1 justify-center text-[13px] font-medium text-gray-400">
@@ -294,9 +295,7 @@ export const OrdersView: React.FC = () => {
                       <div className="flex flex-col items-center justify-center w-full h-full">
                         <div className="text-[15px] font-bold text-gray-100 tracking-tight flex items-baseline">
                           <span className="text-[12px] font-normal mr-0.5 text-gray-300">¥</span>
-                          {order.amount.toLocaleString("zh-CN", {
-                            minimumFractionDigits: 2,
-                          })}
+                          {formatMoney(order.amount, { currency: "CNY", locale: "zh-CN", mode: "decimal", minFractionDigits: 2, maxFractionDigits: 2 }) ?? "--"}
                         </div>
                         <div className="text-[11px] text-gray-500 mt-2 flex items-center gap-1 font-medium bg-white/5 px-2 py-0.5 rounded-full border border-white/5">
                           <Package size={12} /> 包邮

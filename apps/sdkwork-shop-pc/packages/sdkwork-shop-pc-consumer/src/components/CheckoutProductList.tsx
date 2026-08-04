@@ -1,8 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { formatMoney } from "@sdkwork/utils/money";
 
 export const CheckoutProductList = ({ selectedItems, products }: any) => {
   const { t, i18n } = useTranslation(["checkout", "common"]);
+  const locale = i18n.language === "en-US" ? "en-US" : "zh-CN";
 
   return (
     <div className="bg-[#2b2b2d] rounded-3xl border border-white/5 overflow-hidden shadow-xl shadow-black/10">
@@ -46,12 +48,13 @@ export const CheckoutProductList = ({ selectedItems, products }: any) => {
               </div>
               <div className="flex flex-col items-end justify-center shrink-0 ml-4">
                 <div className="text-lg font-bold text-gray-200 mb-2">
-                  <span className="text-sm font-medium mr-0.5">
-                    {t("common:currencySymbol")}
-                  </span>
-                  {price.toLocaleString(
-                    i18n.language === "en-US" ? "en-US" : "zh-CN",
-                  )}
+                  {formatMoney(price, {
+                    currency: "CNY",
+                    locale,
+                    mode: "symbol",
+                    minFractionDigits: 0,
+                    maxFractionDigits: 2,
+                  }) ?? "--"}
                 </div>
                 <div className="text-sm text-gray-500 font-medium bg-black/20 px-3 py-1 rounded-full">
                   x {item.quantity}
@@ -64,7 +67,8 @@ export const CheckoutProductList = ({ selectedItems, products }: any) => {
       <div className="px-8 py-5 border-t border-white/5 bg-black/10 flex justify-between items-center text-gray-300">
         <span>配送方式</span>
         <span className="font-medium text-gray-200">
-          普通快递 运费 ¥0.00
+          普通快递 运费{" "}
+          {formatMoney(0, { currency: "CNY", locale, mode: "symbol" }) ?? "--"}
         </span>
       </div>
     </div>

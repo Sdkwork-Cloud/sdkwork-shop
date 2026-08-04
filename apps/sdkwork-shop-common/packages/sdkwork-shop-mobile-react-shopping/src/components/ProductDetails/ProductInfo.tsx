@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import React from "react";
 import type { Product } from "../../types";
+import { formatCny } from "../../money";
 
 export const ProductInfo = ({
   product,
@@ -11,17 +12,17 @@ export const ProductInfo = ({
   displayPrice?: string;
   displayOriginalPrice?: string;
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.resolvedLanguage || "zh-CN";
 return (
     <div className="bg-chat-other-bg p-4 mb-2">
       <div className="flex items-baseline mb-2">
         <span className="text-[#FA5151] font-bold text-[24px]">
-          <span className="text-[16px]">¥</span>
-          {displayPrice}
+          {formatCny(displayPrice, locale) ?? "--"}
         </span>
         {displayOriginalPrice && (
           <span className="text-text-sub text-[14px] line-through ml-2">
-            ¥{displayOriginalPrice}
+            {formatCny(displayOriginalPrice, locale) ?? ""}
           </span>
         )}
         {product.isVirtual && (

@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { formatCny } from "../money";
 
 interface PaymentPasswordModalProps {
   amount: string;
@@ -16,7 +17,8 @@ export const PaymentPasswordModal: React.FC<PaymentPasswordModalProps> = ({
   onClose,
   onSubmit,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.resolvedLanguage || "zh-CN";
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
@@ -24,7 +26,9 @@ export const PaymentPasswordModal: React.FC<PaymentPasswordModalProps> = ({
         <h3 className="text-[18px] font-medium mb-4 text-text-main">
           {t("shopping.auto_n49a5d7d3", "请输入支付密码")}
         </h3>
-        <p className="text-[28px] font-bold mb-6 text-text-main">¥{amount}</p>
+        <p className="text-[28px] font-bold mb-6 text-text-main">
+          {formatCny(amount, locale) ?? "--"}
+        </p>
         <input
           type="password"
           maxLength={6}

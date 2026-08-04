@@ -8,6 +8,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { formatMoney } from "@sdkwork/utils/money";
 import { Order } from "../services/OrdersService";
 import { shopToast } from "../host/shopUiHost";
 
@@ -39,7 +40,8 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
   onAction,
   onPay,
 }) => {
-  const { t } = useTranslation("orders");
+  const { t, i18n } = useTranslation("orders");
+  const locale = i18n.resolvedLanguage === "en-US" ? "en-US" : "zh-CN";
 
   const getStatusBadge = (status: Order["status"]) => {
     const label = t(`statusDetail.${status}`);
@@ -196,10 +198,13 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
                     </div>
                     <div className="flex flex-col items-end py-1 shrink-0 ml-4">
                       <div className="text-base font-bold text-gray-200 mb-1">
-                        <span className="text-sm mr-0.5">�</span>
-                        {item.price.toLocaleString("zh-CN", {
-                          minimumFractionDigits: 2,
-                        })}
+                        {formatMoney(item.price, {
+                          currency: "CNY",
+                          locale,
+                          mode: "symbol",
+                          minFractionDigits: 2,
+                          maxFractionDigits: 2,
+                        }) ?? "--"}
                       </div>
                       <div className="text-sm font-medium text-gray-500">
                         x {item.quantity}
@@ -225,19 +230,39 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
                   <div className="flex justify-between items-center text-gray-400">
                     <span>{t("detail.productTotal")}</span>
                     <span>
-                      �{" "}
-                      {order.amount.toLocaleString("zh-CN", {
-                        minimumFractionDigits: 2,
-                      })}
+                      {formatMoney(order.amount, {
+                        currency: "CNY",
+                        locale,
+                        mode: "symbol",
+                        minFractionDigits: 2,
+                        maxFractionDigits: 2,
+                      }) ?? "--"}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-gray-400">
                     <span>{t("detail.shippingFee")}</span>
-                    <span>� 0.00</span>
+                    <span>
+                      {formatMoney(0, {
+                        currency: "CNY",
+                        locale,
+                        mode: "symbol",
+                        minFractionDigits: 2,
+                        maxFractionDigits: 2,
+                      }) ?? "--"}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center text-gray-400">
                     <span>{t("detail.shopDiscount")}</span>
-                    <span className="text-orange-400">- � 0.00</span>
+                    <span className="text-orange-400">
+                      -{" "}
+                      {formatMoney(0, {
+                        currency: "CNY",
+                        locale,
+                        mode: "symbol",
+                        minFractionDigits: 2,
+                        maxFractionDigits: 2,
+                      }) ?? "--"}
+                    </span>
                   </div>
                   <div className="h-px bg-white/10" />
                   <div className="flex justify-between items-end">
@@ -245,10 +270,13 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
                       {t("detail.actualPayment")}
                     </span>
                     <span className="text-2xl font-bold text-orange-500 mb-[-2px] tracking-tight">
-                      <span className="text-sm font-normal mr-1">�</span>
-                      {order.amount.toLocaleString("zh-CN", {
-                        minimumFractionDigits: 2,
-                      })}
+                      {formatMoney(order.amount, {
+                        currency: "CNY",
+                        locale,
+                        mode: "symbol",
+                        minFractionDigits: 2,
+                        maxFractionDigits: 2,
+                      }) ?? "--"}
                     </span>
                   </div>
                 </div>

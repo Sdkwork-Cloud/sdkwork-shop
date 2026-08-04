@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { formatMoney } from "@sdkwork/utils/money";
 
 export const CheckoutOrderSummary = ({
   totalPrice,
@@ -8,6 +9,7 @@ export const CheckoutOrderSummary = ({
   isSubmitting = false,
 }: any) => {
   const { t, i18n } = useTranslation(["checkout", "common"]);
+  const locale = i18n.language === "en-US" ? "en-US" : "zh-CN";
 
   return (
     <div className="w-full lg:w-[380px] shrink-0">
@@ -21,10 +23,13 @@ export const CheckoutOrderSummary = ({
           <div className="flex justify-between text-gray-400 items-center">
             <span>{t("checkout:merchandiseTotal")}</span>
             <span className="font-medium text-gray-300">
-              {t("common:currencySymbol")}{" "}
-              {totalPrice.toLocaleString(
-                i18n.language === "en-US" ? "en-US" : "zh-CN",
-              )}
+              {formatMoney(totalPrice, {
+                currency: "CNY",
+                locale,
+                mode: "symbol",
+                minFractionDigits: 0,
+                maxFractionDigits: 2,
+              }) ?? "--"}
             </span>
           </div>
           <div className="flex justify-between text-gray-400 items-center">
@@ -38,7 +43,7 @@ export const CheckoutOrderSummary = ({
           <div className="flex justify-between text-gray-400 items-center">
             <span>{t("checkout:discount")}</span>
             <span className="text-pink-500 font-medium">
-              - {t("common:currencySymbol")} 0.00
+              - {formatMoney(0, { currency: "CNY", locale, mode: "symbol" })}
             </span>
           </div>
 
@@ -53,9 +58,13 @@ export const CheckoutOrderSummary = ({
                 <span className="text-xl mr-1 font-semibold">
                   {t("common:currencySymbol")}
                 </span>
-                {totalPrice.toLocaleString(
-                  i18n.language === "en-US" ? "en-US" : "zh-CN",
-                )}
+                {formatMoney(totalPrice, {
+                  currency: "CNY",
+                  locale,
+                  mode: "decimal",
+                  minFractionDigits: 0,
+                  maxFractionDigits: 2,
+                }) ?? "--"}
               </span>
             </div>
           </div>

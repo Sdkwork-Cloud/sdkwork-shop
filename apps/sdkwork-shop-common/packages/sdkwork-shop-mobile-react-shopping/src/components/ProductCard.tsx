@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { Product } from "../types";
+import { formatCny } from "../money";
 
 interface ProductCardProps {
   product: Product;
@@ -19,7 +20,8 @@ export const getAspectRatio = (url: string) => {
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.resolvedLanguage || "zh-CN";
 const aspectRatio = getAspectRatio(product.image);
 
   return (
@@ -50,9 +52,7 @@ const aspectRatio = getAspectRatio(product.image);
         >{product.title || "暂无商品名称"}</span>
         <div className="flex items-center justify-between mt-auto pt-0.5">
           <span className="text-[#FA5151] font-semibold flex items-baseline">
-            <span className="text-[11px] mr-[1px]">¥</span>
-            <span className="text-[16px] tracking-tight">{product.price?.split('.')[0] || "0"}</span>
-            {product.price?.includes('.') && <span className="text-[11px]">.{product.price.split('.')[1]}</span>}
+            {formatCny(product.price, locale) ?? "--"}
           </span>
           <span className="text-[10.5px] text-text-sub font-normal scale-90 origin-right">{product.sales || "0 人付款"}</span>
         </div>

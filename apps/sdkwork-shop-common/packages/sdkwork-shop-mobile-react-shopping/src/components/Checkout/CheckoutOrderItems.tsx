@@ -2,6 +2,7 @@ import React from "react";
 import { Store, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Shop } from "../../types";
+import { formatCny } from "../../money";
 
 interface CheckoutOrderItemsProps {
   shop: Shop | null;
@@ -14,7 +15,8 @@ export const CheckoutOrderItems: React.FC<CheckoutOrderItemsProps> = ({
   displayItems,
   isVirtualOrder,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.resolvedLanguage || "zh-CN";
 
   return (
     <div className="bg-chat-other-bg rounded-xl p-4 mb-3">
@@ -56,8 +58,8 @@ export const CheckoutOrderItems: React.FC<CheckoutOrderItemsProps> = ({
               </span>
               <div className="flex items-center justify-between mt-auto">
                 <span className="text-[16px] font-bold text-text-main">
-                  <span className="text-[12px]">¥</span>
-                  {parseFloat(item.sku?.price || item.product.price)}
+                  {formatCny(item.sku?.price || item.product.price, locale, 0) ??
+                    "--"}
                 </span>
                 <span className="text-[13px] text-text-sub">
                   x{item.quantity}

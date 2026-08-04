@@ -2,6 +2,7 @@ import React from "react";
 import { Trash2 } from "lucide-react";
 import { cn } from "@sdkwork/ui-mobile-react";
 import type { CartItem } from "../../types";
+import { formatCny } from "../../money";
 
 interface ShoppingCartItemProps {
   item: CartItem;
@@ -59,8 +60,7 @@ export const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
         )}
         <div className="flex items-center justify-between mt-auto">
           <span className="text-[#FA5151] font-bold text-[16px]">
-            <span className="text-[12px]">¥</span>
-            {item.sku?.price || item.product.price}
+            {formatCny(item.sku?.price || item.product.price, "zh-CN") ?? "--"}
           </span>
           <div className="flex items-center border border-border-color rounded-md overflow-hidden">
             <button

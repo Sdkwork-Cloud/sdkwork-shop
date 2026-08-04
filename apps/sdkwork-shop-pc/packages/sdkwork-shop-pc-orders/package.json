@@ -9,6 +9,7 @@
     "@sdkwork/order-app-sdk": "workspace:*",
     "@sdkwork/shop-app-sdk": "workspace:*",
     "@sdkwork/shop-pc-core": "workspace:*",
+    "@sdkwork/utils": "workspace:*",
     "framer-motion": "catalog:",
     "i18next": "catalog:",
     "lucide-react": "catalog:",

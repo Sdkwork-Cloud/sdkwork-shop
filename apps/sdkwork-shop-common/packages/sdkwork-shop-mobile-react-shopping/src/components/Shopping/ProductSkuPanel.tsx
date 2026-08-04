@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import React from "react";
 import { X } from "lucide-react";
 import type { Product, ProductSKU } from "../../types";
+import { formatCny } from "../../money";
 
 interface ProductSkuPanelProps {
   product: Product;
@@ -28,7 +29,8 @@ export const ProductSkuPanel: React.FC<ProductSkuPanelProps> = ({
   skuAction,
   handleConfirmSku,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.resolvedLanguage || "zh-CN";
 return (
     <div className="absolute inset-0 z-50 flex flex-col justify-end">
       {/* Overlay Background */}
@@ -56,8 +58,7 @@ return (
           />
           <div className="flex flex-col justify-end">
             <span className="text-[#FA5151] font-bold text-[22px] leading-none mb-1">
-              <span className="text-[14px]">¥</span>
-              {displayPrice}
+              {formatCny(displayPrice, locale) ?? "--"}
             </span>
             <span className="text-[13px] text-text-sub mb-1">
               {currentSku ? t('shopping.stock_count', `库存 {{count}} 件`, { count: currentSku.stock }) : t('shopping.please_select_spec', "请选择规格")}

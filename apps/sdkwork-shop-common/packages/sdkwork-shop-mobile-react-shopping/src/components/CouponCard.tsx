@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import React from "react";
 import { Product } from "../types";
 import { cn } from "@sdkwork/ui-mobile-react";
+import { formatCny } from "../money";
 
 interface CouponCardProps {
   product: Product;
@@ -9,7 +10,8 @@ interface CouponCardProps {
 }
 
 export const CouponCard: React.FC<CouponCardProps> = ({ product, onClick }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.resolvedLanguage || "zh-CN";
 return (
     <div
       className="bg-white dark:bg-[#1C1C1E] rounded-xl overflow-hidden shadow-sm flex cursor-pointer active:scale-[0.98] transition-transform duration-200 relative mb-1"
@@ -28,9 +30,7 @@ return (
            />
         </div>
         <span className="text-[#FA5151] font-bold text-[20px] leading-none flex items-baseline relative z-10">
-            <span className="text-[12px] mr-[1px]">¥</span>
-            {product.price?.split('.')[0] || "0"}
-            {product.price?.includes('.') && <span className="text-[14px]">.{product.price.split('.')[1]}</span>}
+            {formatCny(product.price, locale) ?? "--"}
         </span>
         
         {/* Ticket Cutouts */}

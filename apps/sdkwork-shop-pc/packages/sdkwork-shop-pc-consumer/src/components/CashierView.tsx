@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { Store, ArrowLeft, Wallet } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { formatMoney } from "@sdkwork/utils/money";
 import { PC_SHOP_PAYMENT_CONTRACT_UNAVAILABLE } from "../services/ShopService";
 
 export const CashierView = ({
@@ -49,11 +50,12 @@ export const CashierView = ({
             <div className="text-sm text-gray-500 flex flex-col gap-2">
               <span>{t("checkout:orderNo", { orderId })}</span>
               <span>
-                {t("checkout:amountPayable")}: {t("common:currencySymbol")}
-                {amount.toLocaleString(
-                  i18n.language === "en-US" ? "en-US" : "zh-CN",
-                  { minimumFractionDigits: 2 },
-                )}
+                {t("checkout:amountPayable")}:{" "}
+                {formatMoney(amount, {
+                  currency: "CNY",
+                  locale: i18n.language === "en-US" ? "en-US" : "zh-CN",
+                  mode: "symbol",
+                }) ?? "--"}
               </span>
             </div>
           </div>
