@@ -59,7 +59,7 @@ const { addresses, getDefaultOrSelectedAddress, selectAddress, deleteAddress } =
           selectedId={currentAddress?.id}
           onClose={() => setIsListVisible(false)}
           onSelect={handleSelect}
-          onEdit={(address) => setEditingAddress(address)}
+          onEdit={(address: Address) => setEditingAddress(address)}
           onAdd={() => setEditingAddress('new')}
         />
       )}
@@ -69,7 +69,7 @@ const { addresses, getDefaultOrSelectedAddress, selectAddress, deleteAddress } =
           address={editingAddress === 'new' ? undefined : editingAddress}
           onClose={() => setEditingAddress(null)}
           onSave={() => setEditingAddress(null)} // state handles itself
-          onDelete={(id) => {
+          onDelete={(id: string) => {
             deleteAddress(id);
             setEditingAddress(null);
           }}

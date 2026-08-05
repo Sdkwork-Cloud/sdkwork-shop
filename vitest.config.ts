@@ -7,11 +7,6 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   resolve: {
     alias: {
-      "@sdkwork/utils": path.resolve(root, "../sdkwork-utils/packages/sdkwork-utils-typescript/src/index.ts"),
-      "@sdkwork/shop-contracts": path.resolve(
-        root,
-        "packages/common/shop/sdkwork-shop-contracts/src/index.ts",
-      ),
     },
   },
   test: {

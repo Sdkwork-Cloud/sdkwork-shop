@@ -29,6 +29,9 @@ packages:
   - "../sdkwork-catalog/sdks/sdkwork-catalog-app-sdk/sdkwork-catalog-app-sdk-typescript"
   - "../sdkwork-order/sdks/sdkwork-order-app-sdk/sdkwork-order-app-sdk-typescript"
 
+  - "../sdkwork-iam/apps/sdkwork-iam-pc/packages/sdkwork-user-center-core-pc-react"
+  - "../sdkwork-order/apps/sdkwork-order-common/packages/sdkwork-order-mobile-react-orders"
+  - "../sdkwork-ui/sdkwork-ui-mobile-react"
 catalog:
   "@tailwindcss/vite": ^4.1.14
   react: ^19.2.4
@@ -138,3 +141,4 @@ catalog:
   tailwindcss-animate: ^1.0.7
   tsup: ^8.5.0
   zustand: ^5.0.12
+

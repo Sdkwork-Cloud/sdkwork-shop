@@ -268,25 +268,14 @@ class SdkworkOrdersService implements OrdersService {
 
     switch (status) {
       case 'CANCELLED':
-        try {
-          await this.orderClient().orders.cancel(
-            normalizedId,
-            createSdkworkWriteCommandParams('orders.cancel', {
-              orderId: normalizedId,
-              ...COMMERCE_COMMAND,
-            }),
-            COMMERCE_COMMAND,
-          );
-        } catch {
-          await this.orderClient().orders.cancellations.create(
-            normalizedId,
-            createSdkworkWriteCommandParams('orders.cancellations.create', {
-              orderId: normalizedId,
-              ...COMMERCE_COMMAND,
-            }),
-            COMMERCE_COMMAND,
-          );
-        }
+        await this.orderClient().orders.cancellations.create(
+          normalizedId,
+          createSdkworkWriteCommandParams('orders.cancellations.create', {
+            orderId: normalizedId,
+            ...COMMERCE_COMMAND,
+          }),
+          COMMERCE_COMMAND,
+        );
         break;
       case 'SHIPPED':
         await this.shopClient().shops.current.orders.fulfillments.create(normalizedId, COMMERCE_COMMAND);

@@ -231,7 +231,6 @@ class SdkworkShopService implements ShopService {
     const result = await this.catalogClient().catalog.products.list({
       categoryId,
       pageSize: options?.pageSize ?? SDKWORK_DEFAULT_PAGE_SIZE,
-      status: 'active',
       ...(options?.cursor ? { cursor: options.cursor } : {}),
     });
     const page = mapAppSdkCursorPage(result, mapSpuToProduct);
@@ -302,7 +301,7 @@ class SdkworkShopService implements ShopService {
   }
 
   async getCart(): Promise<CartItem[]> {
-    const result = await this.catalogClient().cart.current.retrieve();
+    const result = await this.catalogClient().cart.items.list({ pageSize: 100 });
     return extractAppSdkRecordsFromResult(result).map((record) =>
       mapCartItem(record, this.selectedCartItemIds),
     );
@@ -358,7 +357,7 @@ class SdkworkShopService implements ShopService {
     const checkoutLines = cartItems
       .map((item) => ({
         skuId: (item.skuId ?? item.productId).trim(),
-        quantity: Math.max(1, item.quantity),
+        quantity: String(Math.max(1, item.quantity)),
       }))
       .filter((line) => line.skuId.length > 0);
 
@@ -380,13 +379,10 @@ class SdkworkShopService implements ShopService {
       throw new Error('Commerce checkout session id is missing from the SDK response.');
     }
 
-    const createOrderCommand = {};
     const orderResult = await this.orderClient().checkout.sessions.orders.create(
       sessionId,
-      createOrderCommand,
       createSdkworkWriteCommandParams('checkout.sessions.orders.create', {
         checkoutSessionId: sessionId,
-        ...createOrderCommand,
       }),
     );
     const orderRecord = extractAppSdkPayload(orderResult);
