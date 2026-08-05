@@ -24,6 +24,17 @@ impl ShopServiceHost {
         })
     }
 
+    /// Build the shop service host against a caller-provided database pool so
+    /// the platform cloud gateway can share its process-wide PostgreSQL pool.
+    pub async fn from_pool(pool: DatabasePool) -> Result<Self, String> {
+        let database = sdkwork_shop_database_host::bootstrap_shop_database(pool).await?;
+        let repository = SqlxShopRepository::new(database.pool().clone());
+        Ok(Self {
+            shop_service: ShopService::new(repository),
+            database,
+        })
+    }
+
     pub fn shop_service(&self) -> &ShopService<SqlxShopRepository> {
         &self.shop_service
     }
