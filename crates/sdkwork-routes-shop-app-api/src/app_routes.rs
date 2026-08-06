@@ -9,18 +9,18 @@ use axum::{Json, Router};
 use sdkwork_contract_service::CommerceServiceError;
 use sdkwork_iam_context_service::IamAppContext;
 use sdkwork_merchandise_repository_sqlx::{
-    PostgresCommerceCatalogStore, SqliteCommerceCatalogStore,
+    PostgresCommerceCatalogStore,
 };
 use sdkwork_merchandise_service::{
     ArchiveSpuCommand, CreateProductSpuCommand, ProductSpuListQuery, PublishSpuCommand,
     UpdateProductSpuCommand,
 };
-use sdkwork_shop_repository_sqlx::{PostgresCommerceShopStore, SqliteCommerceShopStore};
+use sdkwork_shop_repository_sqlx::PostgresCommerceShopStore;
 use sdkwork_shop_service::{
     ShopDetailQuery, ShopListQuery, ShopPage, ShopScopeQuery, ShopSummaryView,
 };
 use serde::{Deserialize, Serialize};
-use sqlx::{PgPool, SqlitePool};
+use sqlx::PgPool;
 
 use crate::http_envelope::{
     not_found_response, shop_system_response, success_created_resource, success_list,
@@ -473,7 +473,6 @@ macro_rules! impl_shop_store_forward {
     };
 }
 
-impl_shop_store_forward!(SqliteCommerceShopStore);
 impl_shop_store_forward!(PostgresCommerceShopStore);
 
 #[derive(Clone)]
@@ -514,13 +513,6 @@ struct ShopSummaryResponse {
     version: i64,
     created_at: String,
     updated_at: String,
-}
-
-pub fn app_shop_router_with_sqlite_pool(pool: SqlitePool) -> Router {
-    build_app_shop_router(
-        Arc::new(SqliteCommerceShopStore::new(pool.clone())),
-        Arc::new(SqliteCommerceCatalogStore::new(pool)),
-    )
 }
 
 pub fn app_shop_router_with_postgres_pool(pool: PgPool) -> Router {

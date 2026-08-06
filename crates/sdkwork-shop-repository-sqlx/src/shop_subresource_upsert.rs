@@ -1,16 +1,12 @@
 use sdkwork_contract_service::CommerceServiceError;
-use sqlx::{postgres::PgRow, sqlite::SqliteRow, Column, PgPool, Row, SqlitePool};
+use sqlx::{postgres::PgRow, Column, PgPool, Row};
 
 #[derive(Clone)]
 pub enum ShopWriteDb {
-    Sqlite(SqlitePool),
     Postgres(PgPool),
 }
 
 impl ShopWriteDb {
-    pub fn sqlite(pool: SqlitePool) -> Self {
-        Self::Sqlite(pool)
-    }
 
     pub fn postgres(pool: PgPool) -> Self {
         Self::Postgres(pool)
@@ -259,27 +255,6 @@ async fn upsert_category_binding_db(
         .to_string();
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_category_binding (id, tenant_id, organization_id, shop_id, shop_category_code, platform_category_code, platform_category_name, category_path, category_level, category_status, qualification_required, qualification_snapshot_json, review_status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET platform_category_code = EXCLUDED.platform_category_code, platform_category_name = EXCLUDED.platform_category_name, category_path = EXCLUDED.category_path, category_level = EXCLUDED.category_level, category_status = EXCLUDED.category_status, qualification_required = EXCLUDED.qualification_required, qualification_snapshot_json = EXCLUDED.qualification_snapshot_json, review_status = EXCLUDED.review_status, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(shop_category_code)
-                .bind(platform_category_code)
-                .bind(platform_category_name)
-                .bind(category_path)
-                .bind(category_level)
-                .bind(category_status)
-                .bind(if qualification_required { 1 } else { 0 })
-                .bind(&qualification_snapshot_json)
-                .bind(review_status)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_category_binding (id, tenant_id, organization_id, shop_id, shop_category_code, platform_category_code, platform_category_name, category_path, category_level, category_status, qualification_required, qualification_snapshot_json, review_status, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10, $11, $12::jsonb, $13, $14, $14) ON CONFLICT(id) DO UPDATE SET platform_category_code = EXCLUDED.platform_category_code, platform_category_name = EXCLUDED.platform_category_name, category_path = EXCLUDED.category_path, category_level = EXCLUDED.category_level, category_status = EXCLUDED.category_status, qualification_required = EXCLUDED.qualification_required, qualification_snapshot_json = EXCLUDED.qualification_snapshot_json, review_status = EXCLUDED.review_status, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -345,23 +320,6 @@ async fn upsert_brand_authorization_db(
         .to_string();
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_brand_authorization (id, tenant_id, organization_id, shop_id, brand_code, brand_name, authorization_type, authorization_status, authorization_snapshot_json, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET brand_name = EXCLUDED.brand_name, authorization_type = EXCLUDED.authorization_type, authorization_status = EXCLUDED.authorization_status, authorization_snapshot_json = EXCLUDED.authorization_snapshot_json, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(brand_code)
-                .bind(brand_name)
-                .bind(authorization_type)
-                .bind(authorization_status)
-                .bind(&snapshot_json)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_brand_authorization (id, tenant_id, organization_id, shop_id, brand_code, brand_name, authorization_type, authorization_status, authorization_snapshot_json, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9::jsonb, $10, $10) ON CONFLICT(id) DO UPDATE SET brand_name = EXCLUDED.brand_name, authorization_type = EXCLUDED.authorization_type, authorization_status = EXCLUDED.authorization_status, authorization_snapshot_json = EXCLUDED.authorization_snapshot_json, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -430,23 +388,6 @@ async fn upsert_qualification_db(
         .to_string();
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_qualification (id, tenant_id, organization_id, shop_id, qualification_type, qualification_status, subject_type, subject_id, qualification_snapshot_json, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET qualification_status = EXCLUDED.qualification_status, qualification_snapshot_json = EXCLUDED.qualification_snapshot_json, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(qualification_type)
-                .bind(qualification_status)
-                .bind(subject_type)
-                .bind(subject_id)
-                .bind(&snapshot_json)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_qualification (id, tenant_id, organization_id, shop_id, qualification_type, qualification_status, subject_type, subject_id, qualification_snapshot_json, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9::jsonb, $10, $10) ON CONFLICT(id) DO UPDATE SET qualification_status = EXCLUDED.qualification_status, qualification_snapshot_json = EXCLUDED.qualification_snapshot_json, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -524,26 +465,6 @@ async fn upsert_customer_service_db(
         .unwrap_or(0);
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_customer_service (id, tenant_id, organization_id, shop_id, service_channel, service_status, contact_ref, contact_label, service_window_json, service_config_json, is_default, sort_order, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET service_status = EXCLUDED.service_status, contact_ref = EXCLUDED.contact_ref, contact_label = EXCLUDED.contact_label, service_window_json = EXCLUDED.service_window_json, service_config_json = EXCLUDED.service_config_json, is_default = EXCLUDED.is_default, sort_order = EXCLUDED.sort_order, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(service_channel)
-                .bind(service_status)
-                .bind(contact_ref)
-                .bind(contact_label)
-                .bind(&service_window_json)
-                .bind(&service_config_json)
-                .bind(if is_default { 1 } else { 0 })
-                .bind(sort_order)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_customer_service (id, tenant_id, organization_id, shop_id, service_channel, service_status, contact_ref, contact_label, service_window_json, service_config_json, is_default, sort_order, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9::jsonb, $10::jsonb, $11, $12, $13, $13) ON CONFLICT(id) DO UPDATE SET service_status = EXCLUDED.service_status, contact_ref = EXCLUDED.contact_ref, contact_label = EXCLUDED.contact_label, service_window_json = EXCLUDED.service_window_json, service_config_json = EXCLUDED.service_config_json, is_default = EXCLUDED.is_default, sort_order = EXCLUDED.sort_order, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -631,31 +552,6 @@ async fn upsert_return_address_db(
         .to_string();
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_return_address (id, tenant_id, organization_id, shop_id, address_usage, address_key, receiver_name, phone_hash, country_code, region_code, city_code, district_code, address_line1, postal_code, is_default, address_status, address_snapshot_json, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET receiver_name = EXCLUDED.receiver_name, phone_hash = EXCLUDED.phone_hash, country_code = EXCLUDED.country_code, region_code = EXCLUDED.region_code, city_code = EXCLUDED.city_code, district_code = EXCLUDED.district_code, address_line1 = EXCLUDED.address_line1, postal_code = EXCLUDED.postal_code, is_default = EXCLUDED.is_default, address_status = EXCLUDED.address_status, address_snapshot_json = EXCLUDED.address_snapshot_json, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(address_usage)
-                .bind(address_key)
-                .bind(receiver_name)
-                .bind(phone_hash)
-                .bind(country_code)
-                .bind(region_code)
-                .bind(city_code)
-                .bind(district_code)
-                .bind(address_line1)
-                .bind(postal_code)
-                .bind(if is_default { 1 } else { 0 })
-                .bind(address_status)
-                .bind(&address_snapshot_json)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_return_address (id, tenant_id, organization_id, shop_id, address_usage, address_key, receiver_name, phone_hash, country_code, region_code, city_code, district_code, address_line1, postal_code, is_default, address_status, address_snapshot_json, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17::jsonb, $18, $18) ON CONFLICT(id) DO UPDATE SET receiver_name = EXCLUDED.receiver_name, phone_hash = EXCLUDED.phone_hash, country_code = EXCLUDED.country_code, region_code = EXCLUDED.region_code, city_code = EXCLUDED.city_code, district_code = EXCLUDED.district_code, address_line1 = EXCLUDED.address_line1, postal_code = EXCLUDED.postal_code, is_default = EXCLUDED.is_default, address_status = EXCLUDED.address_status, address_snapshot_json = EXCLUDED.address_snapshot_json, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -750,29 +646,6 @@ async fn upsert_shipping_template_db(
         .to_string();
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_shipping_template (id, tenant_id, organization_id, shop_id, template_code, template_name, template_status, pricing_mode, delivery_method, base_quantity, base_fee_amount, currency_code, is_default, region_rule_json, free_shipping_rule_json, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET template_name = EXCLUDED.template_name, template_status = EXCLUDED.template_status, pricing_mode = EXCLUDED.pricing_mode, delivery_method = EXCLUDED.delivery_method, base_quantity = EXCLUDED.base_quantity, base_fee_amount = EXCLUDED.base_fee_amount, currency_code = EXCLUDED.currency_code, is_default = EXCLUDED.is_default, region_rule_json = EXCLUDED.region_rule_json, free_shipping_rule_json = EXCLUDED.free_shipping_rule_json, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(template_code)
-                .bind(template_name)
-                .bind(template_status)
-                .bind(pricing_mode)
-                .bind(delivery_method)
-                .bind(base_quantity)
-                .bind(base_fee_amount)
-                .bind(currency_code)
-                .bind(if is_default { 1 } else { 0 })
-                .bind(&region_rule_json)
-                .bind(&free_shipping_rule_json)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_shipping_template (id, tenant_id, organization_id, shop_id, template_code, template_name, template_status, pricing_mode, delivery_method, base_quantity, base_fee_amount, currency_code, is_default, region_rule_json, free_shipping_rule_json, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10, $11, $12, $13, $14::jsonb, $15::jsonb, $16, $16) ON CONFLICT(id) DO UPDATE SET template_name = EXCLUDED.template_name, template_status = EXCLUDED.template_status, pricing_mode = EXCLUDED.pricing_mode, delivery_method = EXCLUDED.delivery_method, base_quantity = EXCLUDED.base_quantity, base_fee_amount = EXCLUDED.base_fee_amount, currency_code = EXCLUDED.currency_code, is_default = EXCLUDED.is_default, region_rule_json = EXCLUDED.region_rule_json, free_shipping_rule_json = EXCLUDED.free_shipping_rule_json, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -839,25 +712,6 @@ async fn upsert_channel_db(
         .unwrap_or(0);
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_channel (id, tenant_id, organization_id, shop_id, channel_code, storefront_status, domain_name, path_prefix, theme_code, channel_config_json, sort_order, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET storefront_status = EXCLUDED.storefront_status, domain_name = EXCLUDED.domain_name, path_prefix = EXCLUDED.path_prefix, theme_code = EXCLUDED.theme_code, channel_config_json = EXCLUDED.channel_config_json, sort_order = EXCLUDED.sort_order, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(channel_code)
-                .bind(storefront_status)
-                .bind(domain_name)
-                .bind(path_prefix)
-                .bind(theme_code)
-                .bind(&channel_config_json)
-                .bind(sort_order)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_channel (id, tenant_id, organization_id, shop_id, channel_code, storefront_status, domain_name, path_prefix, theme_code, channel_config_json, sort_order, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10::jsonb, $11, $12, $12) ON CONFLICT(id) DO UPDATE SET storefront_status = EXCLUDED.storefront_status, domain_name = EXCLUDED.domain_name, path_prefix = EXCLUDED.path_prefix, theme_code = EXCLUDED.theme_code, channel_config_json = EXCLUDED.channel_config_json, sort_order = EXCLUDED.sort_order, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -936,28 +790,6 @@ async fn upsert_service_area_db(
         .unwrap_or(0);
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_service_area (id, tenant_id, organization_id, shop_id, area_type, country_code, region_code, city_code, area_key, postal_code_pattern, delivery_radius_meters, service_status, service_config_json, sort_order, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET area_type = EXCLUDED.area_type, country_code = EXCLUDED.country_code, region_code = EXCLUDED.region_code, city_code = EXCLUDED.city_code, area_key = EXCLUDED.area_key, postal_code_pattern = EXCLUDED.postal_code_pattern, delivery_radius_meters = EXCLUDED.delivery_radius_meters, service_status = EXCLUDED.service_status, service_config_json = EXCLUDED.service_config_json, sort_order = EXCLUDED.sort_order, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(area_type)
-                .bind(country_code)
-                .bind(region_code)
-                .bind(city_code)
-                .bind(area_key)
-                .bind(postal_code_pattern)
-                .bind(delivery_radius_meters)
-                .bind(service_status)
-                .bind(&service_config_json)
-                .bind(sort_order)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_service_area (id, tenant_id, organization_id, shop_id, area_type, country_code, region_code, city_code, area_key, postal_code_pattern, delivery_radius_meters, service_status, service_config_json, sort_order, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10, $11, $12, $13::jsonb, $14, $15, $15) ON CONFLICT(id) DO UPDATE SET area_type = EXCLUDED.area_type, country_code = EXCLUDED.country_code, region_code = EXCLUDED.region_code, city_code = EXCLUDED.city_code, area_key = EXCLUDED.area_key, postal_code_pattern = EXCLUDED.postal_code_pattern, delivery_radius_meters = EXCLUDED.delivery_radius_meters, service_status = EXCLUDED.service_status, service_config_json = EXCLUDED.service_config_json, sort_order = EXCLUDED.sort_order, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -1031,25 +863,6 @@ async fn upsert_policy_db(
     let reviewed_at = payload.get("reviewedAt").and_then(|v| v.as_str());
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_policy (id, tenant_id, organization_id, shop_id, policy_type, policy_status, policy_version, policy_json, published_at, reviewed_by, reviewed_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET policy_status = EXCLUDED.policy_status, policy_version = EXCLUDED.policy_version, policy_json = EXCLUDED.policy_json, published_at = EXCLUDED.published_at, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(policy_type)
-                .bind(policy_status)
-                .bind(policy_version_number)
-                .bind(&policy_json)
-                .bind(published_at)
-                .bind(reviewed_by)
-                .bind(reviewed_at)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_policy (id, tenant_id, organization_id, shop_id, policy_type, policy_status, policy_version, policy_json, published_at, reviewed_by, reviewed_at, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8::jsonb, $9, $10, $11, $12, $12) ON CONFLICT(id) DO UPDATE SET policy_status = EXCLUDED.policy_status, policy_version = EXCLUDED.policy_version, policy_json = EXCLUDED.policy_json, published_at = EXCLUDED.published_at, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -1113,23 +926,6 @@ async fn upsert_fulfillment_profile_db(
         .to_string();
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_fulfillment_profile (id, tenant_id, organization_id, shop_id, fulfillment_mode, shipping_origin_region_code, service_level_code, after_sales_policy_json, service_config_json, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET fulfillment_mode = EXCLUDED.fulfillment_mode, shipping_origin_region_code = EXCLUDED.shipping_origin_region_code, service_level_code = EXCLUDED.service_level_code, after_sales_policy_json = EXCLUDED.after_sales_policy_json, service_config_json = EXCLUDED.service_config_json, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(fulfillment_mode)
-                .bind(shipping_origin_region_code)
-                .bind(service_level_code)
-                .bind(&after_sales_policy_json)
-                .bind(&service_config_json)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_fulfillment_profile (id, tenant_id, organization_id, shop_id, fulfillment_mode, shipping_origin_region_code, service_level_code, after_sales_policy_json, service_config_json, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8::jsonb, $9::jsonb, $10, $10) ON CONFLICT(id) DO UPDATE SET fulfillment_mode = EXCLUDED.fulfillment_mode, shipping_origin_region_code = EXCLUDED.shipping_origin_region_code, service_level_code = EXCLUDED.service_level_code, after_sales_policy_json = EXCLUDED.after_sales_policy_json, service_config_json = EXCLUDED.service_config_json, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -1197,26 +993,6 @@ async fn upsert_settlement_profile_db(
     let reviewed_at = payload.get("reviewedAt").and_then(|v| v.as_str());
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_settlement_profile (id, tenant_id, organization_id, shop_id, settlement_status, settlement_cycle, settlement_currency_code, account_ref, risk_hold_days, settlement_config_json, reviewed_by, reviewed_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET settlement_status = EXCLUDED.settlement_status, settlement_cycle = EXCLUDED.settlement_cycle, settlement_currency_code = EXCLUDED.settlement_currency_code, account_ref = EXCLUDED.account_ref, risk_hold_days = EXCLUDED.risk_hold_days, settlement_config_json = EXCLUDED.settlement_config_json, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(settlement_status)
-                .bind(settlement_cycle)
-                .bind(settlement_currency_code)
-                .bind(account_ref)
-                .bind(risk_hold_days)
-                .bind(&settlement_config_json)
-                .bind(reviewed_by)
-                .bind(reviewed_at)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_settlement_profile (id, tenant_id, organization_id, shop_id, settlement_status, settlement_cycle, settlement_currency_code, account_ref, risk_hold_days, settlement_config_json, reviewed_by, reviewed_at, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10::jsonb, $11, $12, $13, $13) ON CONFLICT(id) DO UPDATE SET settlement_status = EXCLUDED.settlement_status, settlement_cycle = EXCLUDED.settlement_cycle, settlement_currency_code = EXCLUDED.settlement_currency_code, account_ref = EXCLUDED.account_ref, risk_hold_days = EXCLUDED.risk_hold_days, settlement_config_json = EXCLUDED.settlement_config_json, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -1285,26 +1061,6 @@ async fn upsert_business_hour_db(
     let version = payload.get("version").and_then(|v| v.as_i64()).unwrap_or(0);
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_business_hour (id, tenant_id, organization_id, shop_id, schedule_type, timezone, weekly_schedule_json, holiday_schedule_json, effective_from, effective_to, status, version, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET schedule_type = EXCLUDED.schedule_type, timezone = EXCLUDED.timezone, weekly_schedule_json = EXCLUDED.weekly_schedule_json, holiday_schedule_json = EXCLUDED.holiday_schedule_json, effective_from = EXCLUDED.effective_from, effective_to = EXCLUDED.effective_to, status = EXCLUDED.status, version = EXCLUDED.version, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(schedule_type)
-                .bind(timezone)
-                .bind(&weekly_schedule_json)
-                .bind(&holiday_schedule_json)
-                .bind(effective_from)
-                .bind(effective_to)
-                .bind(status)
-                .bind(version)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_business_hour (id, tenant_id, organization_id, shop_id, schedule_type, timezone, weekly_schedule_json, holiday_schedule_json, effective_from, effective_to, status, version, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7::jsonb, $8::jsonb, $9, $10, $11, $12, $13, $13) ON CONFLICT(id) DO UPDATE SET schedule_type = EXCLUDED.schedule_type, timezone = EXCLUDED.timezone, weekly_schedule_json = EXCLUDED.weekly_schedule_json, holiday_schedule_json = EXCLUDED.holiday_schedule_json, effective_from = EXCLUDED.effective_from, effective_to = EXCLUDED.effective_to, status = EXCLUDED.status, version = EXCLUDED.version, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -1375,27 +1131,6 @@ async fn upsert_deposit_account_db(
     let reviewed_at = payload.get("reviewedAt").and_then(|v| v.as_str());
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_deposit_account (id, tenant_id, organization_id, shop_id, deposit_status, currency_code, required_amount, paid_amount, frozen_amount, account_ref, due_at, reviewed_by, reviewed_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET deposit_status = EXCLUDED.deposit_status, currency_code = EXCLUDED.currency_code, required_amount = EXCLUDED.required_amount, paid_amount = EXCLUDED.paid_amount, frozen_amount = EXCLUDED.frozen_amount, account_ref = EXCLUDED.account_ref, due_at = EXCLUDED.due_at, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(deposit_status)
-                .bind(currency_code)
-                .bind(required_amount)
-                .bind(paid_amount)
-                .bind(frozen_amount)
-                .bind(account_ref)
-                .bind(due_at)
-                .bind(reviewed_by)
-                .bind(reviewed_at)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_deposit_account (id, tenant_id, organization_id, shop_id, deposit_status, currency_code, required_amount, paid_amount, frozen_amount, account_ref, due_at, reviewed_by, reviewed_at, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $14) ON CONFLICT(id) DO UPDATE SET deposit_status = EXCLUDED.deposit_status, currency_code = EXCLUDED.currency_code, required_amount = EXCLUDED.required_amount, paid_amount = EXCLUDED.paid_amount, frozen_amount = EXCLUDED.frozen_amount, account_ref = EXCLUDED.account_ref, due_at = EXCLUDED.due_at, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -1483,30 +1218,6 @@ async fn upsert_application_db(
     let review_comment = payload.get("reviewComment").and_then(|v| v.as_str());
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_application (id, tenant_id, organization_id, shop_id, application_no, application_type, review_status, legal_entity_snapshot_json, contact_snapshot_json, qualification_snapshot_json, submitted_by, submitted_at, reviewed_by, reviewed_at, review_comment, idempotency_key, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET application_no = EXCLUDED.application_no, application_type = EXCLUDED.application_type, review_status = EXCLUDED.review_status, legal_entity_snapshot_json = EXCLUDED.legal_entity_snapshot_json, contact_snapshot_json = EXCLUDED.contact_snapshot_json, qualification_snapshot_json = EXCLUDED.qualification_snapshot_json, submitted_by = EXCLUDED.submitted_by, submitted_at = EXCLUDED.submitted_at, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, review_comment = EXCLUDED.review_comment, idempotency_key = EXCLUDED.idempotency_key, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(application_no)
-                .bind(application_type)
-                .bind(review_status)
-                .bind(&legal_entity_snapshot_json)
-                .bind(&contact_snapshot_json)
-                .bind(&qualification_snapshot_json)
-                .bind(submitted_by)
-                .bind(&submitted_at)
-                .bind(reviewed_by)
-                .bind(reviewed_at)
-                .bind(review_comment)
-                .bind(idempotency_key)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_application (id, tenant_id, organization_id, shop_id, application_no, application_type, review_status, legal_entity_snapshot_json, contact_snapshot_json, qualification_snapshot_json, submitted_by, submitted_at, reviewed_by, reviewed_at, review_comment, idempotency_key, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8::jsonb, $9::jsonb, $10::jsonb, $11, $12, $13, $14, $15, $16, $17, $17) ON CONFLICT(id) DO UPDATE SET application_no = EXCLUDED.application_no, application_type = EXCLUDED.application_type, review_status = EXCLUDED.review_status, legal_entity_snapshot_json = EXCLUDED.legal_entity_snapshot_json, contact_snapshot_json = EXCLUDED.contact_snapshot_json, qualification_snapshot_json = EXCLUDED.qualification_snapshot_json, submitted_by = EXCLUDED.submitted_by, submitted_at = EXCLUDED.submitted_at, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, review_comment = EXCLUDED.review_comment, idempotency_key = EXCLUDED.idempotency_key, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -1575,27 +1286,6 @@ async fn upsert_verification_db(
     let reviewed_at = payload.get("reviewedAt").and_then(|v| v.as_str());
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_verification (id, tenant_id, organization_id, shop_id, verification_type, verification_status, legal_entity_name, credential_no_hash, credential_media_resource_id, verification_snapshot_json, expires_at, reviewed_by, reviewed_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET verification_status = EXCLUDED.verification_status, legal_entity_name = EXCLUDED.legal_entity_name, credential_no_hash = EXCLUDED.credential_no_hash, credential_media_resource_id = EXCLUDED.credential_media_resource_id, verification_snapshot_json = EXCLUDED.verification_snapshot_json, expires_at = EXCLUDED.expires_at, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(verification_type)
-                .bind(verification_status)
-                .bind(legal_entity_name)
-                .bind(credential_no_hash)
-                .bind(credential_media_resource_id)
-                .bind(&verification_snapshot_json)
-                .bind(expires_at)
-                .bind(reviewed_by)
-                .bind(reviewed_at)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_verification (id, tenant_id, organization_id, shop_id, verification_type, verification_status, legal_entity_name, credential_no_hash, credential_media_resource_id, verification_snapshot_json, expires_at, reviewed_by, reviewed_at, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10::jsonb, $11, $12, $13, $14, $14) ON CONFLICT(id) DO UPDATE SET verification_status = EXCLUDED.verification_status, legal_entity_name = EXCLUDED.legal_entity_name, credential_no_hash = EXCLUDED.credential_no_hash, credential_media_resource_id = EXCLUDED.credential_media_resource_id, verification_snapshot_json = EXCLUDED.verification_snapshot_json, expires_at = EXCLUDED.expires_at, reviewed_by = EXCLUDED.reviewed_by, reviewed_at = EXCLUDED.reviewed_at, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -1671,27 +1361,6 @@ async fn upsert_risk_signal_db(
         .unwrap_or(&now);
 
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_risk_signal (id, tenant_id, organization_id, shop_id, signal_no, signal_type, risk_level, signal_status, source_type, source_id, risk_score, payload_json, detected_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET signal_type = EXCLUDED.signal_type, risk_level = EXCLUDED.risk_level, signal_status = EXCLUDED.signal_status, source_type = EXCLUDED.source_type, source_id = EXCLUDED.source_id, risk_score = EXCLUDED.risk_score, payload_json = EXCLUDED.payload_json, detected_at = EXCLUDED.detected_at, updated_at = EXCLUDED.updated_at")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(signal_no)
-                .bind(signal_type)
-                .bind(risk_level)
-                .bind(signal_status)
-                .bind(source_type)
-                .bind(source_id)
-                .bind(risk_score)
-                .bind(&payload_json)
-                .bind(detected_at)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_risk_signal (id, tenant_id, organization_id, shop_id, signal_no, signal_type, risk_level, signal_status, source_type, source_id, risk_score, payload_json, detected_at, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10, $11, $12::jsonb, $13, $14, $14) ON CONFLICT(id) DO UPDATE SET signal_type = EXCLUDED.signal_type, risk_level = EXCLUDED.risk_level, signal_status = EXCLUDED.signal_status, source_type = EXCLUDED.source_type, source_id = EXCLUDED.source_id, risk_score = EXCLUDED.risk_score, payload_json = EXCLUDED.payload_json, detected_at = EXCLUDED.detected_at, updated_at = EXCLUDED.updated_at")
                 .bind(&id)
@@ -1727,18 +1396,6 @@ pub async fn resolve_shop_risk_signal_db(
 ) -> Result<serde_json::Value, CommerceServiceError> {
     let now = current_timestamp_string();
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            sqlx::query("UPDATE commerce_shop_risk_signal SET signal_status = CAST(? AS TEXT), resolved_at = CAST(? AS TEXT), updated_at = CAST(? AS TEXT) WHERE tenant_id = CAST(? AS TEXT) AND shop_id = CAST(? AS TEXT) AND id = CAST(? AS TEXT)")
-                .bind("resolved")
-                .bind(&now)
-                .bind(&now)
-                .bind(tenant_id)
-                .bind(shop_id)
-                .bind(risk_signal_id)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         ShopWriteDb::Postgres(pool) => {
             sqlx::query("UPDATE commerce_shop_risk_signal SET signal_status = CAST($1 AS TEXT), resolved_at = CAST($2 AS TEXT), updated_at = CAST($3 AS TEXT) WHERE tenant_id = CAST($4 AS TEXT) AND shop_id = CAST($5 AS TEXT) AND id = CAST($6 AS TEXT)")
                 .bind("resolved")
@@ -1764,16 +1421,6 @@ pub async fn retrieve_shop_table_row_by_id(
     row_id: &str,
 ) -> Result<Option<serde_json::Value>, CommerceServiceError> {
     match db {
-        ShopWriteDb::Sqlite(pool) => {
-            let sql = format!("SELECT * FROM {table} WHERE tenant_id = CAST(? AS TEXT) AND id = CAST(? AS TEXT) LIMIT 1");
-            let row = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
-                .bind(tenant_id)
-                .bind(row_id)
-                .fetch_optional(pool)
-                .await
-                .map_err(storage_error)?;
-            Ok(row.map(|r| map_row_json_sqlite(&r)))
-        }
         ShopWriteDb::Postgres(pool) => {
             let sql = format!("SELECT * FROM {table} WHERE tenant_id = CAST($1 AS TEXT) AND id = CAST($2 AS TEXT) LIMIT 1");
             let row = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
@@ -1785,20 +1432,6 @@ pub async fn retrieve_shop_table_row_by_id(
             Ok(row.map(|r| map_row_json_pg(&r)))
         }
     }
-}
-pub fn map_row_json_sqlite(row: &SqliteRow) -> serde_json::Value {
-    let mut object = serde_json::Map::new();
-    for column in row.columns() {
-        let key = column.name();
-        let value = row
-            .try_get::<Option<String>, _>(key)
-            .ok()
-            .flatten()
-            .map(serde_json::Value::String)
-            .unwrap_or(serde_json::Value::Null);
-        object.insert(key.to_owned(), value);
-    }
-    serde_json::Value::Object(object)
 }
 
 pub fn map_row_json_pg(row: &PgRow) -> serde_json::Value {
@@ -1816,13 +1449,7 @@ pub fn map_row_json_pg(row: &PgRow) -> serde_json::Value {
     serde_json::Value::Object(object)
 }
 
-pub fn sqlite_optional_string(row: &SqliteRow, column: &str) -> Option<String> {
-    row.try_get::<Option<String>, _>(column).ok().flatten()
-}
 
-pub fn sqlite_string(row: &SqliteRow, column: &str) -> String {
-    sqlite_optional_string(row, column).unwrap_or_default()
-}
 
 pub fn pg_optional_string(row: &PgRow, column: &str) -> Option<String> {
     row.try_get::<Option<String>, _>(column).ok().flatten()

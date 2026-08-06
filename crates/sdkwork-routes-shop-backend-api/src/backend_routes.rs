@@ -5,7 +5,7 @@ use axum::{Json, Router};
 use sdkwork_contract_service::CommerceServiceError;
 use sdkwork_iam_context_service::IamAppContext;
 use serde::Serialize;
-use sqlx::{postgres::PgRow, sqlite::SqliteRow, PgPool, Row, SqlitePool};
+use sqlx::{postgres::PgRow, PgPool, Row};
 
 use crate::http_envelope::{
     not_found_response, shop_system_response, success_created_resource, success_list,
@@ -15,20 +15,18 @@ use crate::subject::app_runtime_subject_from_extension;
 use crate::web_bootstrap::with_backend_request_identity;
 
 use sdkwork_shop_repository_sqlx::shop_subresource_upsert::{
-    self, current_timestamp_string, map_row_json_pg, map_row_json_sqlite, pg_optional_string,
-    pg_string, sqlite_optional_string, sqlite_string, stable_storage_id, ShopWriteDb,
+    self, current_timestamp_string, map_row_json_pg, pg_optional_string,
+    pg_string, stable_storage_id, ShopWriteDb,
 };
 
 fn as_shop_write_db(db: &BackendShopDb) -> ShopWriteDb {
     match db {
-        BackendShopDb::Sqlite(pool) => ShopWriteDb::Sqlite(pool.clone()),
         BackendShopDb::Postgres(pool) => ShopWriteDb::Postgres(pool.clone()),
     }
 }
 
 #[derive(Clone)]
 enum BackendShopDb {
-    Sqlite(SqlitePool),
     Postgres(PgPool),
 }
 
@@ -62,10 +60,6 @@ struct ShopSummary {
     version: i64,
     created_at: String,
     updated_at: String,
-}
-
-pub fn backend_shop_admin_router_with_sqlite_pool(pool: SqlitePool) -> Router {
-    backend_shop_admin_router_with_db(BackendShopDb::Sqlite(pool))
 }
 
 pub fn backend_shop_admin_router_with_postgres_pool(pool: PgPool) -> Router {
@@ -644,21 +638,6 @@ async fn list_shops_db(
     let offset = ((page - 1) * page_size) as i64;
     let limit = page_size as i64;
     match db {
-        BackendShopDb::Sqlite(pool) => {
-            let total: i64 = sqlx::query_scalar("SELECT COUNT(*) FROM commerce_shop WHERE tenant_id = CAST(? AS TEXT) AND deleted_at IS NULL")
-                .bind(tenant_id)
-                .fetch_one(pool)
-                .await
-                .map_err(storage_error)?;
-            let rows = sqlx::query("SELECT id, tenant_id, organization_id, shop_no, shop_name, shop_type, business_model, storefront_status, operation_status, review_status, default_currency_code, default_locale, timezone, version, created_at, updated_at FROM commerce_shop WHERE tenant_id = CAST(? AS TEXT) AND deleted_at IS NULL ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?")
-                .bind(tenant_id)
-                .bind(limit)
-                .bind(offset)
-                .fetch_all(pool)
-                .await
-                .map_err(storage_error)?;
-            Ok((rows.iter().map(map_shop_sqlite).collect(), total as u64))
-        }
         BackendShopDb::Postgres(pool) => {
             let total: i64 = sqlx::query_scalar("SELECT COUNT(*) FROM commerce_shop WHERE tenant_id = CAST($1 AS TEXT) AND deleted_at IS NULL")
                 .bind(tenant_id)
@@ -729,11 +708,6 @@ async fn create_shop_db(
     let locale = payload.get("defaultLocale").and_then(|v| v.as_str());
     let timezone = payload.get("timezone").and_then(|v| v.as_str());
     match db {
-        BackendShopDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop (id, tenant_id, organization_id, shop_no, shop_name, shop_type, business_model, storefront_status, operation_status, review_status, data_scope, default_currency_code, default_locale, timezone, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'organization', ?, ?, ?, ?, ?)")
-                .bind(&id).bind(tenant_id).bind(org).bind(shop_no).bind(shop_name).bind(shop_type).bind(business_model).bind(storefront_status).bind(operation_status).bind(review_status).bind(currency).bind(locale).bind(timezone).bind(&now).bind(&now)
-                .execute(pool).await.map_err(storage_error)?;
-        }
         BackendShopDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop (id, tenant_id, organization_id, shop_no, shop_name, shop_type, business_model, storefront_status, operation_status, review_status, data_scope, default_currency_code, default_locale, timezone, created_at, updated_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10, 'organization', $11, $12, $13, $14, $14)")
                 .bind(&id).bind(tenant_id).bind(org).bind(shop_no).bind(shop_name).bind(shop_type).bind(business_model).bind(storefront_status).bind(operation_status).bind(review_status).bind(currency).bind(locale).bind(timezone).bind(&now)
@@ -752,11 +726,6 @@ async fn retrieve_shop_db(
     shop_id: &str,
 ) -> Result<Option<serde_json::Value>, CommerceServiceError> {
     match db {
-        BackendShopDb::Sqlite(pool) => {
-            let row = sqlx::query("SELECT * FROM commerce_shop WHERE tenant_id = CAST(? AS TEXT) AND id = CAST(? AS TEXT) AND deleted_at IS NULL LIMIT 1")
-                .bind(tenant_id).bind(shop_id).fetch_optional(pool).await.map_err(storage_error)?;
-            Ok(row.map(|v| map_row_json_sqlite(&v)))
-        }
         BackendShopDb::Postgres(pool) => {
             let row = sqlx::query("SELECT * FROM commerce_shop WHERE tenant_id = CAST($1 AS TEXT) AND id = CAST($2 AS TEXT) AND deleted_at IS NULL LIMIT 1")
                 .bind(tenant_id).bind(shop_id).fetch_optional(pool).await.map_err(storage_error)?;
@@ -796,11 +765,6 @@ async fn update_shop_db(
         .or_else(|| existing.get("review_status").and_then(|v| v.as_str()))
         .unwrap_or("pending");
     match db {
-        BackendShopDb::Sqlite(pool) => {
-            sqlx::query("UPDATE commerce_shop SET shop_name = ?, storefront_status = ?, operation_status = ?, review_status = ?, updated_at = ? WHERE tenant_id = CAST(? AS TEXT) AND id = CAST(? AS TEXT)")
-                .bind(shop_name).bind(storefront_status).bind(operation_status).bind(review_status).bind(&now).bind(tenant_id).bind(shop_id)
-                .execute(pool).await.map_err(storage_error)?;
-        }
         BackendShopDb::Postgres(pool) => {
             sqlx::query("UPDATE commerce_shop SET shop_name = $1, storefront_status = $2, operation_status = $3, review_status = $4, updated_at = $5 WHERE tenant_id = CAST($6 AS TEXT) AND id = CAST($7 AS TEXT)")
                 .bind(shop_name).bind(storefront_status).bind(operation_status).bind(review_status).bind(&now).bind(tenant_id).bind(shop_id)
@@ -883,24 +847,6 @@ async fn insert_shop_status_event_db(
     ]);
 
     match db {
-        BackendShopDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_status_event (id, tenant_id, organization_id, shop_id, event_no, event_type, from_status, to_status, actor_type, actor_id, idempotency_key, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
-                .bind(&id)
-                .bind(transition.tenant_id)
-                .bind(transition.organization_id)
-                .bind(transition.shop_id)
-                .bind(&event_no)
-                .bind(transition.event_type)
-                .bind(from_status)
-                .bind(to_status)
-                .bind("admin")
-                .bind(transition.actor_id)
-                .bind(&idempotency_key)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         BackendShopDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_status_event (id, tenant_id, organization_id, shop_id, event_no, event_type, from_status, to_status, actor_type, actor_id, idempotency_key, created_at) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9, $10, $11, $12)")
                 .bind(&id)
@@ -957,24 +903,6 @@ async fn sync_shop_readiness_db(
     .to_string();
 
     match db {
-        BackendShopDb::Sqlite(pool) => {
-            sqlx::query("INSERT INTO commerce_shop_readiness (id, tenant_id, organization_id, shop_id, readiness_scope, readiness_status, blocking_count, warning_count, checklist_json, evaluated_at, created_at, updated_at, version) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0) ON CONFLICT(id) DO UPDATE SET readiness_status = EXCLUDED.readiness_status, blocking_count = EXCLUDED.blocking_count, warning_count = EXCLUDED.warning_count, checklist_json = EXCLUDED.checklist_json, evaluated_at = EXCLUDED.evaluated_at, updated_at = EXCLUDED.updated_at, version = version + 1")
-                .bind(&id)
-                .bind(tenant_id)
-                .bind(organization_id)
-                .bind(shop_id)
-                .bind(readiness_scope)
-                .bind(readiness_status)
-                .bind(blocking_count)
-                .bind(warning_count)
-                .bind(&checklist_json)
-                .bind(&now)
-                .bind(&now)
-                .bind(&now)
-                .execute(pool)
-                .await
-                .map_err(storage_error)?;
-        }
         BackendShopDb::Postgres(pool) => {
             sqlx::query("INSERT INTO commerce_shop_readiness (id, tenant_id, organization_id, shop_id, readiness_scope, readiness_status, blocking_count, warning_count, checklist_json, evaluated_at, created_at, updated_at, version) VALUES (CAST($1 AS TEXT), CAST($2 AS TEXT), CAST($3 AS TEXT), CAST($4 AS TEXT), $5, $6, $7, $8, $9::jsonb, $10, $10, $10, 0) ON CONFLICT(id) DO UPDATE SET readiness_status = EXCLUDED.readiness_status, blocking_count = EXCLUDED.blocking_count, warning_count = EXCLUDED.warning_count, checklist_json = EXCLUDED.checklist_json, evaluated_at = EXCLUDED.evaluated_at, updated_at = EXCLUDED.updated_at, version = commerce_shop_readiness.version + 1")
                 .bind(&id)
@@ -1003,16 +931,6 @@ async fn list_shop_table_rows_db(
     shop_id: &str,
 ) -> Result<Vec<serde_json::Value>, CommerceServiceError> {
     match db {
-        BackendShopDb::Sqlite(pool) => {
-            let sql = format!("SELECT * FROM {table} WHERE tenant_id = CAST(? AS TEXT) AND shop_id = CAST(? AS TEXT) ORDER BY created_at DESC, id DESC");
-            let rows = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
-                .bind(tenant_id)
-                .bind(shop_id)
-                .fetch_all(pool)
-                .await
-                .map_err(storage_error)?;
-            Ok(rows.iter().map(map_row_json_sqlite).collect())
-        }
         BackendShopDb::Postgres(pool) => {
             let sql = format!("SELECT * FROM {table} WHERE tenant_id = CAST($1 AS TEXT) AND shop_id = CAST($2 AS TEXT) ORDER BY created_at DESC, id DESC");
             let rows = sqlx::query(sqlx::AssertSqlSafe(sql.as_str()))
@@ -1026,26 +944,6 @@ async fn list_shop_table_rows_db(
     }
 }
 
-fn map_shop_sqlite(row: &SqliteRow) -> ShopSummary {
-    ShopSummary {
-        id: sqlite_string(row, "id"),
-        tenant_id: sqlite_string(row, "tenant_id"),
-        organization_id: sqlite_string(row, "organization_id"),
-        shop_no: sqlite_string(row, "shop_no"),
-        shop_name: sqlite_string(row, "shop_name"),
-        shop_type: sqlite_string(row, "shop_type"),
-        business_model: sqlite_string(row, "business_model"),
-        storefront_status: sqlite_string(row, "storefront_status"),
-        operation_status: sqlite_string(row, "operation_status"),
-        review_status: sqlite_string(row, "review_status"),
-        default_currency_code: sqlite_string(row, "default_currency_code"),
-        default_locale: sqlite_optional_string(row, "default_locale"),
-        timezone: sqlite_optional_string(row, "timezone"),
-        version: row.try_get::<i64, _>("version").unwrap_or(0),
-        created_at: sqlite_string(row, "created_at"),
-        updated_at: sqlite_string(row, "updated_at"),
-    }
-}
 
 fn map_shop_pg(row: &PgRow) -> ShopSummary {
     ShopSummary {

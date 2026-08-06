@@ -7,7 +7,7 @@ pub mod subject;
 pub mod web_bootstrap;
 
 pub use app_routes::{
-    app_shop_router_with_postgres_pool, app_shop_router_with_sqlite_pool, build_app_shop_router,
+    app_shop_router_with_postgres_pool, build_app_shop_router,
     CommerceShopFuture, CommerceShopStore,
 };
 pub use http_route_manifest::app_route_manifest;
