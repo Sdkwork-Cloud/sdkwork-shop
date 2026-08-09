@@ -3,7 +3,7 @@
     {
       "prefix": "commerce_",
       "domain": "shop",
-      "owner": "shop-platform"
+      "owner": "sdkwork-commerce-platform"
     }
   ],
   "schemaVersion": 1,

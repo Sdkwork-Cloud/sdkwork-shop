@@ -3,7 +3,9 @@ use std::sync::Arc;
 
 use sdkwork_database_config::DatabaseConfig;
 use sdkwork_database_lifecycle::{lifecycle_options_from_env, LifecycleOrchestrator};
-use sdkwork_database_spi::{DatabaseAssetProvider, DatabaseManifest, DefaultDatabaseModule};
+use sdkwork_database_spi::{
+    DatabaseAssetProvider, DatabaseManifest, DefaultDatabaseModule, SpiError,
+};
 use sdkwork_database_sqlx::{create_pool_from_config, DatabasePool};
 
 pub struct ShopDatabaseHost {
@@ -21,10 +23,22 @@ impl ShopDatabaseHost {
     }
 }
 
+/// Returns the shop [`DefaultDatabaseModule`] loaded from the shop
+/// repository's `database/` directory.
+///
+/// # Convention
+///
+/// Each `*-database-host` crate exports this function so that federated hosts
+/// (e.g. CloudRouter) can register the module in a `DatabaseModuleRegistry`
+/// and run init + migrate + seed through
+/// `RegistryLifecycleOrchestrator::bootstrap_all`.
+pub fn database_module() -> Result<DefaultDatabaseModule, SpiError> {
+    DefaultDatabaseModule::from_app_root(&resolve_app_root())
+}
+
 pub async fn bootstrap_shop_database(pool: DatabasePool) -> Result<ShopDatabaseHost, String> {
-    let app_root = resolve_app_root();
     let module = Arc::new(
-        DefaultDatabaseModule::from_app_root(&app_root)
+        database_module()
             .map_err(|error| format!("load shop database module failed: {error}"))?,
     );
     let manifest = DatabaseManifest::from_file(module.manifest_path())
