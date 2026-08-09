@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS commerce_shop (
   id UUID PRIMARY KEY,
   tenant_id UUID NOT NULL,
-  organization_id UUID NOT NULL,
+  organization_id UUID NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000',
   name TEXT NOT NULL,
   slug TEXT NOT NULL,
   status TEXT NOT NULL DEFAULT 'draft',
