@@ -22,6 +22,15 @@ pub async fn upsert_shop_table_row(
     explicit_id: Option<String>,
     payload: serde_json::Value,
 ) -> Result<serde_json::Value, CommerceServiceError> {
+    // Platform rows persist the sentinel organization scope (`"0"`) so that
+    // personal-login (no-org) sessions never write NULL into the NOT NULL
+    // `organization_id` columns (DATABASE_SPEC DB090).
+    let organization_id = Some(
+        organization_id
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("0"),
+    );
     if table == "commerce_shop_category_binding" {
         return upsert_category_binding_db(
             db,
