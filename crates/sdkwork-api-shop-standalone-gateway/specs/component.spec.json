@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.component.spec",
+  "component": {
+    "name": "sdkwork-api-shop-standalone-gateway",
+    "displayName": "SDKWork Shop Standalone Gateway",
+    "version": "0.1.0",
+    "type": "rust-api-standalone-gateway",
+    "root": "crates/sdkwork-api-shop-standalone-gateway",
+    "domain": "commerce",
+    "capability": "api-gateway",
+    "surface": "gateway-api",
+    "languages": [
+      "rust"
+    ],
+    "generated": false,
+    "manifests": [
+      "Cargo.toml"
+    ]
+  },
+  "canonicalSpecs": [
+    {
+      "file": "API_ASSEMBLY_SPEC.md",
+      "path": "../../../sdkwork-specs/API_ASSEMBLY_SPEC.md",
+      "purpose": "Complete owner assembly contribution consumption."
+    },
+    {
+      "file": "APPLICATION_GATEWAY_SPEC.md",
+      "path": "../../../sdkwork-specs/APPLICATION_GATEWAY_SPEC.md",
+      "purpose": "Thin standalone host and single-ingress contract."
+    },
+    {
+      "file": "WEB_FRAMEWORK_SPEC.md",
+      "path": "../../../sdkwork-specs/WEB_FRAMEWORK_SPEC.md",
+      "purpose": "Single process Web Framework binding."
+    }
+  ],
+  "contracts": {
+    "layerRole": "runtime-gateway",
+    "publicExports": [],
+    "providedPorts": [],
+    "requiredPorts": [
+      {
+        "name": "applicationApiAssembly",
+        "provider": "sdkwork-api-shop-assembly",
+        "export": "sdkwork_api_shop_assembly::assemble_api_router_from_env"
+      }
+    ],
+    "runtimeEntrypoints": [
+      "src/main.rs"
+    ],
+    "sdkDependencies": [],
+    "dependencyApiExports": [],
+    "dependencyApiSurfaces": [],
+    "events": [],
+    "configKeys": [
+      "SHOP_API_BIND",
+      "SDKWORK_SHOP_ENVIRONMENT",
+      "SDKWORK_CORS_ALLOWED_ORIGINS"
+    ]
+  },
+  "verification": {
+    "commands": [
+      "cargo check -p sdkwork-api-shop-standalone-gateway",
+      "node ../sdkwork-specs/tools/check-api-assembly-integration-closure.mjs --root ."
+    ]
+  }
+}

@@ -45,6 +45,7 @@
     "publicExports": [
       "sdkwork_api_shop_assembly::assemble_api_router",
       "sdkwork_api_shop_assembly::assemble_api_router_from_env",
+      "sdkwork_api_shop_assembly::assemble_api_router_with_pool",
       "sdkwork_api_shop_assembly::assemble_app_api_contribution",
       "sdkwork_api_shop_assembly::assemble_app_api_contribution_from_env",
       "sdkwork_api_shop_assembly::assemble_backend_api_contribution",
@@ -54,6 +55,7 @@
     "runtimeEntrypoints": [
       "sdkwork_api_shop_assembly::assemble_api_router",
       "sdkwork_api_shop_assembly::assemble_api_router_from_env",
+      "sdkwork_api_shop_assembly::assemble_api_router_with_pool",
       "sdkwork_api_shop_assembly::assemble_app_api_contribution_from_env",
       "sdkwork_api_shop_assembly::assemble_backend_api_contribution_from_env"
     ],
@@ -61,7 +63,30 @@
     "sdkClients": [],
     "sdkDependencies": [],
     "dependencyApiExports": [],
-    "dependencyApiSurfaces": [],
+    "requiredPorts": [
+      {
+        "name": "merchandiseApiAssembly",
+        "provider": "sdkwork-api-merchandise-assembly",
+        "export": "sdkwork_api_merchandise_assembly::assemble_api_router_with_pool"
+      }
+    ],
+    "dependencyApiSurfaces": [
+      {
+        "serviceId": "sdkwork-shop-backend-api",
+        "workspace": "sdkwork-merchandise",
+        "apiAuthority": "sdkwork-shop-backend-api",
+        "apiPrefixes": [
+          "/backend/v3/api/catalog"
+        ],
+        "runtimeMode": "same-origin-embedded",
+        "sameOriginAllowed": true,
+        "profileCoverage": [
+          "standalone",
+          "cloud"
+        ],
+        "embeddedExecutableExport": "sdkwork_api_merchandise_assembly::assemble_api_router_with_pool"
+      }
+    ],
     "events": [],
     "configKeys": [],
     "layerRole": "runtime-composition"
