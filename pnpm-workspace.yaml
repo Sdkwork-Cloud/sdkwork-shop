@@ -28,10 +28,10 @@ packages:
   - "../sdkwork-app-topology"
   - "../sdkwork-catalog/sdks/sdkwork-catalog-app-sdk/sdkwork-catalog-app-sdk-typescript"
   - "../sdkwork-order/sdks/sdkwork-order-app-sdk/sdkwork-order-app-sdk-typescript"
-
   - "../sdkwork-iam/apps/sdkwork-iam-pc/packages/sdkwork-user-center-core-pc-react"
   - "../sdkwork-order/apps/sdkwork-order-common/packages/sdkwork-order-mobile-react-orders"
   - "../sdkwork-ui/sdkwork-ui-mobile-react"
+
 catalog:
   "@monaco-editor/react": ^4.7.0
   "@playwright/test": ^1.52.0
