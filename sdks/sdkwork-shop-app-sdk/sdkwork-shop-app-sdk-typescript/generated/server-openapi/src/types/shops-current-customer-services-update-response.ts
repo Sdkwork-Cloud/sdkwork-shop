@@ -2,7 +2,7 @@ import type { ShopCustomerServiceResponse } from './shop-customer-service-respon
 
 export interface ShopsCurrentCustomerServicesUpdateResponse {
   code: 0;
-  data: unknown & Record<string, unknown>;
+  data: unknown & { item: ShopCustomerServiceResponse; };
   /** Server-owned request correlation id. */
   traceId: string;
 }

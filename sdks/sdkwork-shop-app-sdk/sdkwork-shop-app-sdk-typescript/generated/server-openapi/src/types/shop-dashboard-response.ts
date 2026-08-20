@@ -4,5 +4,5 @@ import type { ShopSummary } from './shop-summary';
 export interface ShopDashboardResponse {
   code: string;
   message: string;
-  data: Record<string, unknown>;
+  data: { shop: ShopSummary; metrics: ShopMetricSnapshot; pendingApplicationCount: number; pendingVerificationCount: number; pendingSettlementAmount: string; currencyCode: string; };
 }

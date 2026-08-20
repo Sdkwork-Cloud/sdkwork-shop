@@ -2,7 +2,7 @@ import type { ShopSettlementProfileResponse } from './shop-settlement-profile-re
 
 export interface ShopsCurrentSettlementProfileRetrieveResponse {
   code: 0;
-  data: unknown & Record<string, unknown>;
+  data: unknown & { item: ShopSettlementProfileResponse; };
   /** Server-owned request correlation id. */
   traceId: string;
 }

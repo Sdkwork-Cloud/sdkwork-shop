@@ -2,7 +2,7 @@ import type { ShopShippingTemplateResponse } from './shop-shipping-template-resp
 
 export interface ShopsCurrentShippingTemplatesUpdateResponse {
   code: 0;
-  data: unknown & Record<string, unknown>;
+  data: unknown & { item: ShopShippingTemplateResponse; };
   /** Server-owned request correlation id. */
   traceId: string;
 }

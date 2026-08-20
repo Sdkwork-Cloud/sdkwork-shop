@@ -1,5 +1,5 @@
 import { appApiPath } from './paths';
-import type { HttpClient } from '../http/client';
+import type { ApiRequestOptions, HttpClient } from '../http/client';
 
 import type { CommerceOperationCommand, CreateShopServiceAreaRequest, CurrentShopResponse, SdkWorkPageData, ShopApplicationResponse, ShopBrandAuthorizationResponse, ShopBusinessHourResponse, ShopCategoryBindingResponse, ShopChannelResponse, ShopCustomerServiceResponse, ShopDashboardResponse, ShopDepositAccountResponse, ShopDetailResponse, ShopFulfillmentProfileResponse, ShopPolicyResponse, ShopQualificationResponse, ShopReadinessResponse, ShopReturnAddressResponse, ShopServiceAreaResponse, ShopSettlementProfileResponse, ShopShippingTemplateResponse, SubmitShopApplicationRequest, UpdateShopBusinessHourRequest, UpdateShopChannelRequest, UpdateShopFulfillmentProfileRequest, UpdateShopPolicyRequest, UpdateShopServiceAreaRequest, UpdateShopSettlementProfileRequest, UpsertShopBrandAuthorizationRequest, UpsertShopCategoryBindingRequest, UpsertShopCustomerServiceRequest, UpsertShopQualificationRequest, UpsertShopReturnAddressRequest, UpsertShopShippingTemplateRequest } from '../types';
 
@@ -19,13 +19,13 @@ export class ShopsCurrentSettlementsApi {
 
 
 /** Shops current settlements list. */
-  async list(params?: ShopsCurrentSettlementsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentSettlementsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/settlements`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/settlements`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -38,8 +38,8 @@ export class ShopsCurrentOrdersFulfillmentsApi {
 
 
 /** Shops current orders fulfillments create. */
-  async create(orderId: string, body: CommerceOperationCommand): Promise<Record<string, unknown>> {
-    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/orders/${serializePathParameter(orderId, { name: 'orderId', style: 'simple', explode: false })}/fulfillments`), body, undefined, undefined, 'application/json');
+  async create(orderId: string, body: CommerceOperationCommand, requestOptions?: ApiRequestOptions): Promise<Record<string, unknown>> {
+    return this.client.request<Record<string, unknown>>(appApiPath(`/shops/current/orders/${serializePathParameter(orderId, { name: 'orderId', style: 'simple', explode: false })}/fulfillments`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -60,18 +60,18 @@ export class ShopsCurrentOrdersApi {
 
 
 /** Shops current orders list. */
-  async list(params?: ShopsCurrentOrdersListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentOrdersListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/orders`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/orders`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current orders retrieve. */
-  async retrieve(orderId: string): Promise<Record<string, unknown>> {
-    return this.client.get<Record<string, unknown>>(appApiPath(`/shops/current/orders/${serializePathParameter(orderId, { name: 'orderId', style: 'simple', explode: false })}`));
+  async retrieve(orderId: string, requestOptions?: ApiRequestOptions): Promise<Record<string, unknown>> {
+    return this.client.request<Record<string, unknown>>(appApiPath(`/shops/current/orders/${serializePathParameter(orderId, { name: 'orderId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -91,34 +91,34 @@ export class ShopsCurrentProductsApi {
 
 
 /** Shops current products list. */
-  async list(params?: ShopsCurrentProductsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentProductsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/products`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/products`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current products create. */
-  async create(body: CommerceOperationCommand): Promise<Record<string, unknown>> {
-    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/products`), body, undefined, undefined, 'application/json');
+  async create(body: CommerceOperationCommand, requestOptions?: ApiRequestOptions): Promise<Record<string, unknown>> {
+    return this.client.request<Record<string, unknown>>(appApiPath(`/shops/current/products`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 
 /** Shops current products update. */
-  async update(productId: string, body?: CommerceOperationCommand): Promise<Record<string, unknown>> {
-    return this.client.patch<Record<string, unknown>>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}`), body, undefined, undefined, 'application/json');
+  async update(productId: string, body?: CommerceOperationCommand, requestOptions?: ApiRequestOptions): Promise<Record<string, unknown>> {
+    return this.client.request<Record<string, unknown>>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, ...(body !== undefined ? { body, contentType: 'application/json' } : {}), sdkworkUnwrapKind: 'item' });
   }
 
 /** Shops current products publish. */
-  async publish(productId: string, body: CommerceOperationCommand): Promise<Record<string, unknown>> {
-    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}/publish`), body, undefined, undefined, 'application/json');
+  async publish(productId: string, body: CommerceOperationCommand, requestOptions?: ApiRequestOptions): Promise<Record<string, unknown>> {
+    return this.client.request<Record<string, unknown>>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}/publish`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 
 /** Shops current products unpublish. */
-  async unpublish(productId: string, body: CommerceOperationCommand): Promise<Record<string, unknown>> {
-    return this.client.post<Record<string, unknown>>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}/unpublish`), body, undefined, undefined, 'application/json');
+  async unpublish(productId: string, body: CommerceOperationCommand, requestOptions?: ApiRequestOptions): Promise<Record<string, unknown>> {
+    return this.client.request<Record<string, unknown>>(appApiPath(`/shops/current/products/${serializePathParameter(productId, { name: 'productId', style: 'simple', explode: false })}/unpublish`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -139,7 +139,7 @@ export class ShopsCurrentRiskSignalsApi {
 
 
 /** Shops current risk Signals list. */
-  async list(params?: ShopsCurrentRiskSignalsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentRiskSignalsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'signal_type', value: params?.signalType, style: 'form', explode: true, allowReserved: false },
       { name: 'risk_level', value: params?.riskLevel, style: 'form', explode: true, allowReserved: false },
@@ -147,7 +147,7 @@ export class ShopsCurrentRiskSignalsApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/risk_signals`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/risk_signals`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -160,8 +160,8 @@ export class ShopsCurrentDepositAccountApi {
 
 
 /** Shops current deposit Account retrieve. */
-  async retrieve(): Promise<ShopDepositAccountResponse> {
-    return this.client.get<ShopDepositAccountResponse>(appApiPath(`/shops/current/deposit_account`));
+  async retrieve(requestOptions?: ApiRequestOptions): Promise<ShopDepositAccountResponse> {
+    return this.client.request<ShopDepositAccountResponse>(appApiPath(`/shops/current/deposit_account`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -185,25 +185,25 @@ export class ShopsCurrentPoliciesApi {
 
 
 /** Shops current policies list. */
-  async list(params?: ShopsCurrentPoliciesListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentPoliciesListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'policy_type', value: params?.policyType, style: 'form', explode: true, allowReserved: false },
       { name: 'policy_status', value: params?.policyStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/policies`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/policies`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current policies update. */
-  async update(policyId: string, body: UpdateShopPolicyRequest, params: ShopsCurrentPoliciesUpdateParams): Promise<ShopPolicyResponse> {
+  async update(policyId: string, body: UpdateShopPolicyRequest, params: ShopsCurrentPoliciesUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopPolicyResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.patch<ShopPolicyResponse>(appApiPath(`/shops/current/policies/${serializePathParameter(policyId, { name: 'policyId', style: 'simple', explode: false })}`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopPolicyResponse>(appApiPath(`/shops/current/policies/${serializePathParameter(policyId, { name: 'policyId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -232,7 +232,7 @@ export class ShopsCurrentServiceAreasApi {
 
 
 /** Shops current service Areas list. */
-  async list(params?: ShopsCurrentServiceAreasListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentServiceAreasListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'area_type', value: params?.areaType, style: 'form', explode: true, allowReserved: false },
       { name: 'region_code', value: params?.regionCode, style: 'form', explode: true, allowReserved: false },
@@ -240,29 +240,29 @@ export class ShopsCurrentServiceAreasApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/service_areas`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/service_areas`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current service Areas create. */
-  async create(body: CreateShopServiceAreaRequest, params: ShopsCurrentServiceAreasCreateParams): Promise<ShopServiceAreaResponse> {
+  async create(body: CreateShopServiceAreaRequest, params: ShopsCurrentServiceAreasCreateParams, requestOptions?: ApiRequestOptions): Promise<ShopServiceAreaResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.post<ShopServiceAreaResponse>(appApiPath(`/shops/current/service_areas`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopServiceAreaResponse>(appApiPath(`/shops/current/service_areas`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 
 /** Shops current service Areas update. */
-  async update(serviceAreaId: string, body: UpdateShopServiceAreaRequest, params: ShopsCurrentServiceAreasUpdateParams): Promise<ShopServiceAreaResponse> {
+  async update(serviceAreaId: string, body: UpdateShopServiceAreaRequest, params: ShopsCurrentServiceAreasUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopServiceAreaResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.patch<ShopServiceAreaResponse>(appApiPath(`/shops/current/service_areas/${serializePathParameter(serviceAreaId, { name: 'serviceAreaId', style: 'simple', explode: false })}`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopServiceAreaResponse>(appApiPath(`/shops/current/service_areas/${serializePathParameter(serviceAreaId, { name: 'serviceAreaId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -279,19 +279,19 @@ export class ShopsCurrentBusinessHoursApi {
 
 
 /** Shops current business Hours retrieve. */
-  async retrieve(): Promise<ShopBusinessHourResponse> {
-    return this.client.get<ShopBusinessHourResponse>(appApiPath(`/shops/current/business_hours`));
+  async retrieve(requestOptions?: ApiRequestOptions): Promise<ShopBusinessHourResponse> {
+    return this.client.request<ShopBusinessHourResponse>(appApiPath(`/shops/current/business_hours`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 
 /** Shops current business Hours update. */
-  async update(body: UpdateShopBusinessHourRequest, params: ShopsCurrentBusinessHoursUpdateParams): Promise<ShopBusinessHourResponse> {
+  async update(body: UpdateShopBusinessHourRequest, params: ShopsCurrentBusinessHoursUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopBusinessHourResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.patch<ShopBusinessHourResponse>(appApiPath(`/shops/current/business_hours`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopBusinessHourResponse>(appApiPath(`/shops/current/business_hours`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -308,19 +308,19 @@ export class ShopsCurrentSettlementProfileApi {
 
 
 /** Shops current settlement Profile retrieve. */
-  async retrieve(): Promise<ShopSettlementProfileResponse> {
-    return this.client.get<ShopSettlementProfileResponse>(appApiPath(`/shops/current/settlement_profile`));
+  async retrieve(requestOptions?: ApiRequestOptions): Promise<ShopSettlementProfileResponse> {
+    return this.client.request<ShopSettlementProfileResponse>(appApiPath(`/shops/current/settlement_profile`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 
 /** Shops current settlement Profile update. */
-  async update(body: UpdateShopSettlementProfileRequest, params: ShopsCurrentSettlementProfileUpdateParams): Promise<ShopSettlementProfileResponse> {
+  async update(body: UpdateShopSettlementProfileRequest, params: ShopsCurrentSettlementProfileUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopSettlementProfileResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.patch<ShopSettlementProfileResponse>(appApiPath(`/shops/current/settlement_profile`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopSettlementProfileResponse>(appApiPath(`/shops/current/settlement_profile`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -337,19 +337,19 @@ export class ShopsCurrentFulfillmentProfileApi {
 
 
 /** Shops current fulfillment Profile retrieve. */
-  async retrieve(): Promise<ShopFulfillmentProfileResponse> {
-    return this.client.get<ShopFulfillmentProfileResponse>(appApiPath(`/shops/current/fulfillment_profile`));
+  async retrieve(requestOptions?: ApiRequestOptions): Promise<ShopFulfillmentProfileResponse> {
+    return this.client.request<ShopFulfillmentProfileResponse>(appApiPath(`/shops/current/fulfillment_profile`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 
 /** Shops current fulfillment Profile update. */
-  async update(body: UpdateShopFulfillmentProfileRequest, params: ShopsCurrentFulfillmentProfileUpdateParams): Promise<ShopFulfillmentProfileResponse> {
+  async update(body: UpdateShopFulfillmentProfileRequest, params: ShopsCurrentFulfillmentProfileUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopFulfillmentProfileResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.patch<ShopFulfillmentProfileResponse>(appApiPath(`/shops/current/fulfillment_profile`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopFulfillmentProfileResponse>(appApiPath(`/shops/current/fulfillment_profile`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -373,25 +373,25 @@ export class ShopsCurrentChannelsApi {
 
 
 /** Shops current channels list. */
-  async list(params?: ShopsCurrentChannelsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentChannelsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'channel_code', value: params?.channelCode, style: 'form', explode: true, allowReserved: false },
       { name: 'storefront_status', value: params?.storefrontStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/channels`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/channels`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current channels update. */
-  async update(channelId: string, body: UpdateShopChannelRequest, params: ShopsCurrentChannelsUpdateParams): Promise<ShopChannelResponse> {
+  async update(channelId: string, body: UpdateShopChannelRequest, params: ShopsCurrentChannelsUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopChannelResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.patch<ShopChannelResponse>(appApiPath(`/shops/current/channels/${serializePathParameter(channelId, { name: 'channelId', style: 'simple', explode: false })}`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopChannelResponse>(appApiPath(`/shops/current/channels/${serializePathParameter(channelId, { name: 'channelId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -410,13 +410,13 @@ export class ShopsCurrentStatusEventsApi {
 
 
 /** Shops current status Events list. */
-  async list(params?: ShopsCurrentStatusEventsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentStatusEventsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'event_type', value: params?.eventType, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/status_events`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/status_events`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -436,14 +436,14 @@ export class ShopsCurrentVerificationsApi {
 
 
 /** Shops current verifications list. */
-  async list(params?: ShopsCurrentVerificationsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentVerificationsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'verification_type', value: params?.verificationType, style: 'form', explode: true, allowReserved: false },
       { name: 'verification_status', value: params?.verificationStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/verifications`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/verifications`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -466,24 +466,24 @@ export class ShopsCurrentApplicationsApi {
 
 
 /** Shops current applications list. */
-  async list(params?: ShopsCurrentApplicationsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentApplicationsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/applications`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/applications`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current applications create. */
-  async create(body: SubmitShopApplicationRequest, params: ShopsCurrentApplicationsCreateParams): Promise<ShopApplicationResponse> {
+  async create(body: SubmitShopApplicationRequest, params: ShopsCurrentApplicationsCreateParams, requestOptions?: ApiRequestOptions): Promise<ShopApplicationResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.post<ShopApplicationResponse>(appApiPath(`/shops/current/applications`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopApplicationResponse>(appApiPath(`/shops/current/applications`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -508,7 +508,7 @@ export class ShopsCurrentShippingTemplatesApi {
 
 
 /** Shops current shipping Templates list. */
-  async list(params?: ShopsCurrentShippingTemplatesListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentShippingTemplatesListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'template_status', value: params?.templateStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'delivery_method', value: params?.deliveryMethod, style: 'form', explode: true, allowReserved: false },
@@ -516,18 +516,18 @@ export class ShopsCurrentShippingTemplatesApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/shipping_templates`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/shipping_templates`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current shipping Templates upsert. */
-  async update(body: UpsertShopShippingTemplateRequest, params: ShopsCurrentShippingTemplatesUpdateParams): Promise<ShopShippingTemplateResponse> {
+  async update(body: UpsertShopShippingTemplateRequest, params: ShopsCurrentShippingTemplatesUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopShippingTemplateResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.put<ShopShippingTemplateResponse>(appApiPath(`/shops/current/shipping_templates`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopShippingTemplateResponse>(appApiPath(`/shops/current/shipping_templates`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PUT' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -552,7 +552,7 @@ export class ShopsCurrentReturnAddressesApi {
 
 
 /** Shops current return Addresses list. */
-  async list(params?: ShopsCurrentReturnAddressesListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentReturnAddressesListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'address_usage', value: params?.addressUsage, style: 'form', explode: true, allowReserved: false },
       { name: 'address_status', value: params?.addressStatus, style: 'form', explode: true, allowReserved: false },
@@ -560,18 +560,18 @@ export class ShopsCurrentReturnAddressesApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/return_addresses`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/return_addresses`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current return Addresses upsert. */
-  async update(body: UpsertShopReturnAddressRequest, params: ShopsCurrentReturnAddressesUpdateParams): Promise<ShopReturnAddressResponse> {
+  async update(body: UpsertShopReturnAddressRequest, params: ShopsCurrentReturnAddressesUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopReturnAddressResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.put<ShopReturnAddressResponse>(appApiPath(`/shops/current/return_addresses`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopReturnAddressResponse>(appApiPath(`/shops/current/return_addresses`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PUT' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -596,7 +596,7 @@ export class ShopsCurrentCustomerServicesApi {
 
 
 /** Shops current customer Services list. */
-  async list(params?: ShopsCurrentCustomerServicesListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentCustomerServicesListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'service_channel', value: params?.serviceChannel, style: 'form', explode: true, allowReserved: false },
       { name: 'service_status', value: params?.serviceStatus, style: 'form', explode: true, allowReserved: false },
@@ -604,18 +604,18 @@ export class ShopsCurrentCustomerServicesApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/customer_services`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/customer_services`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current customer Services upsert. */
-  async update(body: UpsertShopCustomerServiceRequest, params: ShopsCurrentCustomerServicesUpdateParams): Promise<ShopCustomerServiceResponse> {
+  async update(body: UpsertShopCustomerServiceRequest, params: ShopsCurrentCustomerServicesUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopCustomerServiceResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.put<ShopCustomerServiceResponse>(appApiPath(`/shops/current/customer_services`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopCustomerServiceResponse>(appApiPath(`/shops/current/customer_services`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PUT' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -641,7 +641,7 @@ export class ShopsCurrentQualificationsApi {
 
 
 /** Shops current qualifications list. */
-  async list(params?: ShopsCurrentQualificationsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentQualificationsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'qualification_type', value: params?.qualificationType, style: 'form', explode: true, allowReserved: false },
       { name: 'subject_type', value: params?.subjectType, style: 'form', explode: true, allowReserved: false },
@@ -650,18 +650,18 @@ export class ShopsCurrentQualificationsApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/qualifications`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/qualifications`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current qualifications upsert. */
-  async update(body: UpsertShopQualificationRequest, params: ShopsCurrentQualificationsUpdateParams): Promise<ShopQualificationResponse> {
+  async update(body: UpsertShopQualificationRequest, params: ShopsCurrentQualificationsUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopQualificationResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.put<ShopQualificationResponse>(appApiPath(`/shops/current/qualifications`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopQualificationResponse>(appApiPath(`/shops/current/qualifications`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PUT' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -685,25 +685,25 @@ export class ShopsCurrentBrandAuthorizationsApi {
 
 
 /** Shops current brand Authorizations list. */
-  async list(params?: ShopsCurrentBrandAuthorizationsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentBrandAuthorizationsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'brand_code', value: params?.brandCode, style: 'form', explode: true, allowReserved: false },
       { name: 'authorization_status', value: params?.authorizationStatus, style: 'form', explode: true, allowReserved: false },
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/brand_authorizations`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/brand_authorizations`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current brand Authorizations upsert. */
-  async update(body: UpsertShopBrandAuthorizationRequest, params: ShopsCurrentBrandAuthorizationsUpdateParams): Promise<ShopBrandAuthorizationResponse> {
+  async update(body: UpsertShopBrandAuthorizationRequest, params: ShopsCurrentBrandAuthorizationsUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopBrandAuthorizationResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.put<ShopBrandAuthorizationResponse>(appApiPath(`/shops/current/brand_authorizations`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopBrandAuthorizationResponse>(appApiPath(`/shops/current/brand_authorizations`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PUT' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -729,7 +729,7 @@ export class ShopsCurrentCategoryBindingsApi {
 
 
 /** Shops current category Bindings list. */
-  async list(params?: ShopsCurrentCategoryBindingsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsCurrentCategoryBindingsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'shop_category_code', value: params?.shopCategoryCode, style: 'form', explode: true, allowReserved: false },
       { name: 'platform_category_code', value: params?.platformCategoryCode, style: 'form', explode: true, allowReserved: false },
@@ -738,18 +738,18 @@ export class ShopsCurrentCategoryBindingsApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/category_bindings`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops/current/category_bindings`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops current category Bindings upsert. */
-  async update(body: UpsertShopCategoryBindingRequest, params: ShopsCurrentCategoryBindingsUpdateParams): Promise<ShopCategoryBindingResponse> {
+  async update(body: UpsertShopCategoryBindingRequest, params: ShopsCurrentCategoryBindingsUpdateParams, requestOptions?: ApiRequestOptions): Promise<ShopCategoryBindingResponse> {
     const requestHeaders = buildRequestHeaders(
       {
         'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
       },
       {}
     );
-    return this.client.put<ShopCategoryBindingResponse>(appApiPath(`/shops/current/category_bindings`), body, undefined, requestHeaders, 'application/json');
+    return this.client.request<ShopCategoryBindingResponse>(appApiPath(`/shops/current/category_bindings`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PUT' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -762,8 +762,8 @@ export class ShopsCurrentReadinessApi {
 
 
 /** Shops current readiness retrieve. */
-  async retrieve(): Promise<ShopReadinessResponse> {
-    return this.client.get<ShopReadinessResponse>(appApiPath(`/shops/current/readiness`));
+  async retrieve(requestOptions?: ApiRequestOptions): Promise<ShopReadinessResponse> {
+    return this.client.request<ShopReadinessResponse>(appApiPath(`/shops/current/readiness`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -776,8 +776,8 @@ export class ShopsCurrentDashboardApi {
 
 
 /** Shops current dashboard retrieve. */
-  async retrieve(): Promise<ShopDashboardResponse> {
-    return this.client.get<ShopDashboardResponse>(appApiPath(`/shops/current/dashboard`));
+  async retrieve(requestOptions?: ApiRequestOptions): Promise<ShopDashboardResponse> {
+    return this.client.request<ShopDashboardResponse>(appApiPath(`/shops/current/dashboard`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -834,8 +834,8 @@ export class ShopsCurrentApi {
 
 
 /** Shops current retrieve. */
-  async retrieve(): Promise<CurrentShopResponse> {
-    return this.client.get<CurrentShopResponse>(appApiPath(`/shops/current`));
+  async retrieve(requestOptions?: ApiRequestOptions): Promise<CurrentShopResponse> {
+    return this.client.request<CurrentShopResponse>(appApiPath(`/shops/current`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -858,7 +858,7 @@ export class ShopsApi {
 
 
 /** Shops list. */
-  async list(params?: ShopsListParams): Promise<SdkWorkPageData> {
+  async list(params?: ShopsListParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
     const query = buildQueryString([
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'shop_type', value: params?.shopType, style: 'form', explode: true, allowReserved: false },
@@ -866,12 +866,12 @@ export class ShopsApi {
       { name: 'page', value: params?.page, style: 'form', explode: true, allowReserved: false },
       { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<SdkWorkPageData>(appendQueryString(appApiPath(`/shops`), query));
+    return this.client.request<SdkWorkPageData>(appendQueryString(appApiPath(`/shops`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 
 /** Shops retrieve. */
-  async retrieve(shopId: string): Promise<ShopDetailResponse> {
-    return this.client.get<ShopDetailResponse>(appApiPath(`/shops/${serializePathParameter(shopId, { name: 'shopId', style: 'simple', explode: false })}`));
+  async retrieve(shopId: string, requestOptions?: ApiRequestOptions): Promise<ShopDetailResponse> {
+    return this.client.request<ShopDetailResponse>(appApiPath(`/shops/${serializePathParameter(shopId, { name: 'shopId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
 }
 

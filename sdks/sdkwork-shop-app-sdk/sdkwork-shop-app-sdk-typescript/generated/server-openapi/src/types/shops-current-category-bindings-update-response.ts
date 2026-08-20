@@ -2,7 +2,7 @@ import type { ShopCategoryBindingResponse } from './shop-category-binding-respon
 
 export interface ShopsCurrentCategoryBindingsUpdateResponse {
   code: 0;
-  data: unknown & Record<string, unknown>;
+  data: unknown & { item: ShopCategoryBindingResponse; };
   /** Server-owned request correlation id. */
   traceId: string;
 }

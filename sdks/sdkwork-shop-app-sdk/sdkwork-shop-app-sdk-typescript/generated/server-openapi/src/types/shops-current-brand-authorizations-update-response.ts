@@ -2,7 +2,7 @@ import type { ShopBrandAuthorizationResponse } from './shop-brand-authorization-
 
 export interface ShopsCurrentBrandAuthorizationsUpdateResponse {
   code: 0;
-  data: unknown & Record<string, unknown>;
+  data: unknown & { item: ShopBrandAuthorizationResponse; };
   /** Server-owned request correlation id. */
   traceId: string;
 }
